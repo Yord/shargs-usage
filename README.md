@@ -1,0 +1,1 @@
+shargs-usage is an automatic usage documentation generation library for shargs 🦈.
