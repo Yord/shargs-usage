@@ -1,5 +1,4 @@
-const layoutMap = require('./layoutMap')
-const {line} = require('../line')
+const {layoutMap, line} = require('../..')
 
 test('layoutMap maps layouts over items', () => {
   const style = {

@@ -1,5 +1,4 @@
-const optsFilter = require('./optsFilter')
-const {optsList} = require('../optsList')
+const {optsFilter, optsList} = require('../..')
 
 const id = opts => opts
 

@@ -1,4 +1,4 @@
-const {brs, brsFrom} = require('./brs')
+const {brs, brsFrom} = require('..')
 
 test('brs generates expected string', () => {
   const style = {

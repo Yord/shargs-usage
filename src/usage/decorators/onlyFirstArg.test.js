@@ -1,5 +1,4 @@
-const onlyFirstArg = require('./onlyFirstArg')
-const {optsList} = require('../optsList')
+const {onlyFirstArg, optsList} = require('../..')
 
 const id = opts => opts
 

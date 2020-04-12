@@ -1,4 +1,4 @@
-const {table, tableFrom} = require('./table')
+const {table, tableFrom} = require('..')
 
 test('table generates expected string', () => {
   const style = {
