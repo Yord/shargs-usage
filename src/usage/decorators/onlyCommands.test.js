@@ -1,5 +1,4 @@
-const onlyCommands = require('./onlyCommands')
-const {optsList} = require('../optsList')
+const {onlyCommands, optsList} = require('../..')
 
 const id = opts => opts
 

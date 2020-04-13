@@ -1,4 +1,4 @@
-const {notes, notesFrom} = require('./notes')
+const {notes, notesFrom} = require('..')
 
 test('notes README example works as expected', () => {
   const opts = [

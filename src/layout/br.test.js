@@ -1,4 +1,4 @@
-const {br, brFrom} = require('./br')
+const {br, brFrom} = require('..')
 
 test('br generates expected string', () => {
   const style = {

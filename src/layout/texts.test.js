@@ -1,4 +1,4 @@
-const {texts, textsFrom} = require('./texts')
+const {texts, textsFrom} = require('..')
 
 test('texts generates expected string', () => {
   const style = {

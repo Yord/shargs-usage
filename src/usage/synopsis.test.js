@@ -1,4 +1,4 @@
-const {synopsis, synopsisFrom} = require('./synopsis')
+const {synopsis, synopsisFrom} = require('..')
 
 test('synopsis README example works as expected', () => {
   const opts = [

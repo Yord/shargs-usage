@@ -1,4 +1,4 @@
-const {defs, defsFrom} = require('./defs')
+const {defs, defsFrom} = require('..')
 
 test('defs generates expected string', () => {
   const style = {

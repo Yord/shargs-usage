@@ -1,4 +1,4 @@
-const {lines, linesFrom} = require('./lines')
+const {lines, linesFrom} = require('..')
 
 test('lines generates expected string', () => {
   const style = {

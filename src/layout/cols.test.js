@@ -1,4 +1,4 @@
-const {cols, colsFrom} = require('./cols')
+const {cols, colsFrom} = require('..')
 
 test('cols generates expected string', () => {
   const style = {

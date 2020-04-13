@@ -1,6 +1,4 @@
-const usage                = require('./combinators/usage')
-const {note}               = require('./note')
-const {spaces, spacesFrom} = require('./spaces')
+const {note, spaces, spacesFrom, usage} = require('..')
 
 test('spaces README example works as expected', () => {
   const opts = []

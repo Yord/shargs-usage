@@ -1,5 +1,4 @@
-const usage = require('./usage')
-const {optsList} = require('../optsList')
+const {optsList, usage} = require('../..')
 
 test('usage generates expected string', () => {
   const opts = [

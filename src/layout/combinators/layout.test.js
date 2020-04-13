@@ -1,5 +1,4 @@
-const layout = require('./layout')
-const {line} = require('../line')
+const {layout, line} = require('../..')
 
 test('layout returns the empty string if no functions are defined', () => {
   const style = {

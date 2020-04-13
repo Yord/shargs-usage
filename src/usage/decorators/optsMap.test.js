@@ -1,5 +1,4 @@
-const optsMap = require('./optsMap')
-const {optsList} = require('../optsList')
+const {optsList, optsMap} = require('../..')
 
 const id = opts => opts
 

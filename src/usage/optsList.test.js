@@ -1,4 +1,4 @@
-const {optsList, optsListFrom} = require('./optsList')
+const {optsList, optsListFrom} = require('..')
 
 test('optsList README example works as expected', () => {
   const opts = [

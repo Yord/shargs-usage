@@ -1,6 +1,4 @@
-const decorate   = require('./decorate')
-const justArgs   = require('../justArgs')
-const noCommands = require('../noCommands')
+const {decorate, justArgs, noCommands}   = require('../../..')
 
 const id = opts => opts
 

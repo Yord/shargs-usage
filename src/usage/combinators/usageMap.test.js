@@ -1,7 +1,4 @@
-const usageMap = require('./usageMap')
-const {table} = require('../../layout/table')
-const {text, textFrom} = require('../../layout/text')
-const layout = require('../../layout/combinators/layout')
+const {layout, table, text, textFrom, usageMap} = require('../..')
 
 test('usageMap generates expected string', () => {
   const opts = [
