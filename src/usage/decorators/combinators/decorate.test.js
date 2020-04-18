@@ -5,7 +5,7 @@ const id = opts => opts
 test('decorate combines decorators', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
 

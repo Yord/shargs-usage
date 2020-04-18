@@ -9,7 +9,7 @@ test('optsMap README example works', () => {
   
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
   
@@ -26,7 +26,7 @@ test('optsMap transforms opts', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
     {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: null, args: ['--version'], desc: 'Prints version.'}
+    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
   const res = optsMap(
@@ -36,7 +36,7 @@ test('optsMap transforms opts', () => {
   const exp = [
     {key: 'answer', types: ['number'], args: ['-a'], desc: 'The answer.'},
     {key: 'help', types: [], args: ['-h'], desc: 'Prints help.'},
-    {key: 'version', types: null, args: ['--version'], desc: 'Prints version.'}
+    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
   expect(res).toStrictEqual(exp)
@@ -46,7 +46,7 @@ test('optsMap does not transforms if function is undefined', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
     {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: null, args: ['--version'], desc: 'Prints version.'}
+    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
   const res = optsMap()(id)(opts)

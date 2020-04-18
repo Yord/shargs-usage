@@ -9,7 +9,7 @@ test('onlyCommands README example works', () => {
   
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
   
@@ -24,7 +24,7 @@ test('onlyCommands filters one opt', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
     {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: null, args: ['--version'], desc: 'Prints version.'}
+    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
   const res = onlyCommands(id)(opts)
@@ -35,8 +35,8 @@ test('onlyCommands filters one opt', () => {
 test('onlyCommands filters more than one opt', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: null, args: ['--version'], desc: 'Prints version.'}
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
   const res = onlyCommands(id)(opts)

@@ -25,14 +25,14 @@ test('optsList README example works as expected', () => {
 
 test('optsList works as expected', () => {
   const opts = [
-    {key: 'answer', types: null, args: ['answer'], desc: 'The answer.', required: true},
+    {key: 'answer', opts: [], args: ['answer'], desc: 'The answer.', required: true},
     {key: 'foo', types: ['string'], args: ['-f'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
     {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
     {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
     {key: 'position', types: ['number', 'number'], args: ['--pos'], desc: 'The position.'},
     {key: 'question', types: ['string'], required: true, desc: 'The question.'},
-    {key: 'politePhrase', types: null, variadic: true, desc: 'Polite phrases.'},
+    {key: 'politePhrase', desc: 'Polite phrases.'},
     {now: 'something', completely: 'different'}
   ]
 
@@ -145,7 +145,7 @@ test('optsList does not print different defaultValues format', () => {
   const res = optsList(opts)(style)
 
   const txt = '-a   An a.                                                                 \n' +
-              '-b   A b. [default: 1, 2]                                                  \n'
+              '-b   A b. [default: [1, 2]]                                                \n'
 
   expect(res).toStrictEqual(txt)
 })
@@ -181,7 +181,7 @@ test('optsList uses default style if style is undefined', () => {
     {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
     {key: 'question', types: ['string'], required: true, desc: 'The question.'},
-    {key: 'politePhrase', types: null, variadic: true, desc: 'Polite phrases.'}
+    {key: 'politePhrases', descArg: 'phrases', desc: 'Polite phrases.'}
   ]
 
   const res = optsList(opts)()
@@ -192,7 +192,7 @@ test('optsList uses default style if style is undefined', () => {
               '-h, help, --help         Prints help. [default: false]                          \n' +
               '--version                Prints version. [contradicts: --help, help, -h]        \n' +
               '<question>               The question. [required]                               \n' +
-              '<politePhrase>...        Polite phrases.                                        \n'
+              '<phrases>...             Polite phrases.                                        \n'
 
   expect(res).toStrictEqual(txt)
 })

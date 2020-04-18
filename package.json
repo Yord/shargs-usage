@@ -1,6 +1,6 @@
 {
   "name": "shargs-usage",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Automatic usage documentation generation for shargs",
   "keywords": [
     "shargs",

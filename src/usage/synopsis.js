@@ -48,7 +48,7 @@ function buildArgsString (opts) {
         const groups = optsByKey[key].reduce(
           (acc, opt) => ({
             ...acc,
-            ...(isOpt(opt)
+            ...(isOption(opt)
                 ? isRequired(opt)
                   ? {required: [...acc.required, opt.args]}
                   : {optional: [...acc.optional, ...opt.args]}
@@ -73,7 +73,7 @@ function buildArgsString (opts) {
     },
     {done: {}, res: []}
   )
-  
+
   return argsGroups.res.join(' ')
 }
 
@@ -81,12 +81,12 @@ function isRequired ({required}) {
   return required === true
 }
 
-function isOpt ({args}) {
+function isOption ({args}) {
   return Array.isArray(args)
 }
 
-function formatPosArg ({key, variadic = false}) {
-  return '<' + key + '>' + (variadic === true ? '...' : '')
+function formatPosArg ({key, descArg, types}) {
+  return '<' + (descArg ? descArg : key) + '>' + (typeof types === 'undefined' ? '...' : '')
 }
 
 function formatOptional (args) {

@@ -9,7 +9,7 @@ test('onlyFirstArg README example works', () => {
   
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
   
@@ -26,7 +26,7 @@ test('onlyFirstArg filters one opt', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
     {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: null, args: ['--version'], desc: 'Prints version.'}
+    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
   const res = onlyFirstArg(id)(opts)
@@ -34,7 +34,7 @@ test('onlyFirstArg filters one opt', () => {
   const exp = [
     {key: 'answer', types: ['number'], args: ['-a'], desc: 'The answer.'},
     {key: 'help', types: [], args: ['-h'], desc: 'Prints help.'},
-    {key: 'version', types: null, args: ['--version'], desc: 'Prints version.'}
+    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
   expect(res).toStrictEqual(exp)
@@ -44,7 +44,7 @@ test('onlyFirstArg returns empty array if args is undefined', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
     {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', args: undefined, types: null, desc: 'Prints version.'}
+    {key: 'version', desc: 'Prints version.'}
   ]
 
   const res = onlyFirstArg(id)(opts)
@@ -52,7 +52,7 @@ test('onlyFirstArg returns empty array if args is undefined', () => {
   const exp = [
     {key: 'answer', types: ['number'], args: ['-a'], desc: 'The answer.'},
     {key: 'help', types: [], args: ['-h'], desc: 'Prints help.'},
-    {key: 'version', args: [], types: null, desc: 'Prints version.'}
+    {key: 'version', args: [], desc: 'Prints version.'}
   ]
 
   expect(res).toStrictEqual(exp)

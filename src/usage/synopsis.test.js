@@ -29,7 +29,7 @@ test('synopsis generates expected string', () => {
     {key: 'fun', types: ['bool'], args: ['-f'], required: true},
     {key: 'fun', types: ['bool'], args: ['--no-fun'], reverse: true},
     {key: 'question', types: ['string'], required: true},
-    {key: 'politePhrase', types: null, variadic: true}
+    {key: 'politePhrase'}
   ]
 
   const style = {
@@ -56,7 +56,7 @@ test('synopsis works without programName', () => {
     {key: 'fun', types: ['bool'], args: ['-f'], required: true},
     {key: 'fun', types: ['bool'], args: ['--no-fun'], reverse: true},
     {key: 'question', types: ['string'], required: true},
-    {key: 'politePhrase', types: null, variadic: true}
+    {key: 'politePhrase'}
   ]
 
   const style = {
@@ -162,7 +162,7 @@ test('synopsis uses default line style if line is undefined in style', () => {
     {key: 'fun', types: ['bool'], args: ['-f'], required: true},
     {key: 'fun', types: ['bool'], args: ['--no-fun'], reverse: true},
     {key: 'question', types: ['string'], required: true},
-    {key: 'politePhrase', types: null, variadic: true}
+    {key: 'politePhrase'}
   ]
 
   const style = {}
@@ -185,7 +185,7 @@ test('synopsis uses default line style if style is undefined', () => {
     {key: 'fun', types: ['bool'], args: ['-f'], required: true},
     {key: 'fun', types: ['bool'], args: ['--no-fun'], reverse: true},
     {key: 'question', types: ['string'], required: true},
-    {key: 'politePhrase', types: null, variadic: true}
+    {key: 'politePhrase'}
   ]
 
   const res = synopsis('deepThought')(opts)()
@@ -223,7 +223,7 @@ test('synopsisFrom correctly passes on id', () => {
     {key: 'fun', types: ['bool'], args: ['-f'], required: true},
     {key: 'fun', types: ['bool'], args: ['--no-fun'], reverse: true},
     {key: 'question', types: ['string'], required: true},
-    {key: 'politePhrase', types: null, variadic: true}
+    {key: 'politePhrase'}
   ]
 
   const style = {
@@ -248,7 +248,7 @@ test('synopsisFrom with wrong id uses default style', () => {
     {key: 'fun', types: ['bool'], args: ['-f'], required: true},
     {key: 'fun', types: ['bool'], args: ['--no-fun'], reverse: true},
     {key: 'question', types: ['string'], required: true},
-    {key: 'politePhrase', types: null, variadic: true}
+    {key: 'politePhrases', descArg: 'phrases'}
   ]
 
   const style = {
@@ -258,7 +258,7 @@ test('synopsisFrom with wrong id uses default style', () => {
   const res = synopsisFrom('custom')('deepThought')(opts)(style)
 
   const txt = 'deepThought (-a|--answer) [-h|--help] [-v|-q] [--no-fun] (-f) (<question>)      \n' +
-              '            [<politePhrase>...]                                                 \n'
+              '            [<phrases>...]                                                      \n'
 
   expect(res).toStrictEqual(txt)
 })
