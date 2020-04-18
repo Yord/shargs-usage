@@ -3,7 +3,7 @@ const {layout, table, text, textFrom, usageMap} = require('../..')
 test('usageMap generates expected string', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
@@ -30,7 +30,7 @@ test('usageMap generates expected string', () => {
 test('usageMap uses default styles if style is undefined', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
@@ -52,7 +52,7 @@ test('usageMap uses default styles if style is undefined', () => {
 test('usageMap uses default line style if style has no desc attribute', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
@@ -78,7 +78,7 @@ test('usageMap uses default line style if style has no desc attribute', () => {
 test('usageMap uses default line style if style has no line attribute', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
@@ -138,7 +138,7 @@ test('usageMap returns empty string if opts are empty', () => {
 test('usageMap returns empty string if function is undefined', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
@@ -163,7 +163,7 @@ test('optsTable README example works as expected', () => {
 
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
-    {key: 'help', types: null, args: ['-h', '--help'], desc: 'Prints help.'},
+    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
