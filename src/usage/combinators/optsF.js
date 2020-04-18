@@ -19,8 +19,8 @@ module.exports = f => (opts = []) => {
   )
 }
 
-function posArg ({key, variadic = false}) {
-  return '<' + key + '>' + (variadic === true ? '...' : '')
+function posArg ({key, descArg, types}) {
+  return '<' + (descArg ? descArg : key) + '>' + (typeof types === 'undefined' ? '...' : '')
 }
 
 function listArgs (opt) {
@@ -56,7 +56,7 @@ function descOpt (argsByKey) {
             ? []
             : defaultValues.length === 1
               ? ['default: ' + defaultValues[0]]
-              : ['default: ' + defaultValues.join(', ')]
+              : ['default: [' + defaultValues.join(', ') + ']']
       ),
       ...(Array.isArray(implies) && implies.length > 0
           ? ['implies: ' + flatMap(_ => argsByKey[_])(implies).join(', ')]
@@ -69,7 +69,7 @@ function descOpt (argsByKey) {
             : []
       )
     ]
-  
+
     return (labels.length === 0 ? '' : ' ') + labels.map(label => '[' + label + ']').join(' ')
   }
 }
