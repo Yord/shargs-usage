@@ -16,6 +16,7 @@ const onlyFirstArg                     = require('./usage/decorators/onlyFirstAr
 const optsFilter                       = require('./usage/decorators/optsFilter')
 const {optsDefs, optsDefsFrom}         = require('./usage/optsDefs')
 const {optsList, optsListFrom}         = require('./usage/optsList')
+const {optsListDeep, optsListDeepFrom} = require('./usage/optsListDeep')
 const optsMap                          = require('./usage/decorators/optsMap')
 const pad                              = require('./layout/decorators/pad')
 const {space, spaceFrom}               = require('./usage/space')
@@ -58,6 +59,8 @@ module.exports = {
   optsDefsFrom,
   optsList,
   optsListFrom,
+  optsListDeep,
+  optsListDeepFrom,
   optsMap,
   pad,
   space,
