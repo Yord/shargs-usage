@@ -23,6 +23,27 @@ test('optsList README example works as expected', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('optsList does not show an args description if descArg is an empty string', () => {
+  const opts = [
+    {key: 'answer', types: ['number'], args: ['--answer'], desc: 'The answer.'},
+    {key: 'answer2', types: ['number'], args: ['--answer2'], descArg: '', desc: 'The answer.'}
+  ]
+  
+  const style = {
+    cols: [
+      {width: 30},
+      {width: 25}
+    ]
+  }
+  
+  const res = optsList(opts)(style)
+
+  const txt = '--answer=<number>             The answer.              \n' +
+              '--answer2                     The answer.              \n'
+  
+  expect(res).toStrictEqual(txt)
+})
+
 test('optsList works as expected', () => {
   const opts = [
     {key: 'answer', opts: [], args: ['answer'], desc: 'The answer.', required: true},
