@@ -17,8 +17,10 @@ const optsFilter                       = require('./usage/decorators/optsFilter'
 const {optsDefs, optsDefsFrom}         = require('./usage/optsDefs')
 const {optsList, optsListFrom}         = require('./usage/optsList')
 const optsMap                          = require('./usage/decorators/optsMap')
+const pad                              = require('./layout/decorators/pad')
 const {space, spaceFrom}               = require('./usage/space')
 const {spaces, spacesFrom}             = require('./usage/spaces')
+const stylePath                        = require('./layout/decorators/stylePath')
 const {synopsis, synopsisFrom}         = require('./usage/synopsis')
 const {synopsisDeep, synopsisDeepFrom} = require('./usage/synopsisDeep')
 const {table, tableFrom}               = require('./layout/table')
@@ -57,10 +59,12 @@ module.exports = {
   optsList,
   optsListFrom,
   optsMap,
+  pad,
   space,
   spaceFrom,
   spaces,
   spacesFrom,
+  stylePath,
   synopsis,
   synopsisFrom,
   synopsisDeep,
