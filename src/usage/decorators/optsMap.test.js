@@ -24,6 +24,7 @@ test('optsMap README example works', () => {
 
 test('optsMap works with all option types', () => {
   const opts = [
+    undefined,
     {foo: 'bar'                                                                          },
     {                    args: ['-w', '--wrong']                                         },
     {                                                types: ['wrong']                    },
@@ -42,9 +43,9 @@ test('optsMap works with all option types', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
   ]
 
-  const res = optsMap(({key}) => key)(id)(opts)
+  const res = optsMap(({key} = {}) => key)(id)(opts)
 
-  const exp = opts.map(({key}) => key)
+  const exp = opts.map(({key} = {}) => key)
 
   expect(res).toStrictEqual(exp)
 })

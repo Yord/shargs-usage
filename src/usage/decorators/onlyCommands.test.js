@@ -22,6 +22,7 @@ test('onlyCommands README example works', () => {
 
 test('onlyCommands works with all option types', () => {
   const opts = [
+    undefined,
     {foo: 'bar'                                                                          },
     {                    args: ['-w', '--wrong']                                         },
     {                                                types: ['wrong']                    },
@@ -42,7 +43,7 @@ test('onlyCommands works with all option types', () => {
 
   const res = onlyCommands(id)(opts)
 
-  const exp = opts.slice(10, 11)
+  const exp = opts.slice(11, 12)
 
   expect(res).toStrictEqual(exp)
 })

@@ -24,6 +24,7 @@ test('justArgs README example works', () => {
 
 test('justArgs works with all option types', () => {
   const opts = [
+    undefined,
     {foo: 'bar'                                                                          },
     {                    args: ['-w', '--wrong']                                         },
     {                                                types: ['wrong']                    },
@@ -44,7 +45,7 @@ test('justArgs works with all option types', () => {
 
   const res = justArgs(['--variadic', 'command'])(id)(opts)
 
-  expect(res).toStrictEqual(opts.slice(9, 11))
+  expect(res).toStrictEqual(opts.slice(10, 12))
 })
 
 test('justArgs filters more than one opt', () => {

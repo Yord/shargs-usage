@@ -24,6 +24,27 @@ test('optsDefs README example works as expected', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('optsDefs does not show an args description if descArg is an empty string', () => {
+  const opts = [
+    {key: 'answer', types: ['number'], args: ['--answer'], desc: 'The answer.'},
+    {key: 'answer2', types: ['number'], args: ['--answer2'], descArg: '', desc: 'The answer.'}
+  ]
+  
+  const style = {
+    line: {width: 40},
+    desc: {padStart: 4, width: 36}
+  }
+  
+  const res = optsDefs(opts)(style)
+
+  const txt = '--answer=<number>                       \n' +
+              '    The answer.                         \n' +
+              '--answer2                               \n' +
+              '    The answer.                         \n'
+  
+  expect(res).toStrictEqual(txt)
+})
+
 test('optsDefs works as expected', () => {
   const opts = [
     {key: 'answer', opts: [], args: ['answer'], desc: 'The answer.', required: true},

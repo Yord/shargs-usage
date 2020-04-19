@@ -24,6 +24,7 @@ test('optsFilter README example works', () => {
 
 test('optsFilter works with all option types', () => {
   const opts = [
+    undefined,
     {foo: 'bar'                                                                          },
     {                    args: ['-w', '--wrong']                                         },
     {                                                types: ['wrong']                    },
@@ -42,9 +43,9 @@ test('optsFilter works with all option types', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
   ]
 
-  const res = optsFilter(({key}) => typeof key !== 'undefined')(id)(opts)
+  const res = optsFilter(({key} = {}) => typeof key !== 'undefined')(id)(opts)
 
-  const exp = opts.slice(4)
+  const exp = opts.slice(5)
 
   expect(res).toStrictEqual(exp)
 })
