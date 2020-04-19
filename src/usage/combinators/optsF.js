@@ -29,7 +29,9 @@ function listArgs (opt) {
   return commaList + valuesLabel(opt, doubleDash.length > 0)
 }
 
-function valuesLabel ({descArg = '', types, only = []}, equalsSign) {
+function valuesLabel ({descArg, types, only = []}, equalsSign) {
+  if (descArg === '') return ''
+
   const value = (
     Array.isArray(only) && only.length > 0        ? only.join('|') :
     typeof descArg === 'string' && descArg !== '' ? descArg :
@@ -40,7 +42,9 @@ function valuesLabel ({descArg = '', types, only = []}, equalsSign) {
                                                   : ''
   )
 
-  return value === '' ? '' : (equalsSign ? '=' : ' ') + '<' + value + '>'
+  if (value === '') return ''
+
+  return (equalsSign ? '=' : ' ') + '<' + value + '>'
 }
 
 function descOpt (argsByKey) {
