@@ -24,6 +24,7 @@ test('noCommands README example works', () => {
 
 test('noCommands works with all option types', () => {
   const opts = [
+    undefined,
     {foo: 'bar'                                                                          },
     {                    args: ['-w', '--wrong']                                         },
     {                                                types: ['wrong']                    },
@@ -44,7 +45,7 @@ test('noCommands works with all option types', () => {
 
   const res = noCommands(id)(opts)
 
-  const exp = [...opts.slice(4, 10), ...opts.slice(11)]
+  const exp = [...opts.slice(5, 11), ...opts.slice(12)]
 
   expect(res).toStrictEqual(exp)
 })
