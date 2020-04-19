@@ -22,6 +22,31 @@ test('justArgs README example works', () => {
   expect(res).toStrictEqual(exp)
 })
 
+test('justArgs works with all option types', () => {
+  const opts = [
+    {foo: 'bar'                                                                          },
+    {                    args: ['-w', '--wrong']                                         },
+    {                                                types: ['wrong']                    },
+    {                                                                           opts: [] },
+    {key: 'variadicPos'                                                                  },
+    {key: 'stringPos',                               types: ['string']                   },
+    {key: 'numberPos',                               types: ['number']                   },
+    {key: 'boolPos',                                 types: ['bool']                     },
+    {key: 'arrayPos',                                types: ['bool', 'bool']             },
+    {key: 'variadic',    args: ['-v', '--variadic']                                      },
+    {key: 'command',     args: ['co', 'command'],                                opts: []},
+    {key: 'flag',        args: ['-f', '--flag'],     types: []                           },
+    {key: 'string',      args: ['-s', '--string'],   types: ['string']                   },
+    {key: 'number',      args: ['-n', '--number'],   types: ['number']                   },
+    {key: 'bool',        args: ['-b', '--bool'],     types: ['bool']                     },
+    {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
+  ]
+
+  const res = justArgs(['--variadic', 'command'])(id)(opts)
+
+  expect(res).toStrictEqual(opts.slice(9, 11))
+})
+
 test('justArgs filters more than one opt', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
