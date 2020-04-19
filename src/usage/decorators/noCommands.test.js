@@ -22,6 +22,33 @@ test('noCommands README example works', () => {
   expect(res).toStrictEqual(exp)
 })
 
+test('noCommands works with all option types', () => {
+  const opts = [
+    {foo: 'bar'                                                                          },
+    {                    args: ['-w', '--wrong']                                         },
+    {                                                types: ['wrong']                    },
+    {                                                                           opts: [] },
+    {key: 'variadicPos'                                                                  },
+    {key: 'stringPos',                               types: ['string']                   },
+    {key: 'numberPos',                               types: ['number']                   },
+    {key: 'boolPos',                                 types: ['bool']                     },
+    {key: 'arrayPos',                                types: ['bool', 'bool']             },
+    {key: 'variadic',    args: ['-v', '--variadic']                                      },
+    {key: 'command',     args: ['co', 'command'],                                opts: []},
+    {key: 'flag',        args: ['-f', '--flag'],     types: []                           },
+    {key: 'string',      args: ['-s', '--string'],   types: ['string']                   },
+    {key: 'number',      args: ['-n', '--number'],   types: ['number']                   },
+    {key: 'bool',        args: ['-b', '--bool'],     types: ['bool']                     },
+    {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
+  ]
+
+  const res = noCommands(id)(opts)
+
+  const exp = [...opts.slice(4, 10), ...opts.slice(11)]
+
+  expect(res).toStrictEqual(exp)
+})
+
 test('noCommands filters one opt', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
