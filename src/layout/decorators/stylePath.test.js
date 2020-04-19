@@ -51,3 +51,15 @@ test('stylePath works with arrays', () => {
 
   expect(res).toStrictEqual(exp)
 })
+
+test('stylePath uses empty styles object if style does not contain id', () => {
+  const style = {}
+  
+  const pad4 = obj => ({...obj, padStart: (obj.padStart || 0) + 4, width: (obj.width || 0) - 4})
+
+  const res = stylePath(['foo'], pad4)(id)(style).foo
+
+  const exp = {padStart: 4, width: -4}
+
+  expect(res).toStrictEqual(exp)
+})
