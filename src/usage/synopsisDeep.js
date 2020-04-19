@@ -1,16 +1,16 @@
-const layout         = require('../layout/combinators/layout')
 const {synopsisFrom} = require('./synopsis')
+const usage          = require('./combinators/usage')
+const usageMap       = require('./combinators/usageMap')
+const noCommands     = require('./decorators/noCommands')
+const onlyCommands   = require('./decorators/onlyCommands')
 
-function synopsisDeepFrom (id) {
-  return (programName = '') => (opts = []) => {
-    const options  = opts.filter(opt => !isCommand(opt))
-    const commands = opts.filter(isCommand)
-
-    return layout([
-      synopsisFrom(id)(programName)(options),
-      ...commands.map(opt => synopsisDeepFrom(id)(commandName(programName, opt))(opt.opts))
-    ])
-  }
+function synopsisDeepFrom (id = 'line') {
+  return (programName = '') => usage([
+    noCommands(synopsisFrom(id)(programName)),
+    onlyCommands(
+      usageMap(cmd => synopsisDeepFrom(id)(commandName(programName, cmd))(cmd.opts))
+    )
+  ])
 }
 
 const synopsisDeep = synopsisDeepFrom('line')
@@ -22,13 +22,4 @@ module.exports = {
 
 function commandName (programName, {key, args}) {
   return programName + (programName ? ' ' : '') + (args[0] ? args[0] : key)
-}
-
-function isCommand ({key, args, types, opts} = {}) {
-  return (
-    typeof key !== 'undefined' &&
-    Array.isArray(args) &&
-    typeof types === 'undefined' &&
-    Array.isArray(opts)
-  )
 }
