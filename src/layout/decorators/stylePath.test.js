@@ -90,3 +90,17 @@ test('stylePath changes first layer in style if path is empty', () => {
 
   expect(res).toStrictEqual(exp)
 })
+
+test('stylePath changes nothing if path is not an array', () => {
+  const style = {
+    desc: {padStart: 4, width: 36}
+  }
+
+  const setLine = obj => ({...obj, line: {width: 40}})
+
+  const res = stylePath(undefined, setLine)(id)(style)
+
+  const exp = style
+
+  expect(res).toStrictEqual(exp)
+})
