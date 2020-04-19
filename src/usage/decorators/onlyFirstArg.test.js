@@ -24,6 +24,7 @@ test('onlyFirstArg README example works', () => {
 
 test('onlyFirstArg works with all option types', () => {
   const opts = [
+    undefined,
     {foo: 'bar'                                                                          },
     {                    args: ['-w', '--wrong']                                         },
     {                                                types: ['wrong']                    },
@@ -44,7 +45,7 @@ test('onlyFirstArg works with all option types', () => {
 
   const res = onlyFirstArg(id)(opts)
 
-  const exp = opts.slice(9).map(opt => ({...opt, args: opt.args.slice(0, 1)}))
+  const exp = opts.slice(10).map(opt => ({...opt, args: opt.args.slice(0, 1)}))
 
   expect(res).toStrictEqual(exp)
 })
