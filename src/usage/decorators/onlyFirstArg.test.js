@@ -22,6 +22,33 @@ test('onlyFirstArg README example works', () => {
   expect(res).toStrictEqual(exp)
 })
 
+test('onlyFirstArg works with all option types', () => {
+  const opts = [
+    {foo: 'bar'                                                                          },
+    {                    args: ['-w', '--wrong']                                         },
+    {                                                types: ['wrong']                    },
+    {                                                                           opts: [] },
+    {key: 'variadicPos'                                                                  },
+    {key: 'stringPos',                               types: ['string']                   },
+    {key: 'numberPos',                               types: ['number']                   },
+    {key: 'boolPos',                                 types: ['bool']                     },
+    {key: 'arrayPos',                                types: ['bool', 'bool']             },
+    {key: 'variadic',    args: ['-v', '--variadic']                                      },
+    {key: 'command',     args: ['co', 'command'],                                opts: []},
+    {key: 'flag',        args: ['-f', '--flag'],     types: []                           },
+    {key: 'string',      args: ['-s', '--string'],   types: ['string']                   },
+    {key: 'number',      args: ['-n', '--number'],   types: ['number']                   },
+    {key: 'bool',        args: ['-b', '--bool'],     types: ['bool']                     },
+    {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
+  ]
+
+  const res = onlyFirstArg(id)(opts)
+
+  const exp = opts.slice(9).map(opt => ({...opt, args: opt.args.slice(0, 1)}))
+
+  expect(res).toStrictEqual(exp)
+})
+
 test('onlyFirstArg filters one opt', () => {
   const opts = [
     {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
@@ -35,24 +62,6 @@ test('onlyFirstArg filters one opt', () => {
     {key: 'answer', types: ['number'], args: ['-a'], desc: 'The answer.'},
     {key: 'help', types: [], args: ['-h'], desc: 'Prints help.'},
     {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
-  ]
-
-  expect(res).toStrictEqual(exp)
-})
-
-test('onlyFirstArg returns empty array if args is undefined', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', desc: 'Prints version.'}
-  ]
-
-  const res = onlyFirstArg(id)(opts)
-
-  const exp = [
-    {key: 'answer', types: ['number'], args: ['-a'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h'], desc: 'Prints help.'},
-    {key: 'version', args: [], desc: 'Prints version.'}
   ]
 
   expect(res).toStrictEqual(exp)

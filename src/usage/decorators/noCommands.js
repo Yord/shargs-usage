@@ -1,5 +1,5 @@
 const optsFilter = require('./optsFilter')
 
 module.exports = optsFilter(
-  ({types}) => typeof types !== 'undefined' && types !== null
+  ({key, opts}) => typeof key !== 'undefined' && typeof opts === 'undefined'
 )
