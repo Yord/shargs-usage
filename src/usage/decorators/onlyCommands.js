@@ -1,5 +1,10 @@
 const optsFilter = require('./optsFilter')
 
 module.exports = optsFilter(
-  ({types}) => typeof types === 'undefined' || types === null
+  ({key, args, types, opts}) => (
+    typeof key !== 'undefined' &&
+    Array.isArray(args) &&
+    typeof types === 'undefined' &&
+    Array.isArray(opts)
+  )
 )
