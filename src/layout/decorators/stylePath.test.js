@@ -1,5 +1,7 @@
 const {line, stylePath, table} = require('../..')
 
+const id = style => style
+
 test('stylePath README example works 1/2', () => {
   const style = {
     line: {width: 40}
@@ -30,6 +32,22 @@ test('stylePath README example works 2/2', () => {
   const res = stylePath(['cols', 0], pad4)(answer42)(style)
 
   const exp = '    --answer        42                  \n'
+
+  expect(res).toStrictEqual(exp)
+})
+
+test('stylePath works with arrays', () => {
+  const style = {
+    cols: [{width: 20}, {width: 20}]
+  }
+
+  const pad4 = obj => ({...obj, padStart: (obj.padStart || 0) + 4, width: obj.width - 4})
+
+  const res = stylePath(['cols', 0], pad4)(id)(style)
+
+  const exp = {
+    cols: [{padStart: 4, width: 16}, {width: 20}]
+  }
 
   expect(res).toStrictEqual(exp)
 })
