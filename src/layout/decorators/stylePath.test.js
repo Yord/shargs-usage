@@ -63,3 +63,13 @@ test('stylePath uses empty styles object if style does not contain id', () => {
 
   expect(res).toStrictEqual(exp)
 })
+
+test('stylePath uses default styles if style is undefined', () => {
+  const pad4 = obj => ({...obj, padStart: (obj.padStart || 0) + 4, width: obj.width - 4})
+
+  const res = stylePath(['line'], pad4)(id)().line
+
+  const exp = {padStart: 4, width: 76}
+
+  expect(res).toStrictEqual(exp)
+})
