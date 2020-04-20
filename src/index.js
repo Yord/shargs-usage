@@ -1,7 +1,7 @@
 const {br, brFrom}                     = require('./layout/br')
 const {brs, brsFrom}                   = require('./layout/brs')
 const {cols, colsFrom}                 = require('./layout/cols')
-const decorate                         = require('./usage/decorators/combinators/decorate')
+const decorate                         = require('./combinators/decorate')
 const {defs, defsFrom}                 = require('./layout/defs')
 const justArgs                         = require('./usage/decorators/justArgs')
 const layout                           = require('./layout/combinators/layout')

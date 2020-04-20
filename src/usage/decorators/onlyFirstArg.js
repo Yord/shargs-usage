@@ -1,4 +1,4 @@
-const decorate   = require('../decorators/combinators/decorate')
+const decorate   = require('../../combinators/decorate')
 const optsFilter = require('./optsFilter')
 const optsMap    = require('./optsMap')
 
