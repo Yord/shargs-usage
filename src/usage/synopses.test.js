@@ -1,6 +1,6 @@
-const {synopsisDeep, synopsisDeepFrom} = require('..')
+const {synopses, synopsesFrom} = require('..')
 
-test('synopsisDeep README example works as expected', () => {
+test('synopses README example works as expected', () => {
   const askOpts = [
     {key: 'help', args: ['-h'], types: []},
     {key: 'questions', required: true}
@@ -16,7 +16,7 @@ test('synopsisDeep README example works as expected', () => {
     line: {width: 40}
   }
   
-  const res = synopsisDeep('deepThought')(opts)(style)
+  const res = synopses('deepThought')(opts)(style)
 
   const txt = 'deepThought [-a|--answer] [-h|--help]   \n'+
               'deepThought ask [-h] (<questions>...)   \n'
@@ -24,7 +24,7 @@ test('synopsisDeep README example works as expected', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisDeep works with all option types', () => {
+test('synopses works with all option types', () => {
   const commandOpts = [
     undefined,
     {foo: 'bar'                                                                          },
@@ -54,7 +54,7 @@ test('synopsisDeep works with all option types', () => {
     line: {width: 80}
   }
 
-  const res = synopsisDeep('deepThought')(opts)(style)
+  const res = synopses('deepThought')(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
@@ -68,7 +68,7 @@ test('synopsisDeep works with all option types', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisDeep works without programName', () => {
+test('synopses works without programName', () => {
   const commandOpts = [
     undefined,
     {foo: 'bar'                                                                          },
@@ -98,7 +98,7 @@ test('synopsisDeep works without programName', () => {
     line: {width: 80}
   }
 
-  const res = synopsisDeep()(opts)(style)
+  const res = synopses()(opts)(style)
 
   const txt = '[<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>] [<variadicPos>...]         \n' +
               '[-v|--variadic] [-f|--flag] [-s|--string] [-n|--number] [-b|--bool] [-a|--array]\n' +
@@ -111,33 +111,33 @@ test('synopsisDeep works without programName', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisDeep prints only programName if opts are empty', () => {
+test('synopses prints only programName if opts are empty', () => {
   const opts = []
 
   const style = {
     line: {width: 80}
   }
 
-  const res = synopsisDeep('deepThought')(opts)(style)
+  const res = synopses('deepThought')(opts)(style)
 
   const txt = 'deepThought                                                                     \n'
 
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisDeep prints only programName if opts are undefined', () => {
+test('synopses prints only programName if opts are undefined', () => {
   const style = {
     line: {width: 80}
   }
 
-  const res = synopsisDeep('deepThought')()(style)
+  const res = synopses('deepThought')()(style)
 
   const txt = 'deepThought                                                                     \n'
 
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisDeep uses default line style if line is undefined in style', () => {
+test('synopses uses default line style if line is undefined in style', () => {
   const commandOpts = [
     undefined,
     {foo: 'bar'                                                                          },
@@ -165,7 +165,7 @@ test('synopsisDeep uses default line style if line is undefined in style', () =>
 
   const style = {}
 
-  const res = synopsisDeep('deepThought')(opts)(style)
+  const res = synopses('deepThought')(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
@@ -179,7 +179,7 @@ test('synopsisDeep uses default line style if line is undefined in style', () =>
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisDeep uses default line style if style is undefined', () => {
+test('synopses uses default line style if style is undefined', () => {
   const commandOpts = [
     undefined,
     {foo: 'bar'                                                                          },
@@ -205,7 +205,7 @@ test('synopsisDeep uses default line style if style is undefined', () => {
     ...commandOpts
   ]
 
-  const res = synopsisDeep('deepThought')(opts)()
+  const res = synopses('deepThought')(opts)()
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
@@ -219,7 +219,7 @@ test('synopsisDeep uses default line style if style is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisDeepFrom correctly passes on id', () => {
+test('synopsesFrom correctly passes on id', () => {
   const commandOpts = [
     undefined,
     {foo: 'bar'                                                                          },
@@ -249,7 +249,7 @@ test('synopsisDeepFrom correctly passes on id', () => {
     custom: {width: 70}
   }
 
-  const res = synopsisDeepFrom('custom')('deepThought')(opts)(style)
+  const res = synopsesFrom('custom')('deepThought')(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]      \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag]            \n' +
@@ -264,7 +264,7 @@ test('synopsisDeepFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisDeep with wrong id uses default style', () => {
+test('synopsesFrom with wrong id uses default style', () => {
   const commandOpts = [
     undefined,
     {foo: 'bar'                                                                          },
@@ -294,7 +294,7 @@ test('synopsisDeep with wrong id uses default style', () => {
     ...commandOpts
   ]
 
-  const res = synopsisDeepFrom('foo')('deepThought')(opts)(style)
+  const res = synopsesFrom('foo')('deepThought')(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
@@ -308,7 +308,7 @@ test('synopsisDeep with wrong id uses default style', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisDeepFrom with undefined id uses line', () => {
+test('synopsesFrom with undefined id uses line', () => {
   const commandOpts = [
     undefined,
     {foo: 'bar'                                                                          },
@@ -338,7 +338,7 @@ test('synopsisDeepFrom with undefined id uses line', () => {
     line: {width: 75}
   }
 
-  const res = synopsisDeepFrom()('deepThought')(opts)(style)
+  const res = synopsesFrom()('deepThought')(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]           \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]   \n' +
