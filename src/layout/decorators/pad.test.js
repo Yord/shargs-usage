@@ -43,3 +43,17 @@ test('pad assumes 0 if spaces is undefined', () => {
 
   expect(res).toStrictEqual(exp)
 })
+
+test('pad respects existing padding', () => {
+  const style = {
+    line: {padStart: 2, width: 38}
+  }
+  
+  const res = pad(['line'], 4)(id)(style)
+
+  const exp = {
+    line: {padStart: 6, width: 34}
+  }
+
+  expect(res).toStrictEqual(exp)
+})
