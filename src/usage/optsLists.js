@@ -6,21 +6,21 @@ const noCommands     = require('./decorators/noCommands')
 const onlyCommands   = require('./decorators/onlyCommands')
 const {optsListFrom} = require('./optsList')
 
-function optsListDeepFrom (id = 'cols') {
+function optsListsFrom (id = 'cols') {
   return usage([
     noCommands(optsListFrom(id)),
     onlyCommands(
       usageMap(cmd => layout([
         optsListFrom(id)([cmd]),
-        pad([id, 0], 4)(optsListDeepFrom(id)(cmd.opts))
+        pad([id, 0], 4)(optsListsFrom(id)(cmd.opts))
       ]))
     )
   ])
 }
 
-const optsListDeep = optsListDeepFrom('cols')
+const optsLists = optsListsFrom('cols')
 
 module.exports = {
-  optsListDeep,
-  optsListDeepFrom
+  optsLists,
+  optsListsFrom
 }

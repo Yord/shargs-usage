@@ -14,10 +14,10 @@ const {notes, notesFrom}               = require('./usage/notes')
 const onlyCommands                     = require('./usage/decorators/onlyCommands')
 const onlyFirstArg                     = require('./usage/decorators/onlyFirstArg')
 const optsFilter                       = require('./usage/decorators/optsFilter')
-const {optsDef, optsDefFrom}         = require('./usage/optsDef')
-const {optsDefs, optsDefsFrom} = require('./usage/optsDefs')
+const {optsDef, optsDefFrom}           = require('./usage/optsDef')
+const {optsDefs, optsDefsFrom}         = require('./usage/optsDefs')
 const {optsList, optsListFrom}         = require('./usage/optsList')
-const {optsListDeep, optsListDeepFrom} = require('./usage/optsListDeep')
+const {optsLists, optsListsFrom}       = require('./usage/optsLists')
 const optsMap                          = require('./usage/decorators/optsMap')
 const pad                              = require('./layout/decorators/pad')
 const {space, spaceFrom}               = require('./usage/space')
@@ -62,8 +62,8 @@ module.exports = {
   optsDefsFrom,
   optsList,
   optsListFrom,
-  optsListDeep,
-  optsListDeepFrom,
+  optsLists,
+  optsListsFrom,
   optsMap,
   pad,
   space,
