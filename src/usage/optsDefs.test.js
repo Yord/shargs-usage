@@ -1,86 +1,129 @@
 const {optsDefs, optsDefsFrom} = require('..')
 
 test('optsDefs README example works as expected', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
+  const askOpts = [
+    {key: 'help', args: ['-h'], types: [], desc: 'Show the usage docs.'},
+    {key: 'questions', required: true, desc: 'Ask questions.'}
   ]
-  
+
+  const opts = [
+    {key: 'ask', args: ['ask'], opts: askOpts, desc: 'Ask questions.', required: true},
+    {key: 'answer', args: ['-a', '--ans'], types: ['number'], desc: 'The answer.'},
+    {key: 'help', args: ['-h', '--help'], types: [], desc: 'Show the usage docs.'}
+  ]
+
   const style = {
-    line: {width: 40},
-    desc: {padStart: 4, width: 36}
+    line: {width: 30},
+    desc: {padStart: 4, width: 26}
   }
-  
+
   const res = optsDefs(opts)(style)
 
-  const txt = '-a, --answer=<number>                   \n' +
-              '    The answer.                         \n' +
-              '-h, --help                              \n' +
-              '    Prints help.                        \n' +
-              '--version                               \n' +
-              '    Prints version.                     \n'
+  const txt = '-a, --ans=<number>            \n' +
+              '    The answer.               \n' +
+              '-h, --help                    \n' +
+              '    Show the usage docs.      \n' +
+              'ask [required]                \n' +
+              '    Ask questions.            \n' +
+              '    -h                        \n' +
+              '        Show the usage docs.  \n' +
+              '    <questions>... [required] \n' +
+              '        Ask questions.        \n'
   
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDefs does not show an args description if descArg is an empty string', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['--answer'], desc: 'The answer.'},
-    {key: 'answer2', types: ['number'], args: ['--answer2'], descArg: '', desc: 'The answer.'}
+test('optsDefs works with all option types', () => {
+  const varOpts = [
+    {key: 'variadicPos', desc: 'Variadic.' },
   ]
-  
+
+  const commandOpts = [
+    undefined,
+    {foo: 'bar'                                                                                                                                          },
+    {                    args: ['-w', '--wrong']                                                                                                         },
+    {                                                types: ['wrong']                                                                                    },
+    {                                                                           opts: []                                                                 },
+    {key: 'stringPos',                               types: ['string'],                         desc: 'String positional argument.'                      },
+    {key: 'numberPos',                               types: ['number'],                         desc: 'Number positional argument.'                      },
+    {key: 'boolPos',                                 types: ['bool'],                           desc: 'Bool positional argument.'                        },
+    {key: 'arrayPos',                                types: ['bool', 'bool'],                   desc: 'Array positional argument.'                       },
+    {key: 'variadicPos',                                                                        desc: 'Variadic positional argument.'                    },
+    {key: 'command',     args: ['command'],                                      opts: varOpts, desc: 'Command option.'                                  },
+    {key: 'variadic',    args: ['-v', '--variadic'],                                            desc: 'Variadic option.'                                 },
+    {key: 'flag',        args: ['-f', '--flag'],     types: [],                                 desc: 'Flag option.'                                     },
+    {key: 'string',      args: ['-s', '--string'],   types: ['string'],                         desc: 'String option.'                                   },
+    {key: 'number',      args: ['-n', '--number'],   types: ['number'],                         desc: 'Number option.'                                   },
+    {key: 'bool',        args: ['-b', '--bool'],     types: ['bool'],                           desc: 'Bool option.'                                     },
+    {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number'],               desc: 'Array option.',                 descArg: 'str num'}
+  ]
+
+  const opts = [
+    {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
+    ...commandOpts
+  ]
+
   const style = {
     line: {width: 40},
     desc: {padStart: 4, width: 36}
   }
-  
-  const res = optsDefs(opts)(style)
-
-  const txt = '--answer=<number>                       \n' +
-              '    The answer.                         \n' +
-              '--answer2                               \n' +
-              '    The answer.                         \n'
-  
-  expect(res).toStrictEqual(txt)
-})
-
-test('optsDefs works as expected', () => {
-  const opts = [
-    {key: 'answer', opts: [], args: ['answer'], desc: 'The answer.', required: true},
-    {key: 'foo', types: ['string'], args: ['-f', '--foo'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
-    {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
-    {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
-    {key: 'position', types: ['number', 'number'], args: ['--pos'], desc: 'The position.'},
-    {key: 'question', types: ['string'], required: true, desc: 'The question.'},
-    {key: 'politePhrase', desc: 'Polite phrases.'},
-    {now: 'something', completely: 'different'}
-  ]
-
-  const style = {
-    line: {width: 60},
-    desc: {padStart: 4, width: 56}
-  }
 
   const res = optsDefs(opts)(style)
 
-  const txt = 'answer [required]                                           \n' +
-              '    The answer.                                             \n' +
-              '-f, --foo=<foo|bar> [not required]                          \n' +
-              '    Foo.                                                    \n' +
-              '-b, --baz=<baz> [default: 42] [implies: -f, --foo]          \n' +
-              '    Baz.                                                    \n' +
-              '-h, help, --help [default: false]                           \n' +
-              '    Prints help.                                            \n' +
-              '--version [contradicts: --help, help, -h]                   \n' +
-              '    Prints version.                                         \n' +
-              '--pos=<number number>                                       \n' +
-              '    The position.                                           \n' +
-              '<question> [required]                                       \n' +
-              '    The question.                                           \n' +
-              '<politePhrase>...                                           \n' +
-              '    Polite phrases.                                         \n'
+  const txt = '<stringPos>                             \n' +
+              '    String positional argument.         \n' +
+              '<numberPos>                             \n' +
+              '    Number positional argument.         \n' +
+              '<boolPos>                               \n' +
+              '    Bool positional argument.           \n' +
+              '<arrayPos>                              \n' +
+              '    Array positional argument.          \n' +
+              '<variadicPos>...                        \n' +
+              '    Variadic positional argument.       \n' +
+              '-v, --variadic                          \n' +
+              '    Variadic option.                    \n' +
+              '-f, --flag                              \n' +
+              '    Flag option.                        \n' +
+              '-s, --string=<string>                   \n' +
+              '    String option.                      \n' +
+              '-n, --number=<number>                   \n' +
+              '    Number option.                      \n' +
+              '-b, --bool=<bool>                       \n' +
+              '    Bool option.                        \n' +
+              '-a, --array=<str num>                   \n' +
+              '    Array option.                       \n' +
+              'with-opts                               \n' +
+              '    With-opts command.                  \n' +
+              '    <stringPos>                         \n' +
+              '        String positional argument.     \n' +
+              '    <numberPos>                         \n' +
+              '        Number positional argument.     \n' +
+              '    <boolPos>                           \n' +
+              '        Bool positional argument.       \n' +
+              '    <arrayPos>                          \n' +
+              '        Array positional argument.      \n' +
+              '    <variadicPos>...                    \n' +
+              '        Variadic positional argument.   \n' +
+              '    -v, --variadic                      \n' +
+              '        Variadic option.                \n' +
+              '    -f, --flag                          \n' +
+              '        Flag option.                    \n' +
+              '    -s, --string=<string>               \n' +
+              '        String option.                  \n' +
+              '    -n, --number=<number>               \n' +
+              '        Number option.                  \n' +
+              '    -b, --bool=<bool>                   \n' +
+              '        Bool option.                    \n' +
+              '    -a, --array=<str num>               \n' +
+              '        Array option.                   \n' +
+              '    command                             \n' +
+              '        Command option.                 \n' +
+              '        <variadicPos>...                \n' +
+              '            Variadic.                   \n' +
+              'command                                 \n' +
+              '    Command option.                     \n' +
+              '    <variadicPos>...                    \n' +
+              '        Variadic.                       \n'
 
   expect(res).toStrictEqual(txt)
 })
@@ -89,23 +132,8 @@ test('optsDefs prints an empty string if opts are empty', () => {
   const opts = []
 
   const style = {
-    line: {width: 42},
-    desc: {padStart: 4, width: 38}
-  }
-  
-  const res = optsDefs(opts)(style)
-
-  const txt = ''
-
-  expect(res).toStrictEqual(txt)
-})
-
-test('optsDefs prints an empty string if opts has undefined entries', () => {
-  const opts = [undefined, undefined]
-
-  const style = {
-    line: {width: 42},
-    desc: {padStart: 4, width: 38}
+    line: {width: 40},
+    desc: {padStart: 4, width: 36}
   }
   
   const res = optsDefs(opts)(style)
@@ -117,8 +145,8 @@ test('optsDefs prints an empty string if opts has undefined entries', () => {
 
 test('optsDefs prints an empty string if opts are undefined', () => {
   const style = {
-    line: {width: 42},
-    desc: {padStart: 4, width: 38}
+    line: {width: 40},
+    desc: {padStart: 4, width: 36}
   }
   
   const res = optsDefs()(style)
@@ -128,138 +156,282 @@ test('optsDefs prints an empty string if opts are undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDefs prints contradics, default, implies and required, in this order', () => {
-  const opts = [
-    {key: 'a', types: [], args: ['-a'], desc: 'An a.', required: false, defaultValues: ['a'], contradicts: ['b'], implies: ['c']},
-    {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
-    {key: 'c', types: [], args: ['-c'], desc: 'A c.'}
+test('optsDefs uses default styles if style is undefined', () => {
+  const varOpts = [
+    {key: 'variadicPos', desc: 'Variadic.' },
   ]
 
-  const style = {
-    line: {width: 80},
-    desc: {padStart: 4, width: 76}
-  }
-
-  const res = optsDefs(opts)(style)
-
-  const txt = '-a [contradicts: -b] [default: a] [implies: -c] [not required]                  \n' +
-              '    An a.                                                                       \n' +
-              '-b                                                                              \n' +
-              '    A b.                                                                        \n' +
-              '-c                                                                              \n' +
-              '    A c.                                                                        \n'
-
-  expect(res).toStrictEqual(txt)
-})
-
-test('optsDefs does not print different defaultValues format', () => {
-  const opts = [
-    {key: 'a', types: [], args: ['-a'], desc: 'An a.', defaultValues: 'wrong format'},
-    {key: 'b', types: [], args: ['-b'], desc: 'A b.', defaultValues: [1, 2]}
+  const commandOpts = [
+    undefined,
+    {foo: 'bar'                                                                                                                                          },
+    {                    args: ['-w', '--wrong']                                                                                                         },
+    {                                                types: ['wrong']                                                                                    },
+    {                                                                           opts: []                                                                 },
+    {key: 'stringPos',                               types: ['string'],                         desc: 'String positional argument.'                      },
+    {key: 'numberPos',                               types: ['number'],                         desc: 'Number positional argument.'                      },
+    {key: 'boolPos',                                 types: ['bool'],                           desc: 'Bool positional argument.'                        },
+    {key: 'arrayPos',                                types: ['bool', 'bool'],                   desc: 'Array positional argument.'                       },
+    {key: 'variadicPos',                                                                        desc: 'Variadic positional argument.'                    },
+    {key: 'command',     args: ['command'],                                      opts: varOpts, desc: 'Command option.'                                  },
+    {key: 'variadic',    args: ['-v', '--variadic'],                                            desc: 'Variadic option.'                                 },
+    {key: 'flag',        args: ['-f', '--flag'],     types: [],                                 desc: 'Flag option.'                                     },
+    {key: 'string',      args: ['-s', '--string'],   types: ['string'],                         desc: 'String option.'                                   },
+    {key: 'number',      args: ['-n', '--number'],   types: ['number'],                         desc: 'Number option.'                                   },
+    {key: 'bool',        args: ['-b', '--bool'],     types: ['bool'],                           desc: 'Bool option.'                                     },
+    {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number'],               desc: 'Array option.',                 descArg: 'str num'}
   ]
 
-  const style = {
-    line: {width: 80},
-    desc: {padStart: 4, width: 76}
-  }
-
-  const res = optsDefs(opts)(style)
-
-  const txt = '-a                                                                              \n' +
-              '    An a.                                                                       \n' +
-              '-b [default: [1, 2]]                                                            \n' +
-              '    A b.                                                                        \n'
-
-  expect(res).toStrictEqual(txt)
-})
-
-test('optsDefs collects args from the same key', () => {
   const opts = [
-    {key: 'a', types: [], args: ['-a'], desc: 'An a.', implies: ['b']},
-    {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
-    {key: 'b', types: [], args: ['--no-b'], desc: 'Not a b.'}
-  ]
-
-  const style = {
-    line: {width: 80},
-    desc: {padStart: 4, width: 76}
-  }
-
-  const res = optsDefs(opts)(style)
-
-  const txt = '-a [implies: -b, --no-b]                                                        \n' +
-              '    An a.                                                                       \n' +
-              '-b                                                                              \n' +
-              '    A b.                                                                        \n' +
-              '--no-b                                                                          \n' +
-              '    Not a b.                                                                    \n'
-
-  expect(res).toStrictEqual(txt)
-})
-
-test('optsDefs uses default style if style is undefined', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
-    {key: 'foo', types: ['string'], args: ['-f', '--foo'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
-    {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
-    {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
-    {key: 'question', types: ['string'], required: true, desc: 'The question.'},
-    {key: 'politePhrases', descArg: 'phrases', desc: 'Polite phrases.'}
+    {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
+    ...commandOpts
   ]
 
   const res = optsDefs(opts)()
 
-  const txt = '-a, --answer=<number> [required]                                                \n' +
-              '    The answer.                                                                 \n' +
-              '-f, --foo=<foo|bar> [not required]                                              \n' +
-              '    Foo.                                                                        \n' +
-              '-b, --baz=<baz> [default: 42] [implies: -f, --foo]                              \n' +
-              '    Baz.                                                                        \n' +
-              '-h, help, --help [default: false]                                               \n' +
-              '    Prints help.                                                                \n' +
-              '--version [contradicts: --help, help, -h]                                       \n' +
-              '    Prints version.                                                             \n' +
-              '<question> [required]                                                           \n' +
-              '    The question.                                                               \n' +
-              '<phrases>...                                                                    \n' +
-              '    Polite phrases.                                                             \n'
+  const txt = '<stringPos>                                                                     \n' +
+              '    String positional argument.                                                 \n' +
+              '<numberPos>                                                                     \n' +
+              '    Number positional argument.                                                 \n' +
+              '<boolPos>                                                                       \n' +
+              '    Bool positional argument.                                                   \n' +
+              '<arrayPos>                                                                      \n' +
+              '    Array positional argument.                                                  \n' +
+              '<variadicPos>...                                                                \n' +
+              '    Variadic positional argument.                                               \n' +
+              '-v, --variadic                                                                  \n' +
+              '    Variadic option.                                                            \n' +
+              '-f, --flag                                                                      \n' +
+              '    Flag option.                                                                \n' +
+              '-s, --string=<string>                                                           \n' +
+              '    String option.                                                              \n' +
+              '-n, --number=<number>                                                           \n' +
+              '    Number option.                                                              \n' +
+              '-b, --bool=<bool>                                                               \n' +
+              '    Bool option.                                                                \n' +
+              '-a, --array=<str num>                                                           \n' +
+              '    Array option.                                                               \n' +
+              'with-opts                                                                       \n' +
+              '    With-opts command.                                                          \n' +
+              '    <stringPos>                                                                 \n' +
+              '        String positional argument.                                             \n' +
+              '    <numberPos>                                                                 \n' +
+              '        Number positional argument.                                             \n' +
+              '    <boolPos>                                                                   \n' +
+              '        Bool positional argument.                                               \n' +
+              '    <arrayPos>                                                                  \n' +
+              '        Array positional argument.                                              \n' +
+              '    <variadicPos>...                                                            \n' +
+              '        Variadic positional argument.                                           \n' +
+              '    -v, --variadic                                                              \n' +
+              '        Variadic option.                                                        \n' +
+              '    -f, --flag                                                                  \n' +
+              '        Flag option.                                                            \n' +
+              '    -s, --string=<string>                                                       \n' +
+              '        String option.                                                          \n' +
+              '    -n, --number=<number>                                                       \n' +
+              '        Number option.                                                          \n' +
+              '    -b, --bool=<bool>                                                           \n' +
+              '        Bool option.                                                            \n' +
+              '    -a, --array=<str num>                                                       \n' +
+              '        Array option.                                                           \n' +
+              '    command                                                                     \n' +
+              '        Command option.                                                         \n' +
+              '        <variadicPos>...                                                        \n' +
+              '            Variadic.                                                           \n' +
+              'command                                                                         \n' +
+              '    Command option.                                                             \n' +
+              '    <variadicPos>...                                                            \n' +
+              '        Variadic.                                                               \n'
 
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDefs correctly passes on first id', () => {
+test('optsDefsFrom correctly passes on ids', () => {
+  const varOpts = [
+    {key: 'variadicPos', desc: 'Variadic.' },
+  ]
+
+  const commandOpts = [
+    undefined,
+    {foo: 'bar'                                                                                                                                          },
+    {                    args: ['-w', '--wrong']                                                                                                         },
+    {                                                types: ['wrong']                                                                                    },
+    {                                                                           opts: []                                                                 },
+    {key: 'stringPos',                               types: ['string'],                         desc: 'String positional argument.'                      },
+    {key: 'numberPos',                               types: ['number'],                         desc: 'Number positional argument.'                      },
+    {key: 'boolPos',                                 types: ['bool'],                           desc: 'Bool positional argument.'                        },
+    {key: 'arrayPos',                                types: ['bool', 'bool'],                   desc: 'Array positional argument.'                       },
+    {key: 'variadicPos',                                                                        desc: 'Variadic positional argument.'                    },
+    {key: 'command',     args: ['command'],                                      opts: varOpts, desc: 'Command option.'                                  },
+    {key: 'variadic',    args: ['-v', '--variadic'],                                            desc: 'Variadic option.'                                 },
+    {key: 'flag',        args: ['-f', '--flag'],     types: [],                                 desc: 'Flag option.'                                     },
+    {key: 'string',      args: ['-s', '--string'],   types: ['string'],                         desc: 'String option.'                                   },
+    {key: 'number',      args: ['-n', '--number'],   types: ['number'],                         desc: 'Number option.'                                   },
+    {key: 'bool',        args: ['-b', '--bool'],     types: ['bool'],                           desc: 'Bool option.'                                     },
+    {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number'],               desc: 'Array option.',                 descArg: 'str num'}
+  ]
+
   const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
+    {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
+    ...commandOpts
   ]
 
   const style = {
     line2: {width: 40},
-    desc: {padStart: 4, width: 56}
+    desc2: {padStart: 2, width: 38}
   }
 
-  const res = optsDefsFrom('line2')(opts)(style)
+  const res = optsDefsFrom('line2', 'desc2')(opts)(style)
 
-  const txt = '-a, --answer=<number> [required]        \n' +
-              '    The answer.                                             \n'
+  const txt = '<stringPos>                             \n' +
+              '  String positional argument.           \n' +
+              '<numberPos>                             \n' +
+              '  Number positional argument.           \n' +
+              '<boolPos>                               \n' +
+              '  Bool positional argument.             \n' +
+              '<arrayPos>                              \n' +
+              '  Array positional argument.            \n' +
+              '<variadicPos>...                        \n' +
+              '  Variadic positional argument.         \n' +
+              '-v, --variadic                          \n' +
+              '  Variadic option.                      \n' +
+              '-f, --flag                              \n' +
+              '  Flag option.                          \n' +
+              '-s, --string=<string>                   \n' +
+              '  String option.                        \n' +
+              '-n, --number=<number>                   \n' +
+              '  Number option.                        \n' +
+              '-b, --bool=<bool>                       \n' +
+              '  Bool option.                          \n' +
+              '-a, --array=<str num>                   \n' +
+              '  Array option.                         \n' +
+              'with-opts                               \n' +
+              '  With-opts command.                    \n' +
+              '    <stringPos>                         \n' +
+              '      String positional argument.       \n' +
+              '    <numberPos>                         \n' +
+              '      Number positional argument.       \n' +
+              '    <boolPos>                           \n' +
+              '      Bool positional argument.         \n' +
+              '    <arrayPos>                          \n' +
+              '      Array positional argument.        \n' +
+              '    <variadicPos>...                    \n' +
+              '      Variadic positional argument.     \n' +
+              '    -v, --variadic                      \n' +
+              '      Variadic option.                  \n' +
+              '    -f, --flag                          \n' +
+              '      Flag option.                      \n' +
+              '    -s, --string=<string>               \n' +
+              '      String option.                    \n' +
+              '    -n, --number=<number>               \n' +
+              '      Number option.                    \n' +
+              '    -b, --bool=<bool>                   \n' +
+              '      Bool option.                      \n' +
+              '    -a, --array=<str num>               \n' +
+              '      Array option.                     \n' +
+              '    command                             \n' +
+              '      Command option.                   \n' +
+              '        <variadicPos>...                \n' +
+              '          Variadic.                     \n' +
+              'command                                 \n' +
+              '  Command option.                       \n' +
+              '    <variadicPos>...                    \n' +
+              '      Variadic.                         \n'
 
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDefsFrom correctly passes on second id', () => {
+test('optsDefsFrom uses line and desc if no ids are defined', () => {
+  const varOpts = [
+    {key: 'variadicPos', desc: 'Variadic.' },
+  ]
+
+  const commandOpts = [
+    undefined,
+    {foo: 'bar'                                                                                                                                          },
+    {                    args: ['-w', '--wrong']                                                                                                         },
+    {                                                types: ['wrong']                                                                                    },
+    {                                                                           opts: []                                                                 },
+    {key: 'stringPos',                               types: ['string'],                         desc: 'String positional argument.'                      },
+    {key: 'numberPos',                               types: ['number'],                         desc: 'Number positional argument.'                      },
+    {key: 'boolPos',                                 types: ['bool'],                           desc: 'Bool positional argument.'                        },
+    {key: 'arrayPos',                                types: ['bool', 'bool'],                   desc: 'Array positional argument.'                       },
+    {key: 'variadicPos',                                                                        desc: 'Variadic positional argument.'                    },
+    {key: 'command',     args: ['command'],                                      opts: varOpts, desc: 'Command option.'                                  },
+    {key: 'variadic',    args: ['-v', '--variadic'],                                            desc: 'Variadic option.'                                 },
+    {key: 'flag',        args: ['-f', '--flag'],     types: [],                                 desc: 'Flag option.'                                     },
+    {key: 'string',      args: ['-s', '--string'],   types: ['string'],                         desc: 'String option.'                                   },
+    {key: 'number',      args: ['-n', '--number'],   types: ['number'],                         desc: 'Number option.'                                   },
+    {key: 'bool',        args: ['-b', '--bool'],     types: ['bool'],                           desc: 'Bool option.'                                     },
+    {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number'],               desc: 'Array option.',                 descArg: 'str num'}
+  ]
+
   const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
+    {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
+    ...commandOpts
   ]
 
   const style = {
-    line: {width: 60},
-    desc2: {padStart: 4, width: 36}
+    line: {width: 40},
+    desc: {padStart: 4, width: 36}
   }
 
-  const res = optsDefsFrom(undefined, 'desc2')(opts)(style)
+  const res = optsDefsFrom()(opts)(style)
 
-  const txt = '-a, --answer=<number> [required]                            \n' +
-              '    The answer.                         \n'
+  const txt = '<stringPos>                             \n' +
+              '    String positional argument.         \n' +
+              '<numberPos>                             \n' +
+              '    Number positional argument.         \n' +
+              '<boolPos>                               \n' +
+              '    Bool positional argument.           \n' +
+              '<arrayPos>                              \n' +
+              '    Array positional argument.          \n' +
+              '<variadicPos>...                        \n' +
+              '    Variadic positional argument.       \n' +
+              '-v, --variadic                          \n' +
+              '    Variadic option.                    \n' +
+              '-f, --flag                              \n' +
+              '    Flag option.                        \n' +
+              '-s, --string=<string>                   \n' +
+              '    String option.                      \n' +
+              '-n, --number=<number>                   \n' +
+              '    Number option.                      \n' +
+              '-b, --bool=<bool>                       \n' +
+              '    Bool option.                        \n' +
+              '-a, --array=<str num>                   \n' +
+              '    Array option.                       \n' +
+              'with-opts                               \n' +
+              '    With-opts command.                  \n' +
+              '    <stringPos>                         \n' +
+              '        String positional argument.     \n' +
+              '    <numberPos>                         \n' +
+              '        Number positional argument.     \n' +
+              '    <boolPos>                           \n' +
+              '        Bool positional argument.       \n' +
+              '    <arrayPos>                          \n' +
+              '        Array positional argument.      \n' +
+              '    <variadicPos>...                    \n' +
+              '        Variadic positional argument.   \n' +
+              '    -v, --variadic                      \n' +
+              '        Variadic option.                \n' +
+              '    -f, --flag                          \n' +
+              '        Flag option.                    \n' +
+              '    -s, --string=<string>               \n' +
+              '        String option.                  \n' +
+              '    -n, --number=<number>               \n' +
+              '        Number option.                  \n' +
+              '    -b, --bool=<bool>                   \n' +
+              '        Bool option.                    \n' +
+              '    -a, --array=<str num>               \n' +
+              '        Array option.                   \n' +
+              '    command                             \n' +
+              '        Command option.                 \n' +
+              '        <variadicPos>...                \n' +
+              '            Variadic.                   \n' +
+              'command                                 \n' +
+              '    Command option.                     \n' +
+              '    <variadicPos>...                    \n' +
+              '        Variadic.                       \n'
 
   expect(res).toStrictEqual(txt)
 })
