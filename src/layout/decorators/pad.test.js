@@ -57,3 +57,19 @@ test('pad respects existing padding', () => {
 
   expect(res).toStrictEqual(exp)
 })
+
+test('pad can be chained', () => {
+  const style = {
+    line: {padStart: 0, width: 40},
+    desc: {padStart: 4, width: 36}
+  }
+  
+  const res = pad(['desc'], 4)(pad(['line'], 4)(id))(style)
+
+  const exp = {
+    line: {padStart: 4, width: 36},
+    desc: {padStart: 8, width: 32}
+  }
+
+  expect(res).toStrictEqual(exp)
+})
