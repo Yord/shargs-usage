@@ -1,6 +1,6 @@
-const {optsListDeep, optsListDeepFrom} = require('..')
+const {optsLists, optsListsFrom} = require('..')
 
-test('optsListDeep README example works as expected', () => {
+test('optsLists README example works as expected', () => {
   const askOpts = [
     {key: 'help', args: ['-h'], types: [], desc: 'Show the usage docs.'},
     {key: 'questions', required: true, desc: 'Ask questions.'}
@@ -16,7 +16,7 @@ test('optsListDeep README example works as expected', () => {
     cols: [{width: 20}, {width: 25}]
   }
 
-  const res = optsListDeep(opts)(style)
+  const res = optsLists(opts)(style)
 
   const txt = '-a, --ans=<number>  The answer.              \n' +
               '-h, --help          Show the usage docs.     \n' +
@@ -27,7 +27,7 @@ test('optsListDeep README example works as expected', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsListDeep works with all option types', () => {
+test('optsLists works with all option types', () => {
   const varOpts = [
     {key: 'variadicPos', desc: 'Variadic.' },
   ]
@@ -61,7 +61,7 @@ test('optsListDeep works with all option types', () => {
     cols: [{width: 35}, {width: 30}]
   }
 
-  const res = optsListDeep(opts)(style)
+  const res = optsLists(opts)(style)
 
   const txt = '<stringPos>                        String positional argument.   \n' +
               '<numberPos>                        Number positional argument.   \n' +
@@ -94,33 +94,33 @@ test('optsListDeep works with all option types', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsListDeep prints an empty string if opts are empty', () => {
+test('optsLists prints an empty string if opts are empty', () => {
   const opts = []
 
   const style = {
     cols: [{width: 35}, {width: 30}]
   }
   
-  const res = optsListDeep(opts)(style)
+  const res = optsLists(opts)(style)
 
   const txt = ''
 
   expect(res).toStrictEqual(txt)
 })
 
-test('optsListDeep prints an empty string if opts are undefined', () => {
+test('optsLists prints an empty string if opts are undefined', () => {
   const style = {
     cols: [{width: 35}, {width: 30}]
   }
   
-  const res = optsListDeep()(style)
+  const res = optsLists()(style)
 
   const txt = ''
 
   expect(res).toStrictEqual(txt)
 })
 
-test('optsListDeep uses default style if style is undefined', () => {
+test('optsLists uses default style if style is undefined', () => {
   const varOpts = [
     {key: 'variadicPos', desc: 'Variadic.' },
   ]
@@ -150,7 +150,7 @@ test('optsListDeep uses default style if style is undefined', () => {
     ...commandOpts
   ]
 
-  const res = optsListDeep(opts)()
+  const res = optsLists(opts)()
 
   const txt = '<stringPos>              String positional argument.                            \n' +
               '<numberPos>              Number positional argument.                            \n' +
@@ -183,7 +183,7 @@ test('optsListDeep uses default style if style is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsListDeepFrom correctly passes on id', () => {
+test('optsListsFrom correctly passes on id', () => {
   const varOpts = [
     {key: 'variadicPos', desc: 'Variadic.' },
   ]
@@ -217,7 +217,7 @@ test('optsListDeepFrom correctly passes on id', () => {
     foo: [{width: 35}, {width: 30}]
   }
 
-  const res = optsListDeepFrom('foo')(opts)(style)
+  const res = optsListsFrom('foo')(opts)(style)
 
   const txt = '<stringPos>                        String positional argument.   \n' +
               '<numberPos>                        Number positional argument.   \n' +
@@ -250,7 +250,7 @@ test('optsListDeepFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsListDeepFrom uses cols if no id is defined', () => {
+test('optsListsFrom uses cols if no id is defined', () => {
   const varOpts = [
     {key: 'variadicPos', desc: 'Variadic.' },
   ]
@@ -284,7 +284,7 @@ test('optsListDeepFrom uses cols if no id is defined', () => {
     cols: [{width: 35}, {width: 30}]
   }
 
-  const res = optsListDeepFrom()(opts)(style)
+  const res = optsListsFrom()(opts)(style)
 
   const txt = '<stringPos>                        String positional argument.   \n' +
               '<numberPos>                        Number positional argument.   \n' +

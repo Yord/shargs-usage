@@ -4,20 +4,20 @@ const usageMap       = require('./combinators/usageMap')
 const noCommands     = require('./decorators/noCommands')
 const onlyCommands   = require('./decorators/onlyCommands')
 
-function synopsisDeepFrom (id = 'line') {
+function synopsesFrom (id = 'line') {
   return (programName = '') => usage([
     noCommands(synopsisFrom(id)(programName)),
     onlyCommands(
-      usageMap(cmd => synopsisDeepFrom(id)(commandName(programName, cmd))(cmd.opts))
+      usageMap(cmd => synopsesFrom(id)(commandName(programName, cmd))(cmd.opts))
     )
   ])
 }
 
-const synopsisDeep = synopsisDeepFrom('line')
+const synopses = synopsesFrom('line')
 
 module.exports = {
-  synopsisDeep,
-  synopsisDeepFrom
+  synopses,
+  synopsesFrom
 }
 
 function commandName (programName, {key, args}) {
