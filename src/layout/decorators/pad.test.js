@@ -35,8 +35,6 @@ test('pad assumes 0 if spaces is undefined', () => {
     line: {width: 40}
   }
   
-  const answer42 = line('The answer is 42.')
-
   const res = pad(['line'])(id)(style)
 
   const exp = {
