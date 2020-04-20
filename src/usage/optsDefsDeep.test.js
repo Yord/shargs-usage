@@ -127,3 +127,18 @@ test('optsDefsDeep works with all option types', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('optsDefsDeep prints an empty string if opts are empty', () => {
+  const opts = []
+
+  const style = {
+    line: {width: 40},
+    desc: {padStart: 4, width: 36}
+  }
+  
+  const res = optsDefsDeep(opts)(style)
+
+  const txt = ''
+
+  expect(res).toStrictEqual(txt)
+})
