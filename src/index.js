@@ -15,6 +15,7 @@ const onlyCommands                     = require('./usage/decorators/onlyCommand
 const onlyFirstArg                     = require('./usage/decorators/onlyFirstArg')
 const optsFilter                       = require('./usage/decorators/optsFilter')
 const {optsDefs, optsDefsFrom}         = require('./usage/optsDefs')
+const {optsDefsDeep, optsDefsDeepFrom} = require('./usage/optsDefsDeep')
 const {optsList, optsListFrom}         = require('./usage/optsList')
 const {optsListDeep, optsListDeepFrom} = require('./usage/optsListDeep')
 const optsMap                          = require('./usage/decorators/optsMap')
@@ -57,6 +58,8 @@ module.exports = {
   optsFilter,
   optsDefs,
   optsDefsFrom,
+  optsDefsDeep,
+  optsDefsDeepFrom,
   optsList,
   optsListFrom,
   optsListDeep,
