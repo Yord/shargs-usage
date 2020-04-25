@@ -2,7 +2,7 @@ const {layoutMap, line} = require('../..')
 
 test('layoutMap maps layouts over items', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = layoutMap(line)([
@@ -18,7 +18,7 @@ test('layoutMap maps layouts over items', () => {
 
 test('layoutMap returns empty string if list is empty', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = layoutMap(line)([])(style)
@@ -30,7 +30,7 @@ test('layoutMap returns empty string if list is empty', () => {
 
 test('layoutMap returns empty string if list is undefined', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = layoutMap(line)()(style)

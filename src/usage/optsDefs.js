@@ -12,8 +12,8 @@ function optsDefsFrom (id1 = 'line', id2 = 'desc') {
     onlyCommands(
       layoutMap(cmd => layout([
         optsDefFrom(id1, id2)([cmd]),
-        pad([id1], 4)(
-          pad([id2], 4)(
+        pad([id1, 0], 4)(
+          pad([id2, 0], 4)(
             optsDefsFrom(id1, id2)(cmd.opts)
           )
         )

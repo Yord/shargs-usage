@@ -2,7 +2,7 @@ const {br, brFrom} = require('..')
 
 test('br generates expected string', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = br(style)
@@ -16,7 +16,7 @@ test('brFrom correctly passes on id', () => {
   const id = 'test'
   
   const style = {
-    [id]: {width: 40}
+    [id]: [{width: 40}]
   }
 
   const res = brFrom(id)(style)

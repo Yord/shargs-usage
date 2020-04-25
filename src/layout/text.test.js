@@ -2,7 +2,7 @@ const {text, textFrom} = require('..')
 
 test('text generates expected string', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = text('Deep Thought was created to come up with the Answer.')(style)
@@ -15,7 +15,7 @@ test('text generates expected string', () => {
 
 test('text retains more than one consecutive whitespace even after line breaks', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = text('Deep Thought was created to come up with  the Answer.')(style)
@@ -28,7 +28,7 @@ test('text retains more than one consecutive whitespace even after line breaks',
 
 test('text prints an empty line if no string is given', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = text()(style)
@@ -68,7 +68,7 @@ test('textFrom correctly passes on id', () => {
   const id = 'test'
   
   const style = {
-    [id]: {width: 40}
+    [id]: [{width: 40}]
   }
 
   const res = textFrom(id)('Deep Thought was created to come up with the Answer.')(style)
@@ -84,7 +84,7 @@ test('textFrom with wrong id uses default style', () => {
   const id2 = 'wrong'
   
   const style = {
-    [id1]: {width: 40}
+    [id1]: [{width: 40}]
   }
 
   const res = textFrom(id2)(

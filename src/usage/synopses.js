@@ -20,6 +20,7 @@ module.exports = {
   synopsesFrom
 }
 
-function commandName (programName, {key, args}) {
+function commandName (programName, cmd) {
+  const {key, args} = cmd
   return programName + (programName ? ' ' : '') + (args[0] ? args[0] : key)
 }

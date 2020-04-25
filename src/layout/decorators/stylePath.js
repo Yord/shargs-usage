@@ -8,15 +8,15 @@ module.exports = {
   stylePath
 }
 
-function applyStylePath (path, f, style) {
-  if (!Array.isArray(path)) return style
+function applyStylePath (path, f, obj) {
+  if (!Array.isArray(path)) return obj
 
   const [prop, ...rest] = path
   if (typeof prop === 'undefined') {
-    return f(style)
-  } else if (Array.isArray(style)) {
-    return style.map((val, index) => index === prop ? f(val) : val)
+    return f(obj)
+  } else if (Array.isArray(obj)) {
+    return obj.map((val, index) => index === prop ? applyStylePath(rest, f, val) : val)
   } else {
-    return {...style, [prop]: applyStylePath(rest, f, style[prop] || {})}
+    return {...obj, [prop]: applyStylePath(rest, f, obj[prop] || {})}
   }
 }

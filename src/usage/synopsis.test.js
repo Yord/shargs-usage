@@ -8,7 +8,7 @@ test('synopsis README example works as expected', () => {
   ]
   
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = synopsis('deepThought')(opts)(style)
@@ -33,7 +33,7 @@ test('synopsis generates expected string', () => {
   ]
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = synopsis('deepThought')(opts)(style)
@@ -60,7 +60,7 @@ test('synopsis works without programName', () => {
   ]
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = synopsis()(opts)(style)
@@ -76,7 +76,7 @@ test('synopsis prints only programName if opts are empty', () => {
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = synopsis('deepThought')(opts)(style)
@@ -90,7 +90,7 @@ test('synopsis prints only programName if opts contains only undefined values', 
   const opts = [undefined, undefined]
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = synopsis('deepThought')(opts)(style)
@@ -110,7 +110,7 @@ test('synopsis ignores undefined values', () => {
   ]
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = synopsis('deepThought')(opts)(style)
@@ -122,7 +122,7 @@ test('synopsis ignores undefined values', () => {
 
 test('synopsis prints only programName if opts is undefined', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = synopsis('deepThought')()(style)
@@ -183,7 +183,7 @@ test('synopsis cuts programName if it is too long', () => {
   ]
 
   const style = {
-    line: {width: 10}
+    line: [{width: 10}]
   }
 
   const res = synopsis('deepThought')(opts)(style)
@@ -207,7 +207,7 @@ test('synopsisFrom correctly passes on id', () => {
   ]
 
   const style = {
-    custom: {width: 70}
+    custom: [{width: 70}]
   }
 
   const res = synopsisFrom('custom')('deepThought')(opts)(style)
@@ -232,7 +232,7 @@ test('synopsisFrom with wrong id uses default style', () => {
   ]
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = synopsisFrom('custom')('deepThought')(opts)(style)

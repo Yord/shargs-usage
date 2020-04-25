@@ -8,7 +8,7 @@ test('note README example works as expected', () => {
   ]
   
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = note(
@@ -25,7 +25,7 @@ test('note generates expected string', () => {
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = note(
@@ -42,7 +42,7 @@ test('note retains more than one consecutive whitespace even after line breaks',
   const opts = []
   
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = note(
@@ -59,7 +59,7 @@ test('note returns an empty line if no string is given', () => {
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = note()(opts)(style)
@@ -85,7 +85,7 @@ test('note uses default style if style is undefined', () => {
 
 test('note assumes empty opts if opts is undefined', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = note('Deep Thought was created to come up with the Answer.')()(style)
@@ -118,7 +118,7 @@ test('noteFrom correctly passes on id', () => {
   const opts = []
   
   const style = {
-    [id]: {width: 40}
+    [id]: [{width: 40}]
   }
 
   const res = noteFrom(id)('Deep Thought was created to come up with the Answer.')(opts)(style)
@@ -136,7 +136,7 @@ test('noteFrom with wrong id uses default style', () => {
   const opts = []
   
   const style = {
-    [id1]: {width: 40}
+    [id1]: [{width: 40}]
   }
 
   const res = noteFrom(id2)(

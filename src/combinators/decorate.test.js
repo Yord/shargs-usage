@@ -21,14 +21,14 @@ test('decorate combines usage decorators', () => {
 
 test('decorate combines layout decorators', () => {
   const style = {
-    line: {width: 10}
+    line: [{width: 10}]
   }
 
   const id = line('a')
 
   const res = decorate(
-    pad(['line'], 4),
-    pad(['line'], 4)
+    pad(['line', 0], 4),
+    pad(['line', 0], 4)
   )(id)(style)
 
   const exp = '        a \n'

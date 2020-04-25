@@ -2,7 +2,7 @@ const {texts, textsFrom} = require('..')
 
 test('texts generates expected string', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = texts([
@@ -20,7 +20,7 @@ test('texts generates expected string', () => {
 
 test('texts retains more than one consecutive whitespace even after line breaks', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = texts([
@@ -38,7 +38,7 @@ test('texts retains more than one consecutive whitespace even after line breaks'
 
 test('texts prints the empty string if no strings are given', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = texts()(style)
@@ -50,7 +50,7 @@ test('texts prints the empty string if no strings are given', () => {
 
 test('texts prints the empty string if strings are empty', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = texts([])(style)
@@ -90,7 +90,7 @@ test('textsFrom correctly passes on id', () => {
   const id = 'test'
   
   const style = {
-    [id]: {width: 40}
+    [id]: [{width: 40}]
   }
 
   const res = textsFrom(id)([
@@ -111,7 +111,7 @@ test('textsFrom with wrong id uses default style', () => {
   const id2 = 'wrong'
   
   const style = {
-    [id1]: {width: 40}
+    [id1]: [{width: 40}]
   }
 
   const res = textsFrom(id2)([
@@ -139,7 +139,7 @@ test('descs README example works as expected', () => {
   ]
   
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = descs(opts)(style)

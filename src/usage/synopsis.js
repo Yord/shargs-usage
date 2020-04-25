@@ -5,7 +5,8 @@ const synopsisFrom = id => (programName = '') => (opts = []) => {
   const argsString = buildArgsString(opts)
 
   return (style = defaultStyle) => {
-    const width       = (style[id] || defaultStyle.line).width
+    const line        = style[id] || defaultStyle.line
+    const width       = line[0] && line[0].width
     const startWidth  = Math.min(programName.length, width)
     const startPadEnd = startWidth === width || startWidth === 0 ? 0 : 1
     const startSum    = startWidth + startPadEnd
@@ -42,7 +43,8 @@ function buildArgsString (opts) {
   )
 
   const argsGroups = opts.reduce(
-    ({done, res}, {key} = {}) => {
+    ({done, res}, arg = {}) => {
+      const {key} = arg
       if (typeof key === 'undefined' || done[key]) return {done, res}
       else {
         const groups = optsByKey[key].reduce(

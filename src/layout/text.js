@@ -4,6 +4,7 @@ const {linesFrom}    = require('./lines')
 const textFrom = id => (string = '') => (
   (style = defaultStyle) => {
     const {[id]: line = defaultStyle.line} = style
+    const width = line[0] && line[0].width
 
     const words = splitWords(string)
 
@@ -13,7 +14,7 @@ const textFrom = id => (string = '') => (
     for (let i = 0; i < words.length; i++) {
       const word = words[i]
 
-      const lineFull = (string2 + word).length > line.width
+      const lineFull = (string2 + word).length > width
       
       if (lineFull) {
         strings.push(string2)

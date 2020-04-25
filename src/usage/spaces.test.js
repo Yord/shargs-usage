@@ -4,7 +4,7 @@ test('spaces README example works as expected', () => {
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = usage([
@@ -24,7 +24,7 @@ test('spaces generates expected string', () => {
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = spaces(2)(opts)(style)
@@ -39,7 +39,7 @@ test('spaces with undefined length prints one space', () => {
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = spaces()(opts)(style)
@@ -62,7 +62,7 @@ test('spaces uses default style if style is undefined', () => {
 
 test('spaces does not care if opts is undefined', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = spaces(2)(undefined)(style)
@@ -92,7 +92,7 @@ test('spacesFrom correctly passes on id', () => {
   const opts = []
 
   const style = {
-    [id]: {width: 40}
+    [id]: [{width: 40}]
   }
 
   const res = spacesFrom(id)(2)(opts)(style)
@@ -110,7 +110,7 @@ test('spacesFrom with wrong id uses default style', () => {
   const opts = []
 
   const style = {
-    [id1]: {width: 40}
+    [id1]: [{width: 40}]
   }
 
   const res = spacesFrom(id2)(2)(opts)(style)
