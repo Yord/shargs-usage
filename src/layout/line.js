@@ -1,4 +1,4 @@
-const style = require('../style')
+const {style} = require('../style')
 
 // TODO: cut off string if it surpasses the line's width
 const lineFrom = id => (string = '') => (

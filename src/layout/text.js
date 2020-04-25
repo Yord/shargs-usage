@@ -1,5 +1,5 @@
-const defaultStyle = require('../style')
-const {linesFrom} = require('./lines')
+const {style: defaultStyle} = require('../style')
+const {linesFrom}           = require('./lines')
 
 const textFrom = id => (STRING = '') => (
   (style = defaultStyle) => {

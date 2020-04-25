@@ -1,8 +1,12 @@
-const stylePath = require('./stylePath')
+const {stylePath} = require('./stylePath')
 
-module.exports = (path, spaces = 0) => stylePath(path, pad(spaces))
+const pad = (path, spaces = 0) => stylePath(path, padBy(spaces))
 
-function pad (spaces) {
+module.exports = {
+  pad
+}
+
+function padBy (spaces) {
   return obj => ({
     ...obj,
     padStart: (obj.padStart || 0) + spaces,

@@ -1,3 +1,7 @@
-module.exports = (f = a => a) => usageFunction => (opts = []) => (
+const optsMap = (f = a => a) => usageFunction => (opts = []) => (
   usageFunction(opts.map(f))
 )
+
+module.exports = {
+  optsMap
+}

@@ -1,7 +1,6 @@
-const layout     = require('./combinators/layout')
-const layoutMap  = require('./combinators/layoutMap')
-
-const {textFrom} = require('./text')
+const {layout}    = require('./combinators/layout')
+const {layoutMap} = require('./combinators/layoutMap')
+const {textFrom}  = require('./text')
 
 const defsFrom = (id1, id2) => layoutMap(
   ([title, desc] = []) => layout([

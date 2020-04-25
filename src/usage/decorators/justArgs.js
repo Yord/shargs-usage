@@ -1,5 +1,9 @@
-const optsFilter = require('./optsFilter')
+const {optsFilter} = require('./optsFilter')
 
-module.exports = (list = []) => optsFilter(
+const justArgs = (list = []) => optsFilter(
   ({args = []} = {}) => list.some(arg => args.includes(arg))
 )
+
+module.exports = {
+  justArgs
+}

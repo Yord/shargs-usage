@@ -1,10 +1,10 @@
-const layout         = require('../layout/combinators/layout')
-const layoutMap      = require('../layout/combinators/layoutMap')
-const pad            = require('../layout/decorators/pad')
-const usage          = require('./combinators/usage')
-const noCommands     = require('./decorators/noCommands')
-const onlyCommands   = require('./decorators/onlyCommands')
-const {optsDefFrom} = require('./optsDef')
+const {layout}       = require('../layout/combinators/layout')
+const {layoutMap}    = require('../layout/combinators/layoutMap')
+const {pad}          = require('../layout/decorators/pad')
+const {usage}        = require('./combinators/usage')
+const {noCommands}   = require('./decorators/noCommands')
+const {onlyCommands} = require('./decorators/onlyCommands')
+const {optsDefFrom}  = require('./optsDef')
 
 function optsDefsFrom (id1 = 'line', id2 = 'desc') {
   return usage([

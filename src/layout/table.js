@@ -1,5 +1,5 @@
-const defaultStyle = require('../style')
-const {colsFrom}   = require('./cols')
+const {style: defaultStyle} = require('../style')
+const {colsFrom}            = require('./cols')
 
 const tableFrom = id => (itemsList = []) => (
   (style = defaultStyle) => {

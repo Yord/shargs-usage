@@ -1,4 +1,4 @@
-module.exports = f => (opts = []) => {
+const optsF = f => (opts = []) => {
   const opts2 = opts.filter(opt => typeof opt === 'object')
 
   const argsByKey = opts2.reduce(
@@ -17,6 +17,10 @@ module.exports = f => (opts = []) => {
     descOpt(argsByKey),
     opts2
   )
+}
+
+module.exports = {
+  optsF
 }
 
 function posArg ({key, descArg, types}) {

@@ -1,4 +1,4 @@
-const optsF       = require('./combinators/optsF')
+const {optsF}     = require('./combinators/optsF')
 const {tableFrom} = require('../layout/table')
 
 const optsListFrom = (id = 'cols') => optsF(

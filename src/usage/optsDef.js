@@ -1,4 +1,4 @@
-const optsF      = require('./combinators/optsF')
+const {optsF}    = require('./combinators/optsF')
 const {defsFrom} = require('../layout/defs')
 
 const optsDefFrom = (id1 = 'line', id2 = 'desc') => optsF(
