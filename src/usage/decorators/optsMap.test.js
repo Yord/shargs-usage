@@ -45,7 +45,7 @@ test('optsMap works with all option types', () => {
 
   const res = optsMap(({key} = {}) => key)(id)(opts)
 
-  const exp = opts.map(({key} = {}) => key)
+  const exp = [undefined, ...opts.slice(1).map(({key}) => key)]
 
   expect(res).toStrictEqual(exp)
 })
