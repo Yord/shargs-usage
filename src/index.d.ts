@@ -28,6 +28,7 @@ export {synopsis, synopsisFrom}   from './usage/synopsis'
 export {table, tableFrom}         from './layout/table'
 export {text, textFrom}           from './layout/text'
 export {texts, textsFrom}         from './layout/texts'
+export {usage}                    from './usage/combinators/usage'
 
 export interface Opt {
   [key: string]: any
