@@ -3,6 +3,7 @@ export {brs, brsFrom}             from './layout/brs'
 export {cols, colsFrom}           from './layout/cols'
 export {decorate}                 from './combinators/decorate'
 export {defs, defsFrom}           from './layout/defs'
+export {justArgs}                 from './usage/decorators/justArgs'
 
 export interface Opt {
   [key: string]: any
