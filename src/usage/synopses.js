@@ -4,7 +4,7 @@ const {layoutMap}    = require('../layout/combinators/layoutMap')
 const {noCommands}   = require('./decorators/noCommands')
 const {onlyCommands} = require('./decorators/onlyCommands')
 
-function synopsesFrom (id = 'line') {
+function synopsesFrom (id) {
   return (programName = '') => usage([
     noCommands(synopsisFrom(id)(programName)),
     onlyCommands(

@@ -6,7 +6,7 @@ const {noCommands}   = require('./decorators/noCommands')
 const {onlyCommands} = require('./decorators/onlyCommands')
 const {optsListFrom} = require('./optsList')
 
-function optsListsFrom (id = 'cols') {
+function optsListsFrom (id) {
   return usage([
     noCommands(optsListFrom(id)),
     onlyCommands(

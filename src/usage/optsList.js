@@ -1,7 +1,7 @@
 const {optsF}     = require('./combinators/optsF')
 const {tableFrom} = require('../layout/table')
 
-const optsListFrom = (id = 'cols') => optsF(
+const optsListFrom = id => optsF(
   (defArgs, descOpt, opts) => tableFrom(id)(
     flatMap(opt => {
       const {key, desc = ''} = opt

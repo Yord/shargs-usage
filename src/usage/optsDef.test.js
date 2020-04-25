@@ -238,7 +238,7 @@ test('optsDef correctly passes on first id', () => {
     desc: [{padStart: 4, width: 56}]
   }
 
-  const res = optsDefFrom('line2')(opts)(style)
+  const res = optsDefFrom('line2', 'desc')(opts)(style)
 
   const txt = '-a, --answer=<number> [required]        \n' +
               '    The answer.                                             \n'
@@ -256,7 +256,7 @@ test('optsDefFrom correctly passes on second id', () => {
     desc2: [{padStart: 4, width: 36}]
   }
 
-  const res = optsDefFrom(undefined, 'desc2')(opts)(style)
+  const res = optsDefFrom('line', 'desc2')(opts)(style)
 
   const txt = '-a, --answer=<number> [required]                            \n' +
               '    The answer.                         \n'
