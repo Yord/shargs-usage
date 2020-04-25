@@ -14,6 +14,7 @@ export {notes, notesFrom}         from './usage/notes'
 export {onlyCommands}             from './usage/decorators/onlyCommands'
 export {onlyFirstArg}             from './usage/decorators/onlyFirstArg'
 export {optsFilter}               from './usage/decorators/optsFilter'
+export {optsDef, optsDefFrom}     from './usage/optsDef'
 
 export interface Opt {
   [key: string]: any
