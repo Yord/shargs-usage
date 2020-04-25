@@ -1,29 +1,29 @@
-const {style: defaultStyle} = require('../style')
-const {linesFrom}           = require('./lines')
+const {defaultStyle} = require('../style')
+const {linesFrom}    = require('./lines')
 
-const textFrom = id => (STRING = '') => (
+const textFrom = id => (string = '') => (
   (style = defaultStyle) => {
     const {[id]: line = defaultStyle.line} = style
 
-    const words = splitWords(STRING)
+    const words = splitWords(string)
 
     const strings = []
-    let string    = ''
+    let string2    = ''
 
     for (let i = 0; i < words.length; i++) {
       const word = words[i]
 
-      const lineFull = (string + word).length > line.width
+      const lineFull = (string2 + word).length > line.width
       
       if (lineFull) {
-        strings.push(string)
-        string = word === ' ' ? '' : word
+        strings.push(string2)
+        string2 = word === ' ' ? '' : word
       } else {
-        string += word
+        string2 += word
       }
     }
 
-    strings.push(string)
+    strings.push(string2)
 
     return linesFrom(id)(strings)(style)
   }

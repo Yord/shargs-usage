@@ -1,5 +1,5 @@
-const {style: defaultStyle} = require('../style')
-const {linesFrom}           = require('./lines')
+const {defaultStyle} = require('../style')
+const {linesFrom}    = require('./lines')
 
 // TODO: make sure cols are long enough for all elements or have default cols available
 // TODO: cut strings if they are too long for a column!

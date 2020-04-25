@@ -1,4 +1,4 @@
-const {style: defaultStyle} = require('../../style')
+const {defaultStyle} = require('../../style')
 
 const stylePath = (path, f) => layoutFunction => (style = defaultStyle) => (
   layoutFunction(applyStylePath(path, f, style))

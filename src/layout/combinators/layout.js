@@ -1,4 +1,4 @@
-const {style: defaultStyle} = require('../../style')
+const {defaultStyle} = require('../../style')
 
 const layout = (functions = []) => (style = defaultStyle) => (
   functions.map(f => f(style)).join('')

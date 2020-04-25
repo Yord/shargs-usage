@@ -1,5 +1,5 @@
-const {style: defaultStyle} = require('../style')
-const {tableFrom}           = require('../layout/table')
+const {defaultStyle} = require('../style')
+const {tableFrom}    = require('../layout/table')
 
 const synopsisFrom = id => (programName = '') => (opts = []) => {
   const argsString = buildArgsString(opts)
