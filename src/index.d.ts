@@ -25,6 +25,7 @@ export {spaces, spacesFrom}       from './usage/spaces'
 export {stylePath}                from './layout/decorators/stylePath'
 export {synopses, synopsesFrom}   from './usage/synopses'
 export {synopsis, synopsisFrom}   from './usage/synopsis'
+export {table, tableFrom}         from './layout/table'
 
 export interface Opt {
   [key: string]: any
