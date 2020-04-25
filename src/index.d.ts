@@ -26,6 +26,7 @@ export {stylePath}                from './layout/decorators/stylePath'
 export {synopses, synopsesFrom}   from './usage/synopses'
 export {synopsis, synopsisFrom}   from './usage/synopsis'
 export {table, tableFrom}         from './layout/table'
+export {text, textFrom}           from './layout/text'
 
 export interface Opt {
   [key: string]: any
