@@ -6,6 +6,7 @@ export {defs, defsFrom}           from './layout/defs'
 export {justArgs}                 from './usage/decorators/justArgs'
 export {layout}                   from './layout/combinators/layout'
 export {layoutMap}                from './layout/combinators/layoutMap'
+export {line, lineFrom}           from './layout/line'
 
 export interface Opt {
   [key: string]: any
