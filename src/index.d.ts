@@ -22,6 +22,7 @@ export {optsMap}                  from './usage/decorators/optsMap'
 export {pad}                      from './layout/decorators/pad'
 export {space, spaceFrom}         from './usage/space'
 export {spaces, spacesFrom}       from './usage/spaces'
+export {stylePath}                from './layout/decorators/stylePath'
 
 export interface Opt {
   [key: string]: any
