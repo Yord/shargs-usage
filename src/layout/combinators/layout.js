@@ -1,5 +1,9 @@
-const defaultStyle = require('../../style')
+const {defaultStyle} = require('../../style')
 
-module.exports = (functions = []) => (style = defaultStyle) => (
+const layout = (functions = []) => (style = defaultStyle) => (
   functions.map(f => f(style)).join('')
 )
+
+module.exports = {
+  layout
+}

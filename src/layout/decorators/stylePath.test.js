@@ -4,14 +4,14 @@ const id = style => style
 
 test('stylePath README example works 1/2', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const pad4 = obj => ({...obj, padStart: (obj.padStart || 0) + 4, width: obj.width - 4})
 
   const answer42 = line('The answer is 42.')
 
-  const res = stylePath(['line'], pad4)(answer42)(style)
+  const res = stylePath(['line', 0], pad4)(answer42)(style)
 
   const exp = '    The answer is 42.                   \n'
 
@@ -53,13 +53,17 @@ test('stylePath works with arrays', () => {
 })
 
 test('stylePath uses empty styles object if style does not contain id', () => {
-  const style = {}
+  const style = {
+    b: []
+  }
   
   const pad4 = obj => ({...obj, padStart: (obj.padStart || 0) + 4, width: (obj.width || 0) - 4})
 
-  const res = stylePath(['foo'], pad4)(id)(style).foo
+  const id = line('a')
 
-  const exp = {padStart: 4, width: -4}
+  const res = stylePath(['foo'], pad4)(id)(style)
+
+  const exp = 'a                                                                               \n'
 
   expect(res).toStrictEqual(exp)
 })
@@ -67,25 +71,27 @@ test('stylePath uses empty styles object if style does not contain id', () => {
 test('stylePath uses default styles if style is undefined', () => {
   const pad4 = obj => ({...obj, padStart: (obj.padStart || 0) + 4, width: obj.width - 4})
 
-  const res = stylePath(['line'], pad4)(id)().line
+  const id = line('a')
 
-  const exp = {padStart: 4, width: 76}
+  const res = stylePath(['line', 0], pad4)(id)()
+
+  const exp = '    a                                                                           \n'
 
   expect(res).toStrictEqual(exp)
 })
 
 test('stylePath changes first layer in style if path is empty', () => {
   const style = {
-    desc: {padStart: 4, width: 36}
+    desc: [{padStart: 4, width: 36}]
   }
 
-  const setLine = obj => ({...obj, line: {width: 40}})
+  const setLine = obj => ({...obj, line: [{width: 40}]})
 
   const res = stylePath([], setLine)(id)(style)
 
   const exp = {
-    line: {width: 40},
-    desc: {padStart: 4, width: 36}
+    line: [{width: 40}],
+    desc: [{padStart: 4, width: 36}]
   }
 
   expect(res).toStrictEqual(exp)
@@ -93,7 +99,7 @@ test('stylePath changes first layer in style if path is empty', () => {
 
 test('stylePath changes nothing if path is not an array', () => {
   const style = {
-    desc: {padStart: 4, width: 36}
+    desc: [{padStart: 4, width: 36}]
   }
 
   const setLine = obj => ({...obj, line: {width: 40}})

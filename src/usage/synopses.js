@@ -1,8 +1,8 @@
 const {synopsisFrom} = require('./synopsis')
-const usage          = require('./combinators/usage')
-const layoutMap       = require('../layout/combinators/layoutMap')
-const noCommands     = require('./decorators/noCommands')
-const onlyCommands   = require('./decorators/onlyCommands')
+const {usage}        = require('./combinators/usage')
+const {layoutMap}    = require('../layout/combinators/layoutMap')
+const {noCommands}   = require('./decorators/noCommands')
+const {onlyCommands} = require('./decorators/onlyCommands')
 
 function synopsesFrom (id = 'line') {
   return (programName = '') => usage([
@@ -20,6 +20,7 @@ module.exports = {
   synopsesFrom
 }
 
-function commandName (programName, {key, args}) {
+function commandName (programName, cmd) {
+  const {key, args} = cmd
   return programName + (programName ? ' ' : '') + (args[0] ? args[0] : key)
 }

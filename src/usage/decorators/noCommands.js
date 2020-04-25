@@ -1,5 +1,9 @@
-const optsFilter = require('./optsFilter')
+const {optsFilter} = require('./optsFilter')
 
-module.exports = optsFilter(
+const noCommands = optsFilter(
   ({key, opts} = {}) => typeof key !== 'undefined' && typeof opts === 'undefined'
 )
+
+module.exports = {
+  noCommands
+}

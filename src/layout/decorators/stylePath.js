@@ -1,18 +1,22 @@
-const defaultStyle = require('../../style')
+const {defaultStyle} = require('../../style')
 
-module.exports = (path, f) => layoutFunction => (style = defaultStyle) => (
-  layoutFunction(stylePath(path, f, style))
+const stylePath = (path, f) => layoutFunction => (style = defaultStyle) => (
+  layoutFunction(applyStylePath(path, f, style))
 )
 
-function stylePath (path, f, style) {
-  if (!Array.isArray(path)) return style
+module.exports = {
+  stylePath
+}
+
+function applyStylePath (path, f, obj) {
+  if (!Array.isArray(path)) return obj
 
   const [prop, ...rest] = path
   if (typeof prop === 'undefined') {
-    return f(style)
-  } else if (Array.isArray(style)) {
-    return style.map((val, index) => index === prop ? f(val) : val)
+    return f(obj)
+  } else if (Array.isArray(obj)) {
+    return obj.map((val, index) => index === prop ? applyStylePath(rest, f, val) : val)
   } else {
-    return {...style, [prop]: stylePath(rest, f, style[prop] || {})}
+    return {...obj, [prop]: applyStylePath(rest, f, obj[prop] || {})}
   }
 }

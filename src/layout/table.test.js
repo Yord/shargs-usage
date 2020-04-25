@@ -257,7 +257,9 @@ test('table prints the empty strings if style cols are empty', () => {
 })
 
 test('table uses default cols if style cols are undefined', () => {
-  const style = {}
+  const style = {
+    b: []
+  }
   
   const res = table([
     [

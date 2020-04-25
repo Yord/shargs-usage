@@ -2,8 +2,8 @@ const {defs, defsFrom} = require('..')
 
 test('defs generates expected string', () => {
   const style = {
-    line: {width: 40},
-    desc: {padStart: 4, width: 36}
+    line: [{width: 40}],
+    desc: [{padStart: 4, width: 36}]
   }
   
   const res = defs([
@@ -47,8 +47,8 @@ test('defs generates string with default style if style is undefined', () => {
 
 test('defs uses empty strings if columns are shorter than two elements', () => {
   const style = {
-    line: {width: 40},
-    desc: {padStart: 4, width: 36}
+    line: [{width: 40}],
+    desc: [{padStart: 4, width: 36}]
   }
   
   const res = defs([
@@ -71,8 +71,8 @@ test('defs uses empty strings if columns are shorter than two elements', () => {
 
 test('defs prints empty strings if columns are undefined', () => {
   const style = {
-    line: {width: 40},
-    desc: {padStart: 4, width: 36}
+    line: [{width: 40}],
+    desc: [{padStart: 4, width: 36}]
   }
   
   const res = defs()(style)
@@ -84,8 +84,8 @@ test('defs prints empty strings if columns are undefined', () => {
 
 test('defs prints empty lines for each undefined columns entry', () => {
   const style = {
-    line: {width: 40},
-    desc: {padStart: 4, width: 36}
+    line: [{width: 40}],
+    desc: [{padStart: 4, width: 36}]
   }
   
   const res = defs([
@@ -114,9 +114,9 @@ test('defsFrom correctly passes on first id', () => {
   const id = 'test'
   
   const style = {
-    line: {width: 40},
-    test: {width: 20},
-    desc: {padStart: 4, width: 36}
+    line: [{width: 40}],
+    test: [{width: 20}],
+    desc: [{padStart: 4, width: 36}]
   }
   
   const res = defsFrom(id, 'desc')([
@@ -142,9 +142,9 @@ test('defsFrom correctly passes on second id', () => {
   const id = 'test'
   
   const style = {
-    line: {width: 40},
-    test: {padStart: 4, width: 26},
-    desc: {padStart: 4, width: 36}
+    line: [{width: 40}],
+    test: [{padStart: 4, width: 26}],
+    desc: [{padStart: 4, width: 36}]
   }
   
   const res = defsFrom('line', id)([

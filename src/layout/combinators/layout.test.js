@@ -2,7 +2,7 @@ const {layout, line} = require('../..')
 
 test('layout returns the empty string if no functions are defined', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = layout()(style)
@@ -14,7 +14,7 @@ test('layout returns the empty string if no functions are defined', () => {
 
 test('layout returns the empty string if functions are empty', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = layout([])(style)

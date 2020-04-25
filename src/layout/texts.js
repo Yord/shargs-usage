@@ -1,5 +1,5 @@
-const layoutMap  = require('./combinators/layoutMap')
-const {textFrom} = require('./text')
+const {layoutMap} = require('./combinators/layoutMap')
+const {textFrom}  = require('./text')
 
 const o = (f, g) => x => f(g(x))
 

@@ -31,7 +31,7 @@ test('usage returns the empty string if no functions are defined', () => {
   ]
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = usage()(opts)(style)
@@ -49,7 +49,7 @@ test('usage returns the empty string if functions are empty', () => {
   ]
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = usage([])(opts)(style)
@@ -79,7 +79,7 @@ test('usage uses default style if style is undefined', () => {
 
 test('usage passes on empty opts if opts are undefined', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = usage([

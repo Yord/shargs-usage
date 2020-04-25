@@ -8,7 +8,7 @@ test('notes README example works as expected', () => {
   ]
   
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = notes([
@@ -26,7 +26,7 @@ test('notes generates expected string', () => {
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = notes([
@@ -46,7 +46,7 @@ test('notes retains more than one consecutive whitespace even after line breaks'
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = notes([
@@ -66,7 +66,7 @@ test('notes prints the empty string if no strings are given', () => {
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = notes()(opts)(style)
@@ -80,7 +80,7 @@ test('notes prints the empty string if strings are empty', () => {
   const opts = []
 
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = notes([])(opts)(style)
@@ -92,7 +92,7 @@ test('notes prints the empty string if strings are empty', () => {
 
 test('notes assumes empty opts if opts is undefined', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = notes([
@@ -125,7 +125,9 @@ test('notes uses default style if style is undefined', () => {
 test('notes uses default style if style has no line attribute', () => {
   const opts = []
 
-  const style = {}
+  const style = {
+    b: []
+  }
 
   const res = notes([
     'Deep Thought was created to come up with the Answer.',
@@ -144,7 +146,7 @@ test('notesFrom correctly passes on id', () => {
   const opts = []
   
   const style = {
-    [id]: {width: 40}
+    [id]: [{width: 40}]
   }
 
   const res = notesFrom(id)([
@@ -167,7 +169,7 @@ test('notesFrom with wrong id uses default style', () => {
   const opts = []
 
   const style = {
-    [id1]: {width: 40}
+    [id1]: [{width: 40}]
   }
 
   const res = notesFrom(id2)([

@@ -2,7 +2,7 @@ const {lines, linesFrom} = require('..')
 
 test('lines generates expected string', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = lines([
@@ -18,7 +18,7 @@ test('lines generates expected string', () => {
 
 test('lines with undefined string prints the empty string', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
 
   const res = lines()(style)
@@ -44,7 +44,7 @@ test('linesFrom correctly passes on id', () => {
   const id = 'test'
   
   const style = {
-    [id]: {width: 40}
+    [id]: [{width: 40}]
   }
 
   const res = linesFrom(id)([

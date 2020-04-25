@@ -1,3 +1,7 @@
-const layout = require('./layout')
+const {layout} = require('./layout')
 
-module.exports = f => (list = []) => layout(list.map(f))
+const layoutMap = f => (list = []) => layout(list.map(f))
+
+module.exports = {
+  layoutMap
+}

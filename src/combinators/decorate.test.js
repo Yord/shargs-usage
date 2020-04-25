@@ -1,6 +1,4 @@
-const {decorate, justArgs, noCommands, pad} = require('..')
-
-const id = a => a
+const {decorate, justArgs, line, noCommands, pad} = require('..')
 
 test('decorate combines usage decorators', () => {
   const opts = [
@@ -9,27 +7,31 @@ test('decorate combines usage decorators', () => {
     {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
   ]
 
+  const id = opts => () => JSON.stringify(opts)
+
   const res = decorate(
     justArgs(['-a', '-h']),
     noCommands
-  )(id)(opts)
+  )(id)(opts)()
 
-  expect(res).toStrictEqual(opts.slice(0, 1))
+  const exp = JSON.stringify(opts.slice(0, 1))
+
+  expect(res).toStrictEqual(exp)
 })
 
 test('decorate combines layout decorators', () => {
   const style = {
-    line: {width: 40}
+    line: [{width: 10}]
   }
+
+  const id = line('a')
 
   const res = decorate(
-    pad(['line'], 4),
-    pad(['line'], 4)
+    pad(['line', 0], 4),
+    pad(['line', 0], 4)
   )(id)(style)
 
-  const exp = {
-    line: {padStart: 8, width: 32}
-  }
+  const exp = '        a \n'
 
   expect(res).toStrictEqual(exp)
 })

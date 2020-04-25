@@ -13,7 +13,7 @@ test('synopses README example works as expected', () => {
   ]
   
   const style = {
-    line: {width: 40}
+    line: [{width: 40}]
   }
   
   const res = synopses('deepThought')(opts)(style)
@@ -51,7 +51,7 @@ test('synopses works with all option types', () => {
   ]
 
   const style = {
-    line: {width: 80}
+    line: [{width: 80}]
   }
 
   const res = synopses('deepThought')(opts)(style)
@@ -95,7 +95,7 @@ test('synopses works without programName', () => {
   ]
 
   const style = {
-    line: {width: 80}
+    line: [{width: 80}]
   }
 
   const res = synopses()(opts)(style)
@@ -115,7 +115,7 @@ test('synopses prints only programName if opts are empty', () => {
   const opts = []
 
   const style = {
-    line: {width: 80}
+    line: [{width: 80}]
   }
 
   const res = synopses('deepThought')(opts)(style)
@@ -127,7 +127,7 @@ test('synopses prints only programName if opts are empty', () => {
 
 test('synopses prints only programName if opts are undefined', () => {
   const style = {
-    line: {width: 80}
+    line: [{width: 80}]
   }
 
   const res = synopses('deepThought')()(style)
@@ -163,7 +163,9 @@ test('synopses uses default line style if line is undefined in style', () => {
     ...commandOpts
   ]
 
-  const style = {}
+  const style = {
+    b: []
+  }
 
   const res = synopses('deepThought')(opts)(style)
 
@@ -246,7 +248,7 @@ test('synopsesFrom correctly passes on id', () => {
   ]
 
   const style = {
-    custom: {width: 70}
+    custom: [{width: 70}]
   }
 
   const res = synopsesFrom('custom')('deepThought')(opts)(style)
@@ -286,7 +288,7 @@ test('synopsesFrom with wrong id uses default style', () => {
   ]
 
   const style = {
-    custom: {width: 70}
+    custom: [{width: 70}]
   }
 
   const opts = [
@@ -335,7 +337,7 @@ test('synopsesFrom with undefined id uses line', () => {
   ]
 
   const style = {
-    line: {width: 75}
+    line: [{width: 75}]
   }
 
   const res = synopsesFrom()('deepThought')(opts)(style)

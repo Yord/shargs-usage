@@ -1,6 +1,6 @@
 {
   "name": "shargs-usage",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "description": "Automatic usage documentation generation for shargs",
   "keywords": [
     "shargs",
@@ -29,6 +29,7 @@
   },
   "private": false,
   "devDependencies": {
+    "@types/jest": "25.2.1",
     "fast-check": "1.23.0",
     "jest": "25.1.0"
   }
