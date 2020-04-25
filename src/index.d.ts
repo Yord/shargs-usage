@@ -19,6 +19,7 @@ export {optsDefs, optsDefsFrom}   from './usage/optsDefs'
 export {optsList, optsListFrom}   from './usage/optsList'
 export {optsLists, optsListsFrom} from './usage/optsLists'
 export {optsMap}                  from './usage/decorators/optsMap'
+export {pad}                      from './layout/decorators/pad'
 
 export interface Opt {
   [key: string]: any
