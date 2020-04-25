@@ -5,6 +5,7 @@ export {decorate}                 from './combinators/decorate'
 export {defs, defsFrom}           from './layout/defs'
 export {justArgs}                 from './usage/decorators/justArgs'
 export {layout}                   from './layout/combinators/layout'
+export {layoutMap}                from './layout/combinators/layoutMap'
 
 export interface Opt {
   [key: string]: any
