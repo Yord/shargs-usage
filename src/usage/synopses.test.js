@@ -163,7 +163,9 @@ test('synopses uses default line style if line is undefined in style', () => {
     ...commandOpts
   ]
 
-  const style = {}
+  const style = {
+    b: []
+  }
 
   const res = synopses('deepThought')(opts)(style)
 

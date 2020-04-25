@@ -53,7 +53,9 @@ test('stylePath works with arrays', () => {
 })
 
 test('stylePath uses empty styles object if style does not contain id', () => {
-  const style = {}
+  const style = {
+    b: []
+  }
   
   const pad4 = obj => ({...obj, padStart: (obj.padStart || 0) + 4, width: (obj.width || 0) - 4})
 

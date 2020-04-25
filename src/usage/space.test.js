@@ -59,7 +59,9 @@ test('space does not care if opts is undefined', () => {
 test('space uses default style if style has no line attribute', () => {
   const opts = []
 
-  const style = {}
+  const style = {
+    b: []
+  }
 
   const res = space(opts)(style)
 

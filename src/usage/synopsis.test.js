@@ -145,7 +145,9 @@ test('synopsis uses default line style if line is undefined in style', () => {
     {key: 'politePhrase'}
   ]
 
-  const style = {}
+  const style = {
+    b: []
+  }
 
   const res = synopsis('deepThought')(opts)(style)
 

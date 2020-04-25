@@ -125,7 +125,9 @@ test('notes uses default style if style is undefined', () => {
 test('notes uses default style if style has no line attribute', () => {
   const opts = []
 
-  const style = {}
+  const style = {
+    b: []
+  }
 
   const res = notes([
     'Deep Thought was created to come up with the Answer.',

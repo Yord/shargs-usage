@@ -51,7 +51,9 @@ test('text uses default style if style is undefined', () => {
 })
 
 test('text uses default style if style has no line attribute', () => {
-  const style = {}
+  const style = {
+    b: []
+  }
 
   const res = text(
     'Deep Thought was created to come up with the Answer to ' +

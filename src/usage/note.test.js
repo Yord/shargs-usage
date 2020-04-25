@@ -99,7 +99,9 @@ test('note assumes empty opts if opts is undefined', () => {
 test('note uses default style if style has no line attribute', () => {
   const opts = []
 
-  const style = {}
+  const style = {
+    b: []
+  }
 
   const res = note(
     'Deep Thought was created to come up with the Answer to ' +
