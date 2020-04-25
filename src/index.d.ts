@@ -12,6 +12,7 @@ export {noCommands}               from './usage/decorators/noCommands'
 export {note, noteFrom}           from './usage/note'
 export {notes, notesFrom}         from './usage/notes'
 export {onlyCommands}             from './usage/decorators/onlyCommands'
+export {onlyFirstArg}             from './usage/decorators/onlyFirstArg'
 
 export interface Opt {
   [key: string]: any
