@@ -15,6 +15,7 @@ export {onlyCommands}             from './usage/decorators/onlyCommands'
 export {onlyFirstArg}             from './usage/decorators/onlyFirstArg'
 export {optsFilter}               from './usage/decorators/optsFilter'
 export {optsDef, optsDefFrom}     from './usage/optsDef'
+export {optsDefs, optsDefsFrom}   from './usage/optsDefs'
 
 export interface Opt {
   [key: string]: any
