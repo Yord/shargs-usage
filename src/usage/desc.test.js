@@ -17,3 +17,19 @@ test('desc README example works as expected', () => {
   
   expect(res).toStrictEqual(txt)
 })
+
+test('desc returns an empty line if no descArg is given', () => {
+  const opts = {
+    opts: []
+  }
+
+  const style = {
+    line: [{width: 40}]
+  }
+
+  const res = desc(opts)(style)
+
+  const txt = '                                        \n'
+
+  expect(res).toStrictEqual(txt)
+})
