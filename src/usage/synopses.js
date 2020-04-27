@@ -1,6 +1,6 @@
 const {synopsisFrom} = require('./synopsis')
 const {usage}        = require('./combinators/usage')
-const {layoutMap}    = require('../layout/combinators/layoutMap')
+const {usageMap}     = require('./combinators/usageMap')
 const {noCommands}   = require('./decorators/noCommands')
 const {onlyCommands} = require('./decorators/onlyCommands')
 
@@ -8,7 +8,7 @@ function synopsesFrom (id) {
   return (programName = '') => usage([
     noCommands(synopsisFrom(id)(programName)),
     onlyCommands(
-      layoutMap(cmd => synopsesFrom(id)(commandName(programName, cmd))(cmd.opts))
+      usageMap(cmd => synopsesFrom(id)(commandName(programName, cmd))(cmd))
     )
   ])
 }

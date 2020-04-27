@@ -1,11 +1,13 @@
 const {optsDef, optsDefFrom} = require('..')
 
 test('optsDef README example works as expected', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
   
   const style = {
     line: [{width: 40}],
@@ -25,10 +27,12 @@ test('optsDef README example works as expected', () => {
 })
 
 test('optsDef does not show an args description if descArg is an empty string', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['--answer'], desc: 'The answer.'},
-    {key: 'answer2', types: ['number'], args: ['--answer2'], descArg: '', desc: 'The answer.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['--answer'], desc: 'The answer.'},
+      {key: 'answer2', types: ['number'], args: ['--answer2'], descArg: '', desc: 'The answer.'}
+    ]
+  }
   
   const style = {
     line: [{width: 40}],
@@ -46,17 +50,19 @@ test('optsDef does not show an args description if descArg is an empty string', 
 })
 
 test('optsDef works as expected', () => {
-  const opts = [
-    {key: 'answer', opts: [], args: ['answer'], desc: 'The answer.', required: true},
-    {key: 'foo', types: ['string'], args: ['-f', '--foo'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
-    {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
-    {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
-    {key: 'position', types: ['number', 'number'], args: ['--pos'], desc: 'The position.'},
-    {key: 'question', types: ['string'], required: true, desc: 'The question.'},
-    {key: 'politePhrase', desc: 'Polite phrases.'},
-    {now: 'something', completely: 'different'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', opts: [], args: ['answer'], desc: 'The answer.', required: true},
+      {key: 'foo', types: ['string'], args: ['-f', '--foo'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
+      {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
+      {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
+      {key: 'position', types: ['number', 'number'], args: ['--pos'], desc: 'The position.'},
+      {key: 'question', types: ['string'], required: true, desc: 'The question.'},
+      {key: 'politePhrase', desc: 'Polite phrases.'},
+      {now: 'something', completely: 'different'}
+    ]
+  }
 
   const style = {
     line: [{width: 60}],
@@ -86,7 +92,7 @@ test('optsDef works as expected', () => {
 })
 
 test('optsDef prints an empty string if opts are empty', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 42}],
@@ -101,7 +107,9 @@ test('optsDef prints an empty string if opts are empty', () => {
 })
 
 test('optsDef prints an empty string if opts has undefined entries', () => {
-  const opts = [undefined, undefined]
+  const opts = {
+    opts: [undefined, undefined]
+  }
 
   const style = {
     line: [{width: 42}],
@@ -129,11 +137,13 @@ test('optsDef prints an empty string if opts are undefined', () => {
 })
 
 test('optsDef prints contradics, default, implies and required, in this order', () => {
-  const opts = [
-    {key: 'a', types: [], args: ['-a'], desc: 'An a.', required: false, defaultValues: ['a'], contradicts: ['b'], implies: ['c']},
-    {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
-    {key: 'c', types: [], args: ['-c'], desc: 'A c.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'a', types: [], args: ['-a'], desc: 'An a.', required: false, defaultValues: ['a'], contradicts: ['b'], implies: ['c']},
+      {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
+      {key: 'c', types: [], args: ['-c'], desc: 'A c.'}
+    ]
+  }
 
   const style = {
     line: [{width: 80}],
@@ -153,10 +163,12 @@ test('optsDef prints contradics, default, implies and required, in this order', 
 })
 
 test('optsDef does not print different defaultValues format', () => {
-  const opts = [
-    {key: 'a', types: [], args: ['-a'], desc: 'An a.', defaultValues: 'wrong format'},
-    {key: 'b', types: [], args: ['-b'], desc: 'A b.', defaultValues: [1, 2]}
-  ]
+  const opts = {
+    opts: [
+      {key: 'a', types: [], args: ['-a'], desc: 'An a.', defaultValues: 'wrong format'},
+      {key: 'b', types: [], args: ['-b'], desc: 'A b.', defaultValues: [1, 2]}
+    ]
+  }
 
   const style = {
     line: [{width: 80}],
@@ -174,11 +186,13 @@ test('optsDef does not print different defaultValues format', () => {
 })
 
 test('optsDef collects args from the same key', () => {
-  const opts = [
-    {key: 'a', types: [], args: ['-a'], desc: 'An a.', implies: ['b']},
-    {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
-    {key: 'b', types: [], args: ['--no-b'], desc: 'Not a b.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'a', types: [], args: ['-a'], desc: 'An a.', implies: ['b']},
+      {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
+      {key: 'b', types: [], args: ['--no-b'], desc: 'Not a b.'}
+    ]
+  }
 
   const style = {
     line: [{width: 80}],
@@ -198,15 +212,17 @@ test('optsDef collects args from the same key', () => {
 })
 
 test('optsDef uses default style if style is undefined', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
-    {key: 'foo', types: ['string'], args: ['-f', '--foo'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
-    {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
-    {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
-    {key: 'question', types: ['string'], required: true, desc: 'The question.'},
-    {key: 'politePhrases', descArg: 'phrases', desc: 'Polite phrases.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
+      {key: 'foo', types: ['string'], args: ['-f', '--foo'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
+      {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
+      {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
+      {key: 'question', types: ['string'], required: true, desc: 'The question.'},
+      {key: 'politePhrases', descArg: 'phrases', desc: 'Polite phrases.'}
+    ]
+  }
 
   const res = optsDef(opts)()
 
@@ -229,9 +245,11 @@ test('optsDef uses default style if style is undefined', () => {
 })
 
 test('optsDef correctly passes on first id', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
+    ]
+  }
 
   const style = {
     line2: [{width: 40}],
@@ -247,9 +265,11 @@ test('optsDef correctly passes on first id', () => {
 })
 
 test('optsDefFrom correctly passes on second id', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
+    ]
+  }
 
   const style = {
     line: [{width: 60}],

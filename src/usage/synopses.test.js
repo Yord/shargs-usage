@@ -6,11 +6,13 @@ test('synopses README example works as expected', () => {
     {key: 'questions', required: true}
   ]
   
-  const opts = [
-    {key: 'ask', args: ['ask'], opts: askOpts, required: true},
-    {key: 'answer', args: ['-a', '--answer'], types: ['number']},
-    {key: 'help', args: ['-h', '--help'], types: []}
-  ]
+  const opts = {
+    opts: [
+      {key: 'ask', args: ['ask'], opts: askOpts, required: true},
+      {key: 'answer', args: ['-a', '--answer'], types: ['number']},
+      {key: 'help', args: ['-h', '--help'], types: []}
+    ]
+  }
   
   const style = {
     line: [{width: 40}]
@@ -45,10 +47,12 @@ test('synopses works with all option types', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
   ]
 
-  const opts = [
-    {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
-    ...commandOpts
-  ]
+  const opts = {
+    opts: [
+      {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
+      ...commandOpts
+    ]
+  }
 
   const style = {
     line: [{width: 80}]
@@ -89,10 +93,12 @@ test('synopses works without programName', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
   ]
 
-  const opts = [
-    {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
-    ...commandOpts
-  ]
+  const opts = {
+    opts: [
+      {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
+      ...commandOpts
+    ]
+  }
 
   const style = {
     line: [{width: 80}]
@@ -112,7 +118,7 @@ test('synopses works without programName', () => {
 })
 
 test('synopses prints only programName if opts are empty', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 80}]
@@ -158,10 +164,12 @@ test('synopses uses default line style if line is undefined in style', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
   ]
 
-  const opts = [
-    {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
-    ...commandOpts
-  ]
+  const opts = {
+    opts: [
+      {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
+      ...commandOpts
+    ]
+  }
 
   const style = {
     b: []
@@ -202,10 +210,12 @@ test('synopses uses default line style if style is undefined', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
   ]
 
-  const opts = [
-    {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
-    ...commandOpts
-  ]
+  const opts = {
+    opts: [
+      {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
+      ...commandOpts
+    ]
+  }
 
   const res = synopses('deepThought')(opts)()
 
@@ -242,10 +252,12 @@ test('synopsesFrom correctly passes on id', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
   ]
 
-  const opts = [
-    {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
-    ...commandOpts
-  ]
+  const opts = {
+    opts: [
+      {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
+      ...commandOpts
+    ]
+  }
 
   const style = {
     custom: [{width: 70}]
@@ -291,10 +303,12 @@ test('synopsesFrom with wrong id uses default style', () => {
     custom: [{width: 70}]
   }
 
-  const opts = [
-    {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
-    ...commandOpts
-  ]
+  const opts = {
+    opts: [
+      {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
+      ...commandOpts
+    ]
+  }
 
   const res = synopsesFrom('foo')('deepThought')(opts)(style)
 

@@ -1,11 +1,13 @@
 const {note, noteFrom} = require('..')
 
 test('note README example works as expected', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.', defaultValue: [false]},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
+      {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.', defaultValue: [false]},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']}
+    ]
+  }
   
   const style = {
     line: [{width: 40}]
@@ -22,7 +24,7 @@ test('note README example works as expected', () => {
 })
 
 test('note generates expected string', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -39,7 +41,7 @@ test('note generates expected string', () => {
 })
 
 test('note retains more than one consecutive whitespace even after line breaks', () => {
-  const opts = []
+  const opts = {}
   
   const style = {
     line: [{width: 40}]
@@ -56,7 +58,7 @@ test('note retains more than one consecutive whitespace even after line breaks',
 })
 
 test('note returns an empty line if no string is given', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -70,7 +72,7 @@ test('note returns an empty line if no string is given', () => {
 })
 
 test('note uses default style if style is undefined', () => {
-  const opts = []
+  const opts = {}
 
   const res = note(
     'Deep Thought was created to come up with the Answer to ' +
@@ -97,7 +99,7 @@ test('note assumes empty opts if opts is undefined', () => {
 })
 
 test('note uses default style if style has no line attribute', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     b: []
@@ -117,7 +119,7 @@ test('note uses default style if style has no line attribute', () => {
 test('noteFrom correctly passes on id', () => {
   const id = 'test'
 
-  const opts = []
+  const opts = {}
   
   const style = {
     [id]: [{width: 40}]
@@ -135,7 +137,7 @@ test('noteFrom with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
 
-  const opts = []
+  const opts = {}
   
   const style = {
     [id1]: [{width: 40}]

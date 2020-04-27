@@ -1,7 +1,7 @@
 const {defaultStyle} = require('../style')
 const {tableFrom}    = require('../layout/table')
 
-const synopsisFrom = id => (programName = '') => (opts = []) => {
+const synopsisFrom = id => (programName = '') => ({opts = []} = {}) => {
   const argsString = buildArgsString(opts)
 
   return (style = defaultStyle) => {

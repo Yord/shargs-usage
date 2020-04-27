@@ -1,5 +1,5 @@
-const optsFilter = (p = () => true) => usageFunction => (opts = []) => (
-  usageFunction(opts.filter(p))
+const optsFilter = (p = () => true) => usageFunction => ({opts = []} = {}) => (
+  usageFunction({opts: opts.filter(p)})
 )
 
 module.exports = {

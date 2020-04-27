@@ -1,8 +1,8 @@
-import {Opt}   from '../..';
-import {Style} from '../../style';
+import {Opt, Opts} from '../..';
+import {Style}     from '../../style';
 
 export const optsFilter: (p?: (opt?: Opt) => boolean) =>
-                         (usageFunction: (opts?: Opt[]) => (style?: Style) => string) =>
-                         (opts?: Opt[]) =>
+                         (usageFunction: (opts?: Opts) => (style?: Style) => string) =>
+                         (opts?: Opts) =>
                          (style?: Style) =>
                          string

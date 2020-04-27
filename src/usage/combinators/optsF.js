@@ -1,4 +1,4 @@
-const optsF = f => (opts = []) => {
+const optsF = f => ({opts = []} = {}) => {
   const opts2 = opts.filter(opt => typeof opt === 'object')
 
   const argsByKey = opts2.reduce(

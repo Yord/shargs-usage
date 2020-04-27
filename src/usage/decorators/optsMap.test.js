@@ -7,11 +7,13 @@ test('optsMap README example works', () => {
     cols: [{width: 18, padEnd: 2}, {width: 20}]
   }
   
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
   
   const res = optsMap(opt => ({...opt, args: opt.args.slice(0, 1)}))(optsList)(opts)(style)
 
@@ -23,59 +25,68 @@ test('optsMap README example works', () => {
 })
 
 test('optsMap works with all option types', () => {
-  const opts = [
-    undefined,
-    {foo: 'bar'                                                                          },
-    {                    args: ['-w', '--wrong']                                         },
-    {                                                types: ['wrong']                    },
-    {                                                                           opts: [] },
-    {key: 'variadicPos'                                                                  },
-    {key: 'stringPos',                               types: ['string']                   },
-    {key: 'numberPos',                               types: ['number']                   },
-    {key: 'boolPos',                                 types: ['bool']                     },
-    {key: 'arrayPos',                                types: ['bool', 'bool']             },
-    {key: 'variadic',    args: ['-v', '--variadic']                                      },
-    {key: 'command',     args: ['co', 'command'],                                opts: []},
-    {key: 'flag',        args: ['-f', '--flag'],     types: []                           },
-    {key: 'string',      args: ['-s', '--string'],   types: ['string']                   },
-    {key: 'number',      args: ['-n', '--number'],   types: ['number']                   },
-    {key: 'bool',        args: ['-b', '--bool'],     types: ['bool']                     },
-    {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
-  ]
+  const opts = {
+    opts: [
+      undefined,
+      {foo: 'bar'                                                                          },
+      {                    args: ['-w', '--wrong']                                         },
+      {                                                types: ['wrong']                    },
+      {                                                                           opts: [] },
+      {key: 'variadicPos'                                                                  },
+      {key: 'stringPos',                               types: ['string']                   },
+      {key: 'numberPos',                               types: ['number']                   },
+      {key: 'boolPos',                                 types: ['bool']                     },
+      {key: 'arrayPos',                                types: ['bool', 'bool']             },
+      {key: 'variadic',    args: ['-v', '--variadic']                                      },
+      {key: 'command',     args: ['co', 'command'],                                opts: []},
+      {key: 'flag',        args: ['-f', '--flag'],     types: []                           },
+      {key: 'string',      args: ['-s', '--string'],   types: ['string']                   },
+      {key: 'number',      args: ['-n', '--number'],   types: ['number']                   },
+      {key: 'bool',        args: ['-b', '--bool'],     types: ['bool']                     },
+      {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
+    ]
+  }
 
+  // @ts-ignore
   const res = optsMap(({key} = {}) => key)(id)(opts)
 
-  const exp = [undefined, ...opts.slice(1).map(({key}) => key)]
+  const exp = {opts: [undefined, ...opts.opts.slice(1).map(({key}) => key)]}
 
   expect(res).toStrictEqual(exp)
 })
 
 test('optsMap transforms opts', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
 
   const res = optsMap(
     opt => ({...opt, args: opt.args.length > 0 ? opt.args.slice(0, 1) : []})
   )(id)(opts)
 
-  const exp = [
-    {key: 'answer', types: ['number'], args: ['-a'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h'], desc: 'Prints help.'},
-    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const exp = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a'], desc: 'The answer.'},
+      {key: 'help', types: [], args: ['-h'], desc: 'Prints help.'},
+      {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
 
   expect(res).toStrictEqual(exp)
 })
 
 test('optsMap does not transforms if function is undefined', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
 
   const res = optsMap()(id)(opts)
 
@@ -85,13 +96,13 @@ test('optsMap does not transforms if function is undefined', () => {
 })
 
 test('optsMap returns an empty list if opts are empty', () => {
-  const opts = []
+  const opts = {}
 
   const res = optsMap(
     opt => ({...opt, args: opt.args.length > 0 ? opt.args.slice(0, 1) : []})
   )(id)(opts)
 
-  expect(res).toStrictEqual([])
+  expect(res).toStrictEqual({opts: []})
 })
 
 test('optsMap returns an empty list if opts are undefined', () => {
@@ -99,5 +110,5 @@ test('optsMap returns an empty list if opts are undefined', () => {
     opt => ({...opt, args: opt.args.length > 0 ? opt.args.slice(0, 1) : []})
   )(id)()
 
-  expect(res).toStrictEqual([])
+  expect(res).toStrictEqual({opts: []})
 })

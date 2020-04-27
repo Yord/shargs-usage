@@ -1,7 +1,7 @@
 const {note, spaces, spacesFrom, usage} = require('..')
 
 test('spaces README example works as expected', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -21,7 +21,7 @@ test('spaces README example works as expected', () => {
   expect(res).toStrictEqual(txt)
 })
 test('spaces generates expected string', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -36,7 +36,7 @@ test('spaces generates expected string', () => {
 })
 
 test('spaces with undefined length prints one space', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -50,7 +50,7 @@ test('spaces with undefined length prints one space', () => {
 })
 
 test('spaces uses default style if style is undefined', () => {
-  const opts = []
+  const opts = {}
 
   const res = spaces(2)(opts)()
 
@@ -74,7 +74,7 @@ test('spaces does not care if opts is undefined', () => {
 })
 
 test('spaces uses default style if style has no line attribute', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     b: []
@@ -91,7 +91,7 @@ test('spaces uses default style if style has no line attribute', () => {
 test('spacesFrom correctly passes on id', () => {
   const id = 'test'
   
-  const opts = []
+  const opts = {}
 
   const style = {
     [id]: [{width: 40}]
@@ -109,7 +109,7 @@ test('spacesFrom with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
   
-  const opts = []
+  const opts = {}
 
   const style = {
     [id1]: [{width: 40}]

@@ -1,11 +1,13 @@
 const {optsList, optsListFrom} = require('..')
 
 test('optsList README example works as expected', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
   
   const style = {
     cols: [
@@ -24,10 +26,12 @@ test('optsList README example works as expected', () => {
 })
 
 test('optsList does not show an args description if descArg is an empty string', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['--answer'], desc: 'The answer.'},
-    {key: 'answer2', types: ['number'], args: ['--answer2'], descArg: '', desc: 'The answer.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['--answer'], desc: 'The answer.'},
+      {key: 'answer2', types: ['number'], args: ['--answer2'], descArg: '', desc: 'The answer.'}
+    ]
+  }
   
   const style = {
     cols: [
@@ -45,17 +49,19 @@ test('optsList does not show an args description if descArg is an empty string',
 })
 
 test('optsList works as expected', () => {
-  const opts = [
-    {key: 'answer', opts: [], args: ['answer'], desc: 'The answer.', required: true},
-    {key: 'foo', types: ['string'], args: ['-f'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
-    {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
-    {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
-    {key: 'position', types: ['number', 'number'], args: ['--pos'], desc: 'The position.'},
-    {key: 'question', types: ['string'], required: true, desc: 'The question.'},
-    {key: 'politePhrase', desc: 'Polite phrases.'},
-    {now: 'something', completely: 'different'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', opts: [], args: ['answer'], desc: 'The answer.', required: true},
+      {key: 'foo', types: ['string'], args: ['-f'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
+      {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
+      {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
+      {key: 'position', types: ['number', 'number'], args: ['--pos'], desc: 'The position.'},
+      {key: 'question', types: ['string'], required: true, desc: 'The question.'},
+      {key: 'politePhrase', desc: 'Polite phrases.'},
+      {now: 'something', completely: 'different'}
+    ]
+  }
 
   const style = {
     cols: [
@@ -79,7 +85,7 @@ test('optsList works as expected', () => {
 })
 
 test('optsList prints an empty string if opts are empty', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     cols: [
@@ -96,7 +102,9 @@ test('optsList prints an empty string if opts are empty', () => {
 })
 
 test('optsList prints an empty string if opts has undefined entries', () => {
-  const opts = [undefined, undefined]
+  const opts = {
+    opts: [undefined, undefined]
+  }
 
   const style = {
     cols: [
@@ -128,11 +136,13 @@ test('optsList prints an empty string if opts are undefined', () => {
 })
 
 test('optsList prints contradics, default, implies and required, in this order', () => {
-  const opts = [
-    {key: 'a', types: [], args: ['-a'], desc: 'An a.', required: false, defaultValues: ['a'], contradicts: ['b'], implies: ['c']},
-    {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
-    {key: 'c', types: [], args: ['-c'], desc: 'A c.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'a', types: [], args: ['-a'], desc: 'An a.', required: false, defaultValues: ['a'], contradicts: ['b'], implies: ['c']},
+      {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
+      {key: 'c', types: [], args: ['-c'], desc: 'A c.'}
+    ]
+  }
 
   const style = {
     cols: [
@@ -151,10 +161,12 @@ test('optsList prints contradics, default, implies and required, in this order',
 })
 
 test('optsList does not print different defaultValues format', () => {
-  const opts = [
-    {key: 'a', types: [], args: ['-a'], desc: 'An a.', defaultValues: 'wrong format'},
-    {key: 'b', types: [], args: ['-b'], desc: 'A b.', defaultValues: [1, 2]}
-  ]
+  const opts = {
+    opts: [
+      {key: 'a', types: [], args: ['-a'], desc: 'An a.', defaultValues: 'wrong format'},
+      {key: 'b', types: [], args: ['-b'], desc: 'A b.', defaultValues: [1, 2]}
+    ]
+  }
 
   const style = {
     cols: [
@@ -172,11 +184,13 @@ test('optsList does not print different defaultValues format', () => {
 })
 
 test('optsList collects args from the same key', () => {
-  const opts = [
-    {key: 'a', types: [], args: ['-a'], desc: 'An a.', implies: ['b']},
-    {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
-    {key: 'b', types: [], args: ['--no-b'], desc: 'Not a b.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'a', types: [], args: ['-a'], desc: 'An a.', implies: ['b']},
+      {key: 'b', types: [], args: ['-b'], desc: 'A b.'},
+      {key: 'b', types: [], args: ['--no-b'], desc: 'Not a b.'}
+    ]
+  }
 
   const style = {
     cols: [
@@ -195,15 +209,17 @@ test('optsList collects args from the same key', () => {
 })
 
 test('optsList uses default style if style is undefined', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
-    {key: 'foo', types: ['string'], args: ['-f', '--foo'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
-    {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
-    {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
-    {key: 'question', types: ['string'], required: true, desc: 'The question.'},
-    {key: 'politePhrases', descArg: 'phrases', desc: 'Polite phrases.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
+      {key: 'foo', types: ['string'], args: ['-f', '--foo'], desc: 'Foo.', only: ['foo', 'bar'], required: false},
+      {key: 'baz', types: ['bool'], args: ['-b', '--baz'], desc: 'Baz.', descArg: 'baz', defaultValues: [42], implies: ['foo']},
+      {key: 'help', types: [], args: ['--help', 'help', '-h'], desc: 'Prints help.', defaultValues: [false]},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']},
+      {key: 'question', types: ['string'], required: true, desc: 'The question.'},
+      {key: 'politePhrases', descArg: 'phrases', desc: 'Polite phrases.'}
+    ]
+  }
 
   const res = optsList(opts)()
 
@@ -219,9 +235,11 @@ test('optsList uses default style if style is undefined', () => {
 })
 
 test('optsListFrom correctly passes on id', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
+    ]
+  }
 
   const style = {
     cols2: [

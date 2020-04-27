@@ -1,7 +1,7 @@
-import {Opt}   from '../..';
+import {Opts}  from '../..';
 import {Style} from '../../style';
 
-export const usage: (functions?: ((opts?: Opt[]) => (style?: Style) => string)[]) =>
-                    (opts?: Opt[]) =>
+export const usage: (functions?: ((opts?: Opts) => (style?: Style) => string)[]) =>
+                    (opts?: Opts) =>
                     (style?: Style) =>
                     string
