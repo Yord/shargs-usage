@@ -1,13 +1,13 @@
 const {defaultStyle} = require('../style')
 const {tableFrom}    = require('../layout/table')
 
-const synopsisFrom = id => (programName = '') => ({opts = []} = {}) => {
+const synopsisFrom = id => ({descArg = '', opts = []} = {}) => {
   const argsString = buildArgsString(opts)
 
   return (style = defaultStyle) => {
     const line        = style[id] || defaultStyle.line
     const width       = line[0] && line[0].width
-    const startWidth  = Math.min(programName.length, width)
+    const startWidth  = Math.min(descArg.length, width)
     const startPadEnd = startWidth === width || startWidth === 0 ? 0 : 1
     const startSum    = startWidth + startPadEnd
     const argsWidth   = width - startSum <= 0 ? 0 : width - startSum
@@ -21,7 +21,7 @@ const synopsisFrom = id => (programName = '') => ({opts = []} = {}) => {
     }
 
     return tableFrom('synopsis')([
-      [programName.slice(0, startWidth), argsString]
+      [descArg.slice(0, startWidth), argsString]
     ])(style2)
   }
 }

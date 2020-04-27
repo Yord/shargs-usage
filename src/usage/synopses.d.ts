@@ -1,5 +1,5 @@
-import {Opts}  from '..'
+import {Opt}  from '..'
 import {Style} from '../style'
 
-export const synopses:                     (programName?: string) => (opts?: Opts) => (style?: Style) => string
-export const synopsesFrom: (id: string) => (programName?: string) => (opts?: Opts) => (style?: Style) => string
+export const synopses:                     (opts?: Opt) => (style?: Style) => string
+export const synopsesFrom: (id: string) => (opts?: Opt) => (style?: Style) => string

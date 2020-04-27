@@ -7,6 +7,7 @@ test('synopses README example works as expected', () => {
   ]
   
   const opts = {
+    descArg: 'deepThought',
     opts: [
       {key: 'ask', args: ['ask'], opts: askOpts, required: true},
       {key: 'answer', args: ['-a', '--answer'], types: ['number']},
@@ -18,7 +19,7 @@ test('synopses README example works as expected', () => {
     line: [{width: 40}]
   }
   
-  const res = synopses('deepThought')(opts)(style)
+  const res = synopses(opts)(style)
 
   const txt = 'deepThought [-a|--answer] [-h|--help]   \n'+
               'deepThought ask [-h] (<questions>...)   \n'
@@ -48,6 +49,7 @@ test('synopses works with all option types', () => {
   ]
 
   const opts = {
+    descArg: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts
@@ -58,7 +60,7 @@ test('synopses works with all option types', () => {
     line: [{width: 80}]
   }
 
-  const res = synopses('deepThought')(opts)(style)
+  const res = synopses(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
@@ -104,7 +106,7 @@ test('synopses works without programName', () => {
     line: [{width: 80}]
   }
 
-  const res = synopses()(opts)(style)
+  const res = synopses(opts)(style)
 
   const txt = '[<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>] [<variadicPos>...]         \n' +
               '[-v|--variadic] [-f|--flag] [-s|--string] [-n|--number] [-b|--bool] [-a|--array]\n' +
@@ -118,13 +120,16 @@ test('synopses works without programName', () => {
 })
 
 test('synopses prints only programName if opts are empty', () => {
-  const opts = {}
+  const opts = {
+    descArg: 'deepThought',
+    opts: []
+  }
 
   const style = {
     line: [{width: 80}]
   }
 
-  const res = synopses('deepThought')(opts)(style)
+  const res = synopses(opts)(style)
 
   const txt = 'deepThought                                                                     \n'
 
@@ -132,11 +137,16 @@ test('synopses prints only programName if opts are empty', () => {
 })
 
 test('synopses prints only programName if opts are undefined', () => {
+  const opts = {
+    descArg: 'deepThought'
+  }
+
   const style = {
     line: [{width: 80}]
   }
 
-  const res = synopses('deepThought')()(style)
+  // @ts-ignore
+  const res = synopses(opts)(style)
 
   const txt = 'deepThought                                                                     \n'
 
@@ -165,6 +175,7 @@ test('synopses uses default line style if line is undefined in style', () => {
   ]
 
   const opts = {
+    descArg: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts
@@ -175,7 +186,7 @@ test('synopses uses default line style if line is undefined in style', () => {
     b: []
   }
 
-  const res = synopses('deepThought')(opts)(style)
+  const res = synopses(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
@@ -211,13 +222,14 @@ test('synopses uses default line style if style is undefined', () => {
   ]
 
   const opts = {
+    descArg: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts
     ]
   }
 
-  const res = synopses('deepThought')(opts)()
+  const res = synopses(opts)()
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
@@ -253,6 +265,7 @@ test('synopsesFrom correctly passes on id', () => {
   ]
 
   const opts = {
+    descArg: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts
@@ -263,7 +276,7 @@ test('synopsesFrom correctly passes on id', () => {
     custom: [{width: 70}]
   }
 
-  const res = synopsesFrom('custom')('deepThought')(opts)(style)
+  const res = synopsesFrom('custom')(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]      \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag]            \n' +
@@ -304,13 +317,14 @@ test('synopsesFrom with wrong id uses default style', () => {
   }
 
   const opts = {
+    descArg: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts
     ]
   }
 
-  const res = synopsesFrom('foo')('deepThought')(opts)(style)
+  const res = synopsesFrom('foo')(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
