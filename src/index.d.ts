@@ -29,6 +29,7 @@ export {table, tableFrom}         from './layout/table'
 export {text, textFrom}           from './layout/text'
 export {texts, textsFrom}         from './layout/texts'
 export {usage}                    from './usage/combinators/usage'
+export {usageMap}                 from './usage/combinators/usageMap'
 
 export interface Opt {
   args?: string[]
