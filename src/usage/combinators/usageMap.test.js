@@ -142,3 +142,24 @@ test('usageMap returns empty string if opts are empty', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('usageMap returns empty string if function is undefined', () => {
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
+
+  const style = {
+    line: [{width: 40}],
+    desc: [{padStart: 4, width: 36}]
+  }
+  
+  const res = usageMap()(opts)(style)
+
+  const txt = ''
+
+  expect(res).toStrictEqual(txt)
+})
