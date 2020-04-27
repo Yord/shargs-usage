@@ -7,7 +7,7 @@ test('synopses README example works as expected', () => {
   ]
   
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'ask', args: ['ask'], opts: askOpts, required: true},
       {key: 'answer', args: ['-a', '--answer'], types: ['number']},
@@ -49,7 +49,7 @@ test('synopses works with all option types', () => {
   ]
 
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts
@@ -121,7 +121,7 @@ test('synopses works without programName', () => {
 
 test('synopses prints only programName if opts are empty', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: []
   }
 
@@ -138,7 +138,7 @@ test('synopses prints only programName if opts are empty', () => {
 
 test('synopses prints only programName if opts are undefined', () => {
   const opts = {
-    descArg: 'deepThought'
+    key: 'deepThought'
   }
 
   const style = {
@@ -175,7 +175,7 @@ test('synopses uses default line style if line is undefined in style', () => {
   ]
 
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts
@@ -222,7 +222,7 @@ test('synopses uses default line style if style is undefined', () => {
   ]
 
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts
@@ -265,7 +265,7 @@ test('synopsesFrom correctly passes on id', () => {
   ]
 
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts
@@ -317,7 +317,7 @@ test('synopsesFrom with wrong id uses default style', () => {
   }
 
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'withOpts', args: ['with-opts'], opts: commandOpts},
       ...commandOpts

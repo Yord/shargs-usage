@@ -2,7 +2,7 @@ const {synopsis, synopsisFrom} = require('..')
 
 test('synopsis README example works as expected', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
       {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.', defaultValue: [false]},
@@ -24,7 +24,7 @@ test('synopsis README example works as expected', () => {
 
 test('synopsis generates expected string', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], required: true},
       {key: 'help', types: [], args: ['-h', '--help']},
@@ -82,7 +82,7 @@ test('synopsis works without programName', () => {
 
 test('synopsis prints only programName if opts are empty', () => {
   const opts = {
-    descArg: 'deepThought'
+    key: 'deepThought'
   }
 
   const style = {
@@ -99,7 +99,7 @@ test('synopsis prints only programName if opts are empty', () => {
 
 test('synopsis prints only programName if opts contains only undefined values', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [undefined, undefined]
   }
 
@@ -116,7 +116,7 @@ test('synopsis prints only programName if opts contains only undefined values', 
 
 test('synopsis ignores undefined values', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       undefined,
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], required: true},
@@ -139,7 +139,7 @@ test('synopsis ignores undefined values', () => {
 
 test('synopsis prints only programName if opts is undefined', () => {
   const opts = {
-    descArg: 'deepThought'
+    key: 'deepThought'
   }
 
   const style = {
@@ -156,7 +156,7 @@ test('synopsis prints only programName if opts is undefined', () => {
 
 test('synopsis uses default line style if line is undefined in style', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], required: true},
       {key: 'help', types: [], args: ['-h', '--help']},
@@ -183,7 +183,7 @@ test('synopsis uses default line style if line is undefined in style', () => {
 
 test('synopsis uses default line style if style is undefined', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], required: true},
       {key: 'help', types: [], args: ['-h', '--help']},
@@ -206,7 +206,7 @@ test('synopsis uses default line style if style is undefined', () => {
 
 test('synopsis cuts programName if it is too long', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], required: true},
       {key: 'help', types: [], args: ['-h', '--help']}
@@ -226,7 +226,7 @@ test('synopsis cuts programName if it is too long', () => {
 
 test('synopsisFrom correctly passes on id', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], required: true},
       {key: 'help', types: [], args: ['-h', '--help']},
@@ -253,7 +253,7 @@ test('synopsisFrom correctly passes on id', () => {
 
 test('synopsisFrom with wrong id uses default style', () => {
   const opts = {
-    descArg: 'deepThought',
+    key: 'deepThought',
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], required: true},
       {key: 'help', types: [], args: ['-h', '--help']},

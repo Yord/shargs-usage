@@ -6,12 +6,12 @@ const {onlyCommands} = require('./decorators/onlyCommands')
 
 function synopsesFrom (id) {
   return (opts = {}) => {
-    const {descArg = ''} = opts
+    const {key} = opts
 
     return usage([
-      noCommands(opts => synopsisFrom(id)(withDescArg(descArg, opts))),
+      noCommands(opts => synopsisFrom(id)(withKey(key, opts))),
       onlyCommands(
-        usageMap(cmd => synopsesFrom(id)({...cmd, descArg: commandName(descArg, cmd)}))
+        usageMap(cmd => synopsesFrom(id)(withKey(key, cmd)))
       )
     ])(opts)
   }
@@ -24,14 +24,9 @@ module.exports = {
   synopsesFrom
 }
 
-function commandName (programName, cmd) {
-  const {key, args} = cmd
-  return programName + (programName ? ' ' : '') + (args[0] ? args[0] : key)
-}
-
-function withDescArg (descArg, opts) {
+function withKey (key, cmd) {
   return {
-    ...opts,
-    descArg: descArg + (descArg && opts.descArg ? ' ' : '') + (opts.descArg || '')
+    ...cmd,
+    key: key + (cmd.key ? ' ' + cmd.key : '')
   }
 }
