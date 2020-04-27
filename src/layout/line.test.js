@@ -12,6 +12,18 @@ test('line generates expected string', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('line is cut off if it surpasses the width', () => {
+  const style = {
+    line: [{width: 3}]
+  }
+
+  const res = line('A line')(style)
+
+  const txt = 'A l\n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('line with undefined string prints an empty line', () => {
   const style = {
     line: [{width: 40}]
