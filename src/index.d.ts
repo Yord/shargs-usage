@@ -48,7 +48,3 @@ export interface Opt {
   values?: any[]
   [key: string]: any
 }
-
-export interface Opts {
-  opts?: Opt[]
-}
