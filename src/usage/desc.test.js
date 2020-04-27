@@ -50,3 +50,20 @@ test('desc uses default style if style is undefined', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('desc assumes empty opts if opts is undefined', () => {
+  const opts = {
+    desc: 'Deep Thought was created to come up with the Answer.'
+  }
+
+  const style = {
+    line: [{width: 40}]
+  }
+
+  const res = desc(opts)(style)
+
+  const txt = 'Deep Thought was created to come up with the Answer to The Ultimate Question of \n' +
+              'Life, the Universe, and Everything.                                             \n'
+
+  expect(res).toStrictEqual(txt)
+})
