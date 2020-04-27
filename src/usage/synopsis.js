@@ -2,7 +2,7 @@ const {defaultStyle} = require('../style')
 const {tableFrom}    = require('../layout/table')
 
 const synopsisFrom = id => (opt = {}) => {
-  const {key, opts = []} = opt
+  const {key = '', opts = []} = opt
   
   const argsString = buildArgsString(opts)
 
