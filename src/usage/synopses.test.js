@@ -65,10 +65,10 @@ test('synopses works with all option types', () => {
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
               '            [-n|--number] [-b|--bool] [-a|--array]                              \n' +
-              'deepThought with-opts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]      \n' +
-              '                      [<variadicPos>...] [-v|--variadic] [-f|--flag]            \n' +
-              '                      [-s|--string] [-n|--number] [-b|--bool] [-a|--array]      \n' +
-              'deepThought with-opts command                                                   \n' +
+              'deepThought withOpts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]       \n' +
+              '                     [<variadicPos>...] [-v|--variadic] [-f|--flag]             \n' +
+              '                     [-s|--string] [-n|--number] [-b|--bool] [-a|--array]       \n' +
+              'deepThought withOpts command                                                    \n' +
               'deepThought command                                                             \n'
 
   expect(res).toStrictEqual(txt)
@@ -110,11 +110,11 @@ test('synopses works without programName', () => {
 
   const txt = '[<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>] [<variadicPos>...]         \n' +
               '[-v|--variadic] [-f|--flag] [-s|--string] [-n|--number] [-b|--bool] [-a|--array]\n' +
-              'with-opts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                  \n' +
-              '          [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]          \n' +
-              '          [-n|--number] [-b|--bool] [-a|--array]                                \n' +
-              'with-opts co                                                                    \n' +
-              'co                                                                              \n'
+              'withOpts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>] [<variadicPos>...]\n' +
+              '         [-v|--variadic] [-f|--flag] [-s|--string] [-n|--number] [-b|--bool]    \n' +
+              '         [-a|--array]                                                           \n' +
+              'withOpts command                                                                \n' +
+              'command                                                                         \n'
 
   expect(res).toStrictEqual(txt)
 })
@@ -191,11 +191,11 @@ test('synopses uses default line style if line is undefined in style', () => {
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
               '            [-n|--number] [-b|--bool] [-a|--array]                              \n' +
-              'deepThought with-opts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]      \n' +
-              '                      [<variadicPos>...] [-v|--variadic] [-f|--flag]            \n' +
-              '                      [-s|--string] [-n|--number] [-b|--bool] [-a|--array]      \n' +
-              'deepThought with-opts co                                                        \n' +
-              'deepThought co                                                                  \n'
+              'deepThought withOpts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]       \n' +
+              '                     [<variadicPos>...] [-v|--variadic] [-f|--flag]             \n' +
+              '                     [-s|--string] [-n|--number] [-b|--bool] [-a|--array]       \n' +
+              'deepThought withOpts command                                                    \n' +
+              'deepThought command                                                             \n'
 
   expect(res).toStrictEqual(txt)
 })
@@ -234,11 +234,11 @@ test('synopses uses default line style if style is undefined', () => {
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
               '            [-n|--number] [-b|--bool] [-a|--array]                              \n' +
-              'deepThought with-opts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]      \n' +
-              '                      [<variadicPos>...] [-v|--variadic] [-f|--flag]            \n' +
-              '                      [-s|--string] [-n|--number] [-b|--bool] [-a|--array]      \n' +
-              'deepThought with-opts co                                                        \n' +
-              'deepThought co                                                                  \n'
+              'deepThought withOpts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]       \n' +
+              '                     [<variadicPos>...] [-v|--variadic] [-f|--flag]             \n' +
+              '                     [-s|--string] [-n|--number] [-b|--bool] [-a|--array]       \n' +
+              'deepThought withOpts command                                                    \n' +
+              'deepThought command                                                             \n'
 
   expect(res).toStrictEqual(txt)
 })
@@ -281,12 +281,12 @@ test('synopsesFrom correctly passes on id', () => {
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]      \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag]            \n' +
               '            [-s|--string] [-n|--number] [-b|--bool] [-a|--array]      \n' +
-              'deepThought with-opts [<stringPos>] [<numberPos>] [<boolPos>]         \n' +
-              '                      [<arrayPos>] [<variadicPos>...] [-v|--variadic] \n' +
-              '                      [-f|--flag] [-s|--string] [-n|--number]         \n' +
-              '                      [-b|--bool] [-a|--array]                        \n' +
-              'deepThought with-opts co                                              \n' +
-              'deepThought co                                                        \n'
+              'deepThought withOpts [<stringPos>] [<numberPos>] [<boolPos>]          \n' +
+              '                     [<arrayPos>] [<variadicPos>...] [-v|--variadic]  \n' +
+              '                     [-f|--flag] [-s|--string] [-n|--number]          \n' +
+              '                     [-b|--bool] [-a|--array]                         \n' +
+              'deepThought withOpts command                                          \n' +
+              'deepThought command                                                   \n'
 
   expect(res).toStrictEqual(txt)
 })
@@ -329,11 +329,11 @@ test('synopsesFrom with wrong id uses default style', () => {
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +
               '            [-n|--number] [-b|--bool] [-a|--array]                              \n' +
-              'deepThought with-opts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]      \n' +
-              '                      [<variadicPos>...] [-v|--variadic] [-f|--flag]            \n' +
-              '                      [-s|--string] [-n|--number] [-b|--bool] [-a|--array]      \n' +
-              'deepThought with-opts co                                                        \n' +
-              'deepThought co                                                                  \n'
+              'deepThought withOpts [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]       \n' +
+              '                     [<variadicPos>...] [-v|--variadic] [-f|--flag]             \n' +
+              '                     [-s|--string] [-n|--number] [-b|--bool] [-a|--array]       \n' +
+              'deepThought withOpts command                                                    \n' +
+              'deepThought command                                                             \n'
 
   expect(res).toStrictEqual(txt)
 })

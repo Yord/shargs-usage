@@ -27,6 +27,6 @@ module.exports = {
 function withKey (key, cmd) {
   return {
     ...cmd,
-    key: key + (cmd.key ? ' ' + cmd.key : '')
+    key: (key ? key : '') + (key && cmd.key ? ' ' : '') + (cmd.key ? cmd.key : '')
   }
 }
