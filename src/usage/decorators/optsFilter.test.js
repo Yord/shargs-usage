@@ -7,11 +7,13 @@ test('optsFilter README example works', () => {
     cols: [{width: 18, padEnd: 2}, {width: 20}]
   }
   
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
   
   const res = optsFilter(({opts}) => typeof opts === 'undefined')(optsList)(opts)(style)
 
@@ -23,53 +25,59 @@ test('optsFilter README example works', () => {
 })
 
 test('optsFilter works with all option types', () => {
-  const opts = [
-    undefined,
-    {foo: 'bar'                                                                          },
-    {                    args: ['-w', '--wrong']                                         },
-    {                                                types: ['wrong']                    },
-    {                                                                           opts: [] },
-    {key: 'variadicPos'                                                                  },
-    {key: 'stringPos',                               types: ['string']                   },
-    {key: 'numberPos',                               types: ['number']                   },
-    {key: 'boolPos',                                 types: ['bool']                     },
-    {key: 'arrayPos',                                types: ['bool', 'bool']             },
-    {key: 'variadic',    args: ['-v', '--variadic']                                      },
-    {key: 'command',     args: ['co', 'command'],                                opts: []},
-    {key: 'flag',        args: ['-f', '--flag'],     types: []                           },
-    {key: 'string',      args: ['-s', '--string'],   types: ['string']                   },
-    {key: 'number',      args: ['-n', '--number'],   types: ['number']                   },
-    {key: 'bool',        args: ['-b', '--bool'],     types: ['bool']                     },
-    {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
-  ]
+  const opts = {
+    opts: [
+      undefined,
+      {foo: 'bar'                                                                          },
+      {                    args: ['-w', '--wrong']                                         },
+      {                                                types: ['wrong']                    },
+      {                                                                           opts: [] },
+      {key: 'variadicPos'                                                                  },
+      {key: 'stringPos',                               types: ['string']                   },
+      {key: 'numberPos',                               types: ['number']                   },
+      {key: 'boolPos',                                 types: ['bool']                     },
+      {key: 'arrayPos',                                types: ['bool', 'bool']             },
+      {key: 'variadic',    args: ['-v', '--variadic']                                      },
+      {key: 'command',     args: ['co', 'command'],                                opts: []},
+      {key: 'flag',        args: ['-f', '--flag'],     types: []                           },
+      {key: 'string',      args: ['-s', '--string'],   types: ['string']                   },
+      {key: 'number',      args: ['-n', '--number'],   types: ['number']                   },
+      {key: 'bool',        args: ['-b', '--bool'],     types: ['bool']                     },
+      {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number']         }
+    ]
+  }
 
   const res = optsFilter(({key} = {}) => typeof key !== 'undefined')(id)(opts)
 
-  const exp = opts.slice(5)
+  const exp = {opts: opts.opts.slice(5)}
 
   expect(res).toStrictEqual(exp)
 })
 
 test('optsFilter filters opts', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
 
   const res = optsFilter(({args}) => args.length > 1)(id)(opts)
 
-  const exp = opts.slice(0, 2)
+  const exp = {opts: opts.opts.slice(0, 2)}
 
   expect(res).toStrictEqual(exp)
 })
 
 test('optsFilter does not filter if predicate is undefined', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', opts: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
 
   const res = optsFilter()(id)(opts)
 
@@ -79,15 +87,19 @@ test('optsFilter does not filter if predicate is undefined', () => {
 })
 
 test('optsFilter returns an empty list if opts are empty', () => {
-  const opts = []
+  const opts = {}
 
   const res = optsFilter(({args}) => args.length > 1)(id)(opts)
 
-  expect(res).toStrictEqual([])
+  const exp = {opts: []}
+
+  expect(res).toStrictEqual(exp)
 })
 
 test('optsFilter returns an empty list if opts are undefined', () => {
   const res = optsFilter(({args}) => args.length > 1)(id)()
 
-  expect(res).toStrictEqual([])
+  const exp = {opts: []}
+
+  expect(res).toStrictEqual(exp)
 })

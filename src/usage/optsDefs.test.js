@@ -6,11 +6,13 @@ test('optsDefs README example works as expected', () => {
     {key: 'questions', required: true, desc: 'Ask questions.'}
   ]
 
-  const opts = [
-    {key: 'ask', args: ['ask'], opts: askOpts, desc: 'Ask questions.', required: true},
-    {key: 'answer', args: ['-a', '--ans'], types: ['number'], desc: 'The answer.'},
-    {key: 'help', args: ['-h', '--help'], types: [], desc: 'Show the usage docs.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'ask', args: ['ask'], opts: askOpts, desc: 'Ask questions.', required: true},
+      {key: 'answer', args: ['-a', '--ans'], types: ['number'], desc: 'The answer.'},
+      {key: 'help', args: ['-h', '--help'], types: [], desc: 'Show the usage docs.'}
+    ]
+  }
 
   const style = {
     line: [{width: 30}],
@@ -58,10 +60,12 @@ test('optsDefs works with all option types', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number'],               desc: 'Array option.',                 descArg: 'str num'}
   ]
 
-  const opts = [
-    {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
-    ...commandOpts
-  ]
+  const opts = {
+    opts: [
+      {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
+      ...commandOpts
+    ]
+  }
 
   const style = {
     line: [{width: 40}],
@@ -129,7 +133,7 @@ test('optsDefs works with all option types', () => {
 })
 
 test('optsDefs prints an empty string if opts are empty', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}],
@@ -181,10 +185,12 @@ test('optsDefs uses default styles if style is undefined', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number'],               desc: 'Array option.',                 descArg: 'str num'}
   ]
 
-  const opts = [
-    {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
-    ...commandOpts
-  ]
+  const opts = {
+    opts: [
+      {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
+      ...commandOpts
+    ]
+  }
 
   const res = optsDefs(opts)()
 
@@ -271,10 +277,12 @@ test('optsDefsFrom correctly passes on ids', () => {
     {key: 'array',       args: ['-a', '--array'],    types: ['string', 'number'],               desc: 'Array option.',                 descArg: 'str num'}
   ]
 
-  const opts = [
-    {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
-    ...commandOpts
-  ]
+  const opts = {
+    opts: [
+      {key: 'withOpts', args: ['with-opts'], opts: commandOpts, desc: 'With-opts command.'},
+      ...commandOpts
+    ]
+  }
 
   const style = {
     line2: [{width: 40}],

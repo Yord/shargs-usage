@@ -3,6 +3,7 @@ const {brs, brsFrom}             = require('./layout/brs')
 const {cols, colsFrom}           = require('./layout/cols')
 const {decorate}                 = require('./combinators/decorate')
 const {defs, defsFrom}           = require('./layout/defs')
+const {desc, descFrom}           = require('./usage/desc')
 const {justArgs}                 = require('./usage/decorators/justArgs')
 const {layout}                   = require('./layout/combinators/layout')
 const {layoutMap}                = require('./layout/combinators/layoutMap')
@@ -29,6 +30,7 @@ const {table, tableFrom}         = require('./layout/table')
 const {text, textFrom}           = require('./layout/text')
 const {texts, textsFrom}         = require('./layout/texts')
 const {usage}                    = require('./usage/combinators/usage')
+const {usageMap}                 = require('./usage/combinators/usageMap')
 
 module.exports = {
   br,
@@ -40,6 +42,8 @@ module.exports = {
   decorate,
   defs,
   defsFrom,
+  desc,
+  descFrom,
   justArgs,
   layout,
   layoutMap,
@@ -80,5 +84,6 @@ module.exports = {
   textFrom,
   texts,
   textsFrom,
-  usage
+  usage,
+  usageMap
 }

@@ -1,7 +1,7 @@
 const {note, space, spaceFrom, usage} = require('..')
 
 test('space README example works as expected', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -21,7 +21,7 @@ test('space README example works as expected', () => {
 })
 
 test('space generates expected string', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -35,7 +35,7 @@ test('space generates expected string', () => {
 })
 
 test('space uses default style if style is undefined', () => {
-  const opts = []
+  const opts = {}
 
   const res = space(opts)()
 
@@ -57,7 +57,7 @@ test('space does not care if opts is undefined', () => {
 })
 
 test('space uses default style if style has no line attribute', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     b: []
@@ -73,7 +73,7 @@ test('space uses default style if style has no line attribute', () => {
 test('spaceFrom correctly passes on id', () => {
   const id = 'test'
   
-  const opts = []
+  const opts = {}
 
   const style = {
     [id]: [{width: 40}]
@@ -90,7 +90,7 @@ test('spaceFrom with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
   
-  const opts = []
+  const opts = {}
 
   const style = {
     [id1]: [{width: 40}]

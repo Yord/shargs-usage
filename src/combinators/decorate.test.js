@@ -1,11 +1,13 @@
 const {decorate, justArgs, line, noCommands, pad} = require('..')
 
 test('decorate combines usage decorators', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-    {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
+      {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
+    ]
+  }
 
   const id = opts => () => JSON.stringify(opts)
 
@@ -14,7 +16,7 @@ test('decorate combines usage decorators', () => {
     noCommands
   )(id)(opts)()
 
-  const exp = JSON.stringify(opts.slice(0, 1))
+  const exp = JSON.stringify({opts: opts.opts.slice(0, 1)})
 
   expect(res).toStrictEqual(exp)
 })

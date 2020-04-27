@@ -1,5 +1,5 @@
-const optsMap = (f = a => a) => usageFunction => (opts = []) => (
-  usageFunction(opts.map(f))
+const optsMap = (f = a => a) => usageFunction => ({opts = []} = {}) => (
+  usageFunction({opts: opts.map(f)})
 )
 
 module.exports = {

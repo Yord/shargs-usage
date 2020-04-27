@@ -1,4 +1,4 @@
-const optsF = f => (opts = []) => {
+const optsF = f => ({opts = []} = {}) => {
   const opts2 = opts.filter(opt => typeof opt === 'object')
 
   const argsByKey = opts2.reduce(
@@ -34,16 +34,14 @@ function listArgs (opt) {
 }
 
 function valuesLabel ({descArg, types, only = []}, equalsSign) {
-  if (descArg === '') return ''
-
   const value = (
-    Array.isArray(only) && only.length > 0        ? only.join('|') :
-    typeof descArg === 'string' && descArg !== '' ? descArg :
-    Array.isArray(types)                          ?
-    types.length === 1                            ? types[0] :
-    types.length > 1                              ? types.join(' ')
-                                                  : ''
-                                                  : ''
+    typeof descArg === 'string'            ? descArg :
+    Array.isArray(only) && only.length > 0 ? only.join('|') :
+    Array.isArray(types)                   ?
+    types.length === 1                     ? types[0] :
+    types.length > 1                       ? types.join(' ')
+                                           : ''
+                                           : ''
   )
 
   if (value === '') return ''

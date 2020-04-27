@@ -3,6 +3,7 @@ export {brs, brsFrom}             from './layout/brs'
 export {cols, colsFrom}           from './layout/cols'
 export {decorate}                 from './combinators/decorate'
 export {defs, defsFrom}           from './layout/defs'
+export {desc, descFrom}           from './usage/desc'
 export {justArgs}                 from './usage/decorators/justArgs'
 export {layout}                   from './layout/combinators/layout'
 export {layoutMap}                from './layout/combinators/layoutMap'
@@ -29,6 +30,7 @@ export {table, tableFrom}         from './layout/table'
 export {text, textFrom}           from './layout/text'
 export {texts, textsFrom}         from './layout/texts'
 export {usage}                    from './usage/combinators/usage'
+export {usageMap}                 from './usage/combinators/usageMap'
 
 export interface Opt {
   args?: string[]

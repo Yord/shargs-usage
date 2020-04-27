@@ -1,11 +1,13 @@
 const {notes, notesFrom} = require('..')
 
 test('notes README example works as expected', () => {
-  const opts = [
-    {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
-    {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.', defaultValue: [false]},
-    {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']}
-  ]
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true},
+      {key: 'help', types: [], args: ['-h', '--help'], desc: 'Prints help.', defaultValue: [false]},
+      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.', contradicts: ['help']}
+    ]
+  }
   
   const style = {
     line: [{width: 40}]
@@ -23,7 +25,7 @@ test('notes README example works as expected', () => {
 })
 
 test('notes generates expected string', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -43,7 +45,7 @@ test('notes generates expected string', () => {
 })
 
 test('notes retains more than one consecutive whitespace even after line breaks', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -63,7 +65,7 @@ test('notes retains more than one consecutive whitespace even after line breaks'
 })
 
 test('notes prints the empty string if no strings are given', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -77,7 +79,7 @@ test('notes prints the empty string if no strings are given', () => {
 })
 
 test('notes prints the empty string if strings are empty', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     line: [{width: 40}]
@@ -109,7 +111,7 @@ test('notes assumes empty opts if opts is undefined', () => {
 })
 
 test('notes uses default style if style is undefined', () => {
-  const opts = []
+  const opts = {}
 
   const res = notes([
     'Deep Thought was created to come up with the Answer.',
@@ -123,7 +125,7 @@ test('notes uses default style if style is undefined', () => {
 })
 
 test('notes uses default style if style has no line attribute', () => {
-  const opts = []
+  const opts = {}
 
   const style = {
     b: []
@@ -143,7 +145,7 @@ test('notes uses default style if style has no line attribute', () => {
 test('notesFrom correctly passes on id', () => {
   const id = 'test'
 
-  const opts = []
+  const opts = {}
   
   const style = {
     [id]: [{width: 40}]
@@ -166,7 +168,7 @@ test('notesFrom with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
   
-  const opts = []
+  const opts = {}
 
   const style = {
     [id1]: [{width: 40}]

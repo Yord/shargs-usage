@@ -1,6 +1,6 @@
 const {layout} = require('../../layout/combinators/layout')
 
-const usage = (functions = []) => (opts = []) => (
+const usage = (functions = []) => (opts = {}) => (
   layout(functions.map(f => f(opts)))
 )
 
