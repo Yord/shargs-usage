@@ -88,3 +88,23 @@ test('desc uses default style if style has no line attribute', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('descFrom correctly passes on id', () => {
+  const id = 'test'
+
+  const opts = {
+    opts: [],
+    desc: 'Deep Thought was created to come up with the Answer.'
+  }
+  
+  const style = {
+    [id]: [{width: 40}]
+  }
+
+  const res = descFrom(id)(opts)(style)
+
+  const txt = 'Deep Thought was created to come up with the Answer to The Ultimate Question of \n' +
+              'Life, the Universe, and Everything.                                             \n'
+
+  expect(res).toStrictEqual(txt)
+})
