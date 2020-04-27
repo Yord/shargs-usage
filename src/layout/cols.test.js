@@ -25,6 +25,31 @@ test('cols generates expected string', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('cols are cut off if width is not enough', () => {
+  const style = {
+    cols: [
+      {width: 8},
+      {width: 32}
+    ]
+  }
+
+  const res = cols([
+    [
+      '-h, --help',
+      '-v, --version'
+    ],
+    [
+      'Prints the help.',
+      'Prints the version.'
+    ]
+  ])(style)
+
+  const txt = '-h, --hePrints the help.                \n' +
+              '-v, --vePrints the version.             \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('cols still work if style has too few entries', () => {
   const style = {
     cols: [
