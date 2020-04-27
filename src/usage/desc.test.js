@@ -62,6 +62,27 @@ test('desc assumes empty opts if opts is undefined', () => {
 
   const res = desc(opts)(style)
 
+  const txt = 'Deep Thought was created to come up with\n' +
+              'the Answer.                             \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
+test('desc uses default style if style has no line attribute', () => {
+  const opts = {
+    opts: [],
+    desc: (
+      'Deep Thought was created to come up with the Answer to ' +
+      'The Ultimate Question of Life, the Universe, and Everything.'
+    )
+  }
+
+  const style = {
+    b: []
+  }
+
+  const res = desc(opts)(style)
+
   const txt = 'Deep Thought was created to come up with the Answer to The Ultimate Question of \n' +
               'Life, the Universe, and Everything.                                             \n'
 
