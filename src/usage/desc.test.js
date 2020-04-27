@@ -103,6 +103,30 @@ test('descFrom correctly passes on id', () => {
 
   const res = descFrom(id)(opts)(style)
 
+  const txt = 'Deep Thought was created to come up with\n' +
+              'the Answer.                             \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
+test('descFrom with wrong id uses default style', () => {
+  const id1 = 'test'
+  const id2 = 'wrong'
+
+  const opts = {
+    opts: [],
+    desc: (
+      'Deep Thought was created to come up with the Answer to ' +
+      'The Ultimate Question of Life, the Universe, and Everything.'
+    )
+  }
+  
+  const style = {
+    [id1]: [{width: 40}]
+  }
+
+  const res = descFrom(id2)(opts)(style)
+
   const txt = 'Deep Thought was created to come up with the Answer to The Ultimate Question of \n' +
               'Life, the Universe, and Everything.                                             \n'
 
