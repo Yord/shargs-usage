@@ -1,7 +1,7 @@
 import {Opt}  from '../..';
 import {Style} from '../../style';
 
-export const noCommands: (usageFunction: (opts?: Opt) => (style?: Style) => string) =>
-                         (opts?: Opt) =>
+export const noCommands: (usageFunction: (opt?: Opt) => (style?: Style) => string) =>
+                         (opt?: Opt) =>
                          (style?: Style) =>
                          string
