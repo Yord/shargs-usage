@@ -6,14 +6,14 @@ const {noCommands}   = require('./decorators/noCommands')
 const {onlyCommands} = require('./decorators/onlyCommands')
 const {optsDefWith}  = require('./optsDef')
 
-function optsDefsWith ({id = 'line', num = 4} = {id: 'line', num: 4}) {
+function optsDefsWith ({id = 'line', padding = 4} = {id: 'line', padding: 4}) {
   return usage([
-    noCommands(optsDefWith({id, num})),
+    noCommands(optsDefWith({id, padding})),
     onlyCommands(
       usageMap(cmd => layout([
-        optsDefWith({id, num})({opts: [cmd]}),
+        optsDefWith({id, padding})({opts: [cmd]}),
         pad([id, 0], 4)(
-          optsDefsWith({id, num})(cmd)
+          optsDefsWith({id, padding})(cmd)
         )
       ]))
     )

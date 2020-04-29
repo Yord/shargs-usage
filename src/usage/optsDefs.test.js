@@ -248,7 +248,7 @@ test('optsDefs uses default styles if style is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDefsWith correctly passes on id and num', () => {
+test('optsDefsWith correctly passes on id and padding', () => {
   const varOpts = [
     {key: 'variadicPos', desc: 'Variadic.' },
   ]
@@ -284,7 +284,7 @@ test('optsDefsWith correctly passes on id and num', () => {
     line2: [{width: 40}]
   }
 
-  const res = optsDefsWith({id: 'line2', num: 2})(opts)(style)
+  const res = optsDefsWith({id: 'line2', padding: 2})(opts)(style)
 
   const txt = '<stringPos>                             \n' +
               '  String positional argument.           \n' +

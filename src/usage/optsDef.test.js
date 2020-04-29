@@ -254,7 +254,7 @@ test('optsDefWith correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDefWith correctly passes on num', () => {
+test('optsDefWith correctly passes on padding', () => {
   const opts = {
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
@@ -265,7 +265,7 @@ test('optsDefWith correctly passes on num', () => {
     line: [{width: 40}]
   }
 
-  const res = optsDefWith({num: 2})(opts)(style)
+  const res = optsDefWith({padding: 2})(opts)(style)
 
   const txt = '-a, --answer=<number> [required]        \n' +
               '  The answer.                           \n'

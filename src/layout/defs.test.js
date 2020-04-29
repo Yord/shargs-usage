@@ -133,12 +133,12 @@ test('defsWith correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('defsWith correctly passes on num', () => {
+test('defsWith correctly passes on padding', () => {
   const style = {
     line: [{width: 40}]
   }
   
-  const res = defsWith({num: 2})([
+  const res = defsWith({padding: 2})([
     [
       '-h, --help',
       'Prints the help.'
