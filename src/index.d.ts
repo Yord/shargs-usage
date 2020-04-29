@@ -1,5 +1,4 @@
 export {br, brWith}               from './layout/br'
-export {brs, brsWith}             from './layout/brs'
 export {cols, colsWith}           from './layout/cols'
 export {decorate}                 from './combinators/decorate'
 export {defs, defsWith}           from './layout/defs'

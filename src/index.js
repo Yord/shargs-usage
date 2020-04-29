@@ -1,5 +1,4 @@
 const {br, brWith}               = require('./layout/br')
-const {brs, brsWith}             = require('./layout/brs')
 const {cols, colsWith}           = require('./layout/cols')
 const {decorate}                 = require('./combinators/decorate')
 const {defs, defsWith}           = require('./layout/defs')
@@ -35,8 +34,6 @@ const {usageMap}                 = require('./usage/combinators/usageMap')
 module.exports = {
   br,
   brWith,
-  brs,
-  brsWith,
   cols,
   colsWith,
   decorate,
