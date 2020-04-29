@@ -21,7 +21,6 @@ const {optsLists, optsListsWith} = require('./usage/optsLists')
 const {optsMap}                  = require('./usage/decorators/optsMap')
 const {pad}                      = require('./layout/decorators/pad')
 const {space, spaceWith}         = require('./usage/space')
-const {spaces, spacesWith}       = require('./usage/spaces')
 const {stylePath}                = require('./layout/decorators/stylePath')
 const {synopses, synopsesWith}   = require('./usage/synopses')
 const {synopsis, synopsisWith}   = require('./usage/synopsis')
@@ -68,8 +67,6 @@ module.exports = {
   pad,
   space,
   spaceWith,
-  spaces,
-  spacesWith,
   stylePath,
   synopsis,
   synopsisWith,

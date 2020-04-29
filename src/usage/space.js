@@ -1,6 +1,6 @@
 const {brWith} = require('../layout/br')
 
-const spaceWith = ({id = 'line'} = {id: 'line'}) => () => brWith({id})
+const spaceWith = ({id = 'line', num = 1} = {id: 'line', num: 1}) => () => brWith({id, num})
 
 const space = spaceWith()
 

@@ -20,7 +20,7 @@ test('space README example works as expected', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('space generates expected string', () => {
+test('space with undefined num prints one space', () => {
   const opts = {}
 
   const style = {
@@ -86,6 +86,21 @@ test('spaceWith correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('spaceWith correctly passes on num', () => {
+  const opts = {}
+
+  const style = {
+    line: [{width: 40}]
+  }
+
+  const res = spaceWith({num: 2})(opts)(style)
+
+  const txt = '                                        \n' +
+              '                                        \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('spaceWith with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
@@ -96,9 +111,10 @@ test('spaceWith with wrong id uses default style', () => {
     [id1]: [{width: 40}]
   }
 
-  const res = spaceWith({id: id2})(opts)(style)
+  const res = spaceWith({id: id2, num: 2})(opts)(style)
 
-  const txt = '                                                                                \n'
+  const txt = '                                                                                \n' +
+              '                                                                                \n'
 
   expect(res).toStrictEqual(txt)
 })
