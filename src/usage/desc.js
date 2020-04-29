@@ -1,10 +1,10 @@
-const {textFrom} = require('../layout/text')
+const {textWith} = require('../layout/text')
 
-const descFrom = id => ({desc}) => textFrom(id)(desc)
+const descWith = ({id = 'line'} = {id: 'line'}) => ({desc}) => textWith({id})(desc)
 
-const desc = descFrom('line')
+const desc = descWith()
 
 module.exports = {
   desc,
-  descFrom
+  descWith
 }

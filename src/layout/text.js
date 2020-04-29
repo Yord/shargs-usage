@@ -1,7 +1,7 @@
 const {defaultStyle} = require('../style')
-const {linesFrom}    = require('./lines')
+const {linesWith}    = require('./lines')
 
-const textFrom = id => (string = '') => (
+const textWith = ({id = 'line'} = {id: 'line'}) => (string = '') => (
   (style = defaultStyle) => {
     const {[id]: line = defaultStyle.line} = style
     const width = line[0] && line[0].width
@@ -26,11 +26,11 @@ const textFrom = id => (string = '') => (
 
     strings.push(string2)
 
-    return linesFrom(id)(strings)(style)
+    return linesWith({id})(strings)(style)
   }
 )
 
-const text = textFrom('line')
+const text = textWith()
 
 function splitWords (string) {
   return string.split(/(\s+)/g)
@@ -38,5 +38,5 @@ function splitWords (string) {
 
 module.exports = {
   text,
-  textFrom
+  textWith
 }

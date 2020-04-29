@@ -1,4 +1,4 @@
-const {desc, descFrom} = require('..')
+const {desc, descWith} = require('..')
 
 test('desc README example works as expected', () => {
   const opts = {
@@ -89,7 +89,7 @@ test('desc uses default style if style has no line attribute', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('descFrom correctly passes on id', () => {
+test('descWith correctly passes on id', () => {
   const id = 'test'
 
   const opts = {
@@ -101,7 +101,7 @@ test('descFrom correctly passes on id', () => {
     [id]: [{width: 40}]
   }
 
-  const res = descFrom(id)(opts)(style)
+  const res = descWith({id})(opts)(style)
 
   const txt = 'Deep Thought was created to come up with\n' +
               'the Answer.                             \n'
@@ -109,7 +109,7 @@ test('descFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('descFrom with wrong id uses default style', () => {
+test('descWith with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
 
@@ -125,7 +125,7 @@ test('descFrom with wrong id uses default style', () => {
     [id1]: [{width: 40}]
   }
 
-  const res = descFrom(id2)(opts)(style)
+  const res = descWith({id: id2})(opts)(style)
 
   const txt = 'Deep Thought was created to come up with the Answer to The Ultimate Question of \n' +
               'Life, the Universe, and Everything.                                             \n'

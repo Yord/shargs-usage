@@ -1,4 +1,4 @@
-const {cols, colsFrom} = require('..')
+const {cols, colsWith} = require('..')
 
 test('cols generates expected string', () => {
   const style = {
@@ -155,7 +155,7 @@ test('cols with default style generates expected string', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('colsFrom correctly passes on id', () => {
+test('colsWith correctly passes on id', () => {
   const id = 'test'
   
   const style = {
@@ -165,7 +165,7 @@ test('colsFrom correctly passes on id', () => {
     ]
   }
 
-  const res = colsFrom(id)([
+  const res = colsWith({id})([
     [
       '-h, --help',
       '-v, --version'
@@ -182,7 +182,7 @@ test('colsFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('colsFrom with wrong id uses default style', () => {
+test('colsWith with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
   
@@ -193,7 +193,7 @@ test('colsFrom with wrong id uses default style', () => {
     ]
   }
 
-  const res = colsFrom(id2)([
+  const res = colsWith({id: id2})([
     [
       '-h, --help',
       '-v, --version'

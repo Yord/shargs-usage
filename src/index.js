@@ -1,89 +1,83 @@
-const {br, brFrom}               = require('./layout/br')
-const {brs, brsFrom}             = require('./layout/brs')
-const {cols, colsFrom}           = require('./layout/cols')
+const {br, brWith}               = require('./layout/br')
+const {cols, colsWith}           = require('./layout/cols')
 const {decorate}                 = require('./combinators/decorate')
-const {defs, defsFrom}           = require('./layout/defs')
-const {desc, descFrom}           = require('./usage/desc')
+const {defs, defsWith}           = require('./layout/defs')
+const {desc, descWith}           = require('./usage/desc')
 const {justArgs}                 = require('./usage/decorators/justArgs')
 const {layout}                   = require('./layout/combinators/layout')
 const {layoutMap}                = require('./layout/combinators/layoutMap')
-const {line, lineFrom}           = require('./layout/line')
-const {lines, linesFrom}         = require('./layout/lines')
+const {line, lineWith}           = require('./layout/line')
+const {lines, linesWith}         = require('./layout/lines')
 const {noCommands}               = require('./usage/decorators/noCommands')
-const {note, noteFrom}           = require('./usage/note')
-const {notes, notesFrom}         = require('./usage/notes')
+const {note, noteWith}           = require('./usage/note')
+const {notes, notesWith}         = require('./usage/notes')
 const {onlyCommands}             = require('./usage/decorators/onlyCommands')
 const {onlyFirstArg}             = require('./usage/decorators/onlyFirstArg')
 const {optsFilter}               = require('./usage/decorators/optsFilter')
-const {optsDef, optsDefFrom}     = require('./usage/optsDef')
-const {optsDefs, optsDefsFrom}   = require('./usage/optsDefs')
-const {optsList, optsListFrom}   = require('./usage/optsList')
-const {optsLists, optsListsFrom} = require('./usage/optsLists')
+const {optsDef, optsDefWith}     = require('./usage/optsDef')
+const {optsDefs, optsDefsWith}   = require('./usage/optsDefs')
+const {optsList, optsListWith}   = require('./usage/optsList')
+const {optsLists, optsListsWith} = require('./usage/optsLists')
 const {optsMap}                  = require('./usage/decorators/optsMap')
 const {pad}                      = require('./layout/decorators/pad')
-const {space, spaceFrom}         = require('./usage/space')
-const {spaces, spacesFrom}       = require('./usage/spaces')
+const {space, spaceWith}         = require('./usage/space')
 const {stylePath}                = require('./layout/decorators/stylePath')
-const {synopses, synopsesFrom}   = require('./usage/synopses')
-const {synopsis, synopsisFrom}   = require('./usage/synopsis')
-const {table, tableFrom}         = require('./layout/table')
-const {text, textFrom}           = require('./layout/text')
-const {texts, textsFrom}         = require('./layout/texts')
+const {synopses, synopsesWith}   = require('./usage/synopses')
+const {synopsis, synopsisWith}   = require('./usage/synopsis')
+const {table, tableWith}         = require('./layout/table')
+const {text, textWith}           = require('./layout/text')
+const {texts, textsWith}         = require('./layout/texts')
 const {usage}                    = require('./usage/combinators/usage')
 const {usageMap}                 = require('./usage/combinators/usageMap')
 
 module.exports = {
   br,
-  brFrom,
-  brs,
-  brsFrom,
+  brWith,
   cols,
-  colsFrom,
+  colsWith,
   decorate,
   defs,
-  defsFrom,
+  defsWith,
   desc,
-  descFrom,
+  descWith,
   justArgs,
   layout,
   layoutMap,
   line,
-  lineFrom,
+  lineWith,
   lines,
-  linesFrom,
+  linesWith,
   noCommands,
   note,
-  noteFrom,
+  noteWith,
   notes,
-  notesFrom,
+  notesWith,
   onlyCommands,
   onlyFirstArg,
   optsFilter,
   optsDef,
-  optsDefFrom,
+  optsDefWith,
   optsDefs,
-  optsDefsFrom,
+  optsDefsWith,
   optsList,
-  optsListFrom,
+  optsListWith,
   optsLists,
-  optsListsFrom,
+  optsListsWith,
   optsMap,
   pad,
   space,
-  spaceFrom,
-  spaces,
-  spacesFrom,
+  spaceWith,
   stylePath,
   synopsis,
-  synopsisFrom,
+  synopsisWith,
   synopses,
-  synopsesFrom,
+  synopsesWith,
   table,
-  tableFrom,
+  tableWith,
   text,
-  textFrom,
+  textWith,
   texts,
-  textsFrom,
+  textsWith,
   usage,
   usageMap
 }

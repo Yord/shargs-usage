@@ -1,4 +1,4 @@
-const {synopsis, synopsisFrom} = require('..')
+const {synopsis, synopsisWith} = require('..')
 
 test('synopsis README example works as expected', () => {
   const opts = {
@@ -224,7 +224,7 @@ test('synopsis cuts programName if it is too long', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisFrom correctly passes on id', () => {
+test('synopsisWith correctly passes on id', () => {
   const opts = {
     key: 'deepThought',
     opts: [
@@ -243,7 +243,7 @@ test('synopsisFrom correctly passes on id', () => {
     custom: [{width: 70}]
   }
 
-  const res = synopsisFrom('custom')(opts)(style)
+  const res = synopsisWith({id: 'custom'})(opts)(style)
 
   const txt = 'deepThought (-a|--answer) [-h|--help] [-v|-q] [--no-fun] (-f)         \n' +
               '            (<question>) [<politePhrase>...]                          \n'
@@ -251,7 +251,7 @@ test('synopsisFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsisFrom with wrong id uses default style', () => {
+test('synopsisWith with wrong id uses default style', () => {
   const opts = {
     key: 'deepThought',
     opts: [
@@ -270,7 +270,7 @@ test('synopsisFrom with wrong id uses default style', () => {
     line: [{width: 40}]
   }
 
-  const res = synopsisFrom('custom')(opts)(style)
+  const res = synopsisWith({id: 'custom'})(opts)(style)
 
   const txt = 'deepThought (-a|--answer) [-h|--help] [-v|-q] [--no-fun] (-f) (<question>)      \n' +
               '            [<phrases>...]                                                      \n'

@@ -1,7 +1,7 @@
 const {defaultStyle} = require('../style')
 const {line} = require('./line')
 
-const colsFrom = id => (columns = []) => (
+const colsWith = ({id = 'cols'} = {id: 'cols'}) => (columns = []) => (
   (style = defaultStyle) => {
     const {[id]: cols = defaultStyle.cols} = style
     const length = columns.reduce((max, column) => Math.max(max, column.length), 0)
@@ -30,9 +30,9 @@ const colsFrom = id => (columns = []) => (
   }
 )
 
-const cols = colsFrom('cols')
+const cols = colsWith()
 
 module.exports = {
   cols,
-  colsFrom
+  colsWith
 }

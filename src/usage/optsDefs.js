@@ -4,27 +4,25 @@ const {usage}        = require('./combinators/usage')
 const {usageMap}     = require('./combinators/usageMap')
 const {noCommands}   = require('./decorators/noCommands')
 const {onlyCommands} = require('./decorators/onlyCommands')
-const {optsDefFrom}  = require('./optsDef')
+const {optsDefWith}  = require('./optsDef')
 
-function optsDefsFrom (id1, id2) {
+function optsDefsWith ({id = 'line', padding = 4} = {id: 'line', padding: 4}) {
   return usage([
-    noCommands(optsDefFrom(id1, id2)),
+    noCommands(optsDefWith({id, padding})),
     onlyCommands(
       usageMap(cmd => layout([
-        optsDefFrom(id1, id2)({opts: [cmd]}),
-        pad([id1, 0], 4)(
-          pad([id2, 0], 4)(
-            optsDefsFrom(id1, id2)(cmd)
-          )
+        optsDefWith({id, padding})({opts: [cmd]}),
+        pad([id, 0], 4)(
+          optsDefsWith({id, padding})(cmd)
         )
       ]))
     )
   ])
 }
 
-const optsDefs = optsDefsFrom('line', 'desc')
+const optsDefs = optsDefsWith()
 
 module.exports = {
   optsDefs,
-  optsDefsFrom
+  optsDefsWith
 }

@@ -1,4 +1,4 @@
-const {table, tableFrom} = require('..')
+const {table, tableWith} = require('..')
 
 test('table generates expected string', () => {
   const style = {
@@ -323,7 +323,7 @@ test('table prints extra lines in col even of no input is given', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('tableFrom correctly passes on id', () => {
+test('tableWith correctly passes on id', () => {
   const id = 'test'
   
   const style = {
@@ -333,7 +333,7 @@ test('tableFrom correctly passes on id', () => {
     ]
   }
 
-  const res = tableFrom(id)([
+  const res = tableWith({id})([
     [
       '-h, --help',
       'Prints the help.'
@@ -351,7 +351,7 @@ test('tableFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('tableFrom with wrong id uses default style', () => {
+test('tableWith with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
   
@@ -362,7 +362,7 @@ test('tableFrom with wrong id uses default style', () => {
     ]
   }
 
-  const res = tableFrom(id2)([
+  const res = tableWith({id: id2})([
     [
       '-h, --help',
       'Prints the help.'
