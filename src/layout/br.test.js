@@ -26,12 +26,12 @@ test('brWith correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('brWith correctly passes on num', () => {
+test('brWith correctly passes on lines', () => {
   const style = {
     line: [{width: 40}]
   }
 
-  const res = brWith({num: 2})(style)
+  const res = brWith({lines: 2})(style)
 
   const txt = '                                        \n' +
               '                                        \n'

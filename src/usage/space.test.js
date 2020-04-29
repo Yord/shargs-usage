@@ -86,14 +86,14 @@ test('spaceWith correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('spaceWith correctly passes on num', () => {
+test('spaceWith correctly passes on lines', () => {
   const opts = {}
 
   const style = {
     line: [{width: 40}]
   }
 
-  const res = spaceWith({num: 2})(opts)(style)
+  const res = spaceWith({lines: 2})(opts)(style)
 
   const txt = '                                        \n' +
               '                                        \n'
@@ -111,7 +111,7 @@ test('spaceWith with wrong id uses default style', () => {
     [id1]: [{width: 40}]
   }
 
-  const res = spaceWith({id: id2, num: 2})(opts)(style)
+  const res = spaceWith({id: id2, lines: 2})(opts)(style)
 
   const txt = '                                                                                \n' +
               '                                                                                \n'
