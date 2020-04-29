@@ -1,6 +1,6 @@
 const {defaultStyle} = require('../style')
 
-const lineFrom = id => (string = '') => (
+const lineWith = ({id = 'line'} = {id: 'line'}) => (string = '') => (
   ({[id]: line = defaultStyle.line} = defaultStyle) => {
     const styleObj = line[0] || {padStart: 0, width: 80}
     const {padStart = 0, width = 80} = styleObj
@@ -9,9 +9,9 @@ const lineFrom = id => (string = '') => (
   }
 )
 
-const line = lineFrom('line')
+const line = lineWith()
 
 module.exports = {
   line,
-  lineFrom
+  lineWith
 }

@@ -1,4 +1,4 @@
-const {note, spaces, spacesFrom, usage} = require('..')
+const {note, spaces, spacesWith, usage} = require('..')
 
 test('spaces README example works as expected', () => {
   const opts = {}
@@ -88,7 +88,7 @@ test('spaces uses default style if style has no line attribute', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('spacesFrom correctly passes on id', () => {
+test('spacesWith correctly passes on id', () => {
   const id = 'test'
   
   const opts = {}
@@ -97,7 +97,7 @@ test('spacesFrom correctly passes on id', () => {
     [id]: [{width: 40}]
   }
 
-  const res = spacesFrom(id)(2)(opts)(style)
+  const res = spacesWith({id})(2)(opts)(style)
 
   const txt = '                                        \n' +
               '                                        \n'
@@ -105,7 +105,7 @@ test('spacesFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('spacesFrom with wrong id uses default style', () => {
+test('spacesWith with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
   
@@ -115,7 +115,7 @@ test('spacesFrom with wrong id uses default style', () => {
     [id1]: [{width: 40}]
   }
 
-  const res = spacesFrom(id2)(2)(opts)(style)
+  const res = spacesWith({id: id2})(2)(opts)(style)
 
   const txt = '                                                                                \n' +
               '                                                                                \n'

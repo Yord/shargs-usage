@@ -1,4 +1,4 @@
-const {br, brFrom} = require('..')
+const {br, brWith} = require('..')
 
 test('br generates expected string', () => {
   const style = {
@@ -12,14 +12,14 @@ test('br generates expected string', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('brFrom correctly passes on id', () => {
+test('brWith correctly passes on id', () => {
   const id = 'test'
   
   const style = {
     [id]: [{width: 40}]
   }
 
-  const res = brFrom(id)(style)
+  const res = brWith({id})(style)
 
   const txt = '                                        \n'
 

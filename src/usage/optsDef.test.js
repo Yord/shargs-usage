@@ -1,4 +1,4 @@
-const {optsDef, optsDefFrom} = require('..')
+const {optsDef, optsDefWith} = require('..')
 
 test('optsDef README example works as expected', () => {
   const opts = {
@@ -136,7 +136,7 @@ test('optsDef prints an empty string if opts are undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDef prints contradics, default, implies and required, in this order', () => {
+test('optsDef prints contradicts, default, implies and required, in this order', () => {
   const opts = {
     opts: [
       {key: 'a', types: [], args: ['-a'], desc: 'An a.', required: false, defaultValues: ['a'], contradicts: ['b'], implies: ['c']},
@@ -256,7 +256,7 @@ test('optsDef correctly passes on first id', () => {
     desc: [{padStart: 4, width: 56}]
   }
 
-  const res = optsDefFrom('line2', 'desc')(opts)(style)
+  const res = optsDefWith({id1: 'line2', id2: 'desc'})(opts)(style)
 
   const txt = '-a, --answer=<number> [required]        \n' +
               '    The answer.                                             \n'
@@ -264,7 +264,7 @@ test('optsDef correctly passes on first id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDefFrom correctly passes on second id', () => {
+test('optsDefWith correctly passes on second id', () => {
   const opts = {
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
@@ -276,7 +276,7 @@ test('optsDefFrom correctly passes on second id', () => {
     desc2: [{padStart: 4, width: 36}]
   }
 
-  const res = optsDefFrom('line', 'desc2')(opts)(style)
+  const res = optsDefWith({id1: 'line', id2: 'desc2'})(opts)(style)
 
   const txt = '-a, --answer=<number> [required]                            \n' +
               '    The answer.                         \n'

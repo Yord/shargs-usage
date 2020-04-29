@@ -1,17 +1,17 @@
 const {layout}    = require('./combinators/layout')
 const {layoutMap} = require('./combinators/layoutMap')
-const {textFrom}  = require('./text')
+const {textWith}  = require('./text')
 
-const defsFrom = (id1, id2) => layoutMap(
+const defsWith = ({id1 = 'line', id2 = 'desc'} = {id1: 'line', id2: 'desc'}) => layoutMap(
   (pair = []) => layout([
-    textFrom(id1)(pair[0]),
-    textFrom(id2)(pair[1])
+    textWith({id: id1})(pair[0]),
+    textWith({id: id2})(pair[1])
   ])
 )
 
-const defs = defsFrom('line', 'desc')
+const defs = defsWith()
 
 module.exports = {
   defs,
-  defsFrom
+  defsWith
 }

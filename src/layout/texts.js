@@ -1,13 +1,11 @@
 const {layoutMap} = require('./combinators/layoutMap')
-const {textFrom}  = require('./text')
+const {textWith}  = require('./text')
 
-const o = (f, g) => x => f(g(x))
+const textsWith = ({id = 'line'} = {id: 'line'}) => layoutMap(textWith({id}))
 
-const textsFrom = o(layoutMap, textFrom)
-
-const texts = textsFrom('line')
+const texts = textsWith()
 
 module.exports = {
   texts,
-  textsFrom
+  textsWith
 }

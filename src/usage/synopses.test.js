@@ -1,4 +1,4 @@
-const {synopses, synopsesFrom} = require('..')
+const {synopses, synopsesWith} = require('..')
 
 test('synopses README example works as expected', () => {
   const askOpts = [
@@ -243,7 +243,7 @@ test('synopses uses default line style if style is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsesFrom correctly passes on id', () => {
+test('synopsesWith correctly passes on id', () => {
   const commandOpts = [
     undefined,
     {foo: 'bar'                                                                          },
@@ -276,7 +276,7 @@ test('synopsesFrom correctly passes on id', () => {
     custom: [{width: 70}]
   }
 
-  const res = synopsesFrom('custom')(opts)(style)
+  const res = synopsesWith({id: 'custom'})(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]      \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag]            \n' +
@@ -291,7 +291,7 @@ test('synopsesFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('synopsesFrom with wrong id uses default style', () => {
+test('synopsesWith with wrong id uses default style', () => {
   const commandOpts = [
     undefined,
     {foo: 'bar'                                                                          },
@@ -324,7 +324,7 @@ test('synopsesFrom with wrong id uses default style', () => {
     ]
   }
 
-  const res = synopsesFrom('foo')(opts)(style)
+  const res = synopsesWith({id: 'foo'})(opts)(style)
 
   const txt = 'deepThought [<stringPos>] [<numberPos>] [<boolPos>] [<arrayPos>]                \n' +
               '            [<variadicPos>...] [-v|--variadic] [-f|--flag] [-s|--string]        \n' +

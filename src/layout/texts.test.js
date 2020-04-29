@@ -1,4 +1,4 @@
-const {texts, textsFrom} = require('..')
+const {texts, textsWith} = require('..')
 
 test('texts generates expected string', () => {
   const style = {
@@ -88,14 +88,14 @@ test('texts uses default style if style has no line attribute', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('textsFrom correctly passes on id', () => {
+test('textsWith correctly passes on id', () => {
   const id = 'test'
   
   const style = {
     [id]: [{width: 40}]
   }
 
-  const res = textsFrom(id)([
+  const res = textsWith({id})([
     'Deep Thought was created to come up with the Answer.',
     'To The Ultimate Question of Life, the Universe, and Everything.'
   ])(style)
@@ -108,7 +108,7 @@ test('textsFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('textsFrom with wrong id uses default style', () => {
+test('textsWith with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
   
@@ -116,7 +116,7 @@ test('textsFrom with wrong id uses default style', () => {
     [id1]: [{width: 40}]
   }
 
-  const res = textsFrom(id2)([
+  const res = textsWith({id: id2})([
     'Deep Thought was created to come up with the Answer.',
     'To The Ultimate Question of Life, the Universe, and Everything.'
   ])(style)

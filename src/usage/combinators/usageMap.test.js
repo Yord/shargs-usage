@@ -1,4 +1,4 @@
-const {layout, table, text, textFrom, usageMap} = require('../..')
+const {layout, table, text, textWith, usageMap} = require('../..')
 
 test('usageMap generates expected string', () => {
   const opts = {
@@ -16,7 +16,7 @@ test('usageMap generates expected string', () => {
   
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textFrom('desc')(desc)
+    textWith({id: 'desc'})(desc)
   ]))(opts)(style)
 
   const txt = '-a, --answer                            \n' +
@@ -40,7 +40,7 @@ test('usageMap uses default styles if style is undefined', () => {
 
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textFrom('desc')(desc)
+    textWith({id: 'desc'})(desc)
   ]))(opts)()
 
   const txt = '-a, --answer                                                                    \n' +
@@ -68,7 +68,7 @@ test('usageMap uses default line style if style has no desc attribute', () => {
 
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textFrom('desc')(desc)
+    textWith({id: 'desc'})(desc)
   ]))(opts)(style)
 
   const txt = '-a, --answer                            \n' +
@@ -96,7 +96,7 @@ test('usageMap uses default line style if style has no line attribute', () => {
 
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textFrom('desc')(desc)
+    textWith({id: 'desc'})(desc)
   ]))(opts)(style)
 
   const txt = '-a, --answer                                                                    \n' +
@@ -117,7 +117,7 @@ test('usageMap returns empty string if opts are undefined', () => {
   
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textFrom('desc')(desc)
+    textWith({id: 'desc'})(desc)
   ]))()(style)
 
   const txt = ''
@@ -135,7 +135,7 @@ test('usageMap returns empty string if opts are empty', () => {
   
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textFrom('desc')(desc)
+    textWith({id: 'desc'})(desc)
   ]))(opts)(style)
 
   const txt = ''

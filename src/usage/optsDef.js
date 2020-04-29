@@ -1,8 +1,8 @@
 const {optsF}    = require('./combinators/optsF')
-const {defsFrom} = require('../layout/defs')
+const {defsWith} = require('../layout/defs')
 
-const optsDefFrom = (id1, id2) => optsF(
-  (defArgs, descOpts, opts) => defsFrom(id1, id2)(
+const optsDefWith = ({id1 = 'line', id2 = 'desc'} = {id1: 'line', id2: 'desc'}) => optsF(
+  (defArgs, descOpts, opts) => defsWith({id1, id2})(
     flatMap(opt => {
       const {key, desc = ''} = opt
       if (typeof key === 'undefined') return []
@@ -14,11 +14,11 @@ const optsDefFrom = (id1, id2) => optsF(
   )
 )
 
-const optsDef = optsDefFrom('line', 'desc')
+const optsDef = optsDefWith()
 
 module.exports = {
   optsDef,
-  optsDefFrom
+  optsDefWith
 }
 
 function flatMap (f) {

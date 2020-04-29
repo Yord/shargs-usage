@@ -1,13 +1,11 @@
 const {layoutMap} = require('./combinators/layoutMap')
-const {lineFrom}  = require('./line')
+const {lineWith}  = require('./line')
 
-const o = (f, g) => x => f(g(x))
+const linesWith = ({id = 'line'} = {id: 'line'}) => layoutMap(lineWith({id}))
 
-const linesFrom = o(layoutMap, lineFrom)
-
-const lines = linesFrom('line')
+const lines = linesWith()
 
 module.exports = {
   lines,
-  linesFrom
+  linesWith
 }

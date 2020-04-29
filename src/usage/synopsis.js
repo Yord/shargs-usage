@@ -1,7 +1,7 @@
 const {defaultStyle} = require('../style')
-const {tableFrom}    = require('../layout/table')
+const {tableWith}    = require('../layout/table')
 
-const synopsisFrom = id => (opt = {}) => {
+const synopsisWith = ({id = 'line'} = {id: 'line'}) => (opt = {}) => {
   const {key = '', opts = []} = opt
   
   const argsString = buildArgsString(opts)
@@ -22,17 +22,17 @@ const synopsisFrom = id => (opt = {}) => {
       ]
     }
 
-    return tableFrom('synopsis')([
+    return tableWith({id: 'synopsis'})([
       [key.slice(0, startWidth), argsString]
     ])(style2)
   }
 }
 
-const synopsis = synopsisFrom('line')
+const synopsis = synopsisWith()
 
 module.exports = {
   synopsis,
-  synopsisFrom
+  synopsisWith
 }
 
 function buildArgsString (opts) {

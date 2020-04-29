@@ -4,23 +4,23 @@ const {usage}        = require('./combinators/usage')
 const {usageMap}     = require('./combinators/usageMap')
 const {noCommands}   = require('./decorators/noCommands')
 const {onlyCommands} = require('./decorators/onlyCommands')
-const {optsListFrom} = require('./optsList')
+const {optsListWith} = require('./optsList')
 
-function optsListsFrom (id) {
+function optsListsWith ({id = 'cols'} = {id: 'cols'}) {
   return usage([
-    noCommands(optsListFrom(id)),
+    noCommands(optsListWith({id})),
     onlyCommands(
       usageMap(cmd => layout([
-        optsListFrom(id)({opts: [cmd]}),
-        pad([id, 0], 4)(optsListsFrom(id)(cmd))
+        optsListWith({id})({opts: [cmd]}),
+        pad([id, 0], 4)(optsListsWith({id})(cmd))
       ]))
     )
   ])
 }
 
-const optsLists = optsListsFrom('cols')
+const optsLists = optsListsWith()
 
 module.exports = {
   optsLists,
-  optsListsFrom
+  optsListsWith
 }

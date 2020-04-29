@@ -1,4 +1,4 @@
-const {notes, notesFrom} = require('..')
+const {notes, notesWith} = require('..')
 
 test('notes README example works as expected', () => {
   const opts = {
@@ -142,7 +142,7 @@ test('notes uses default style if style has no line attribute', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('notesFrom correctly passes on id', () => {
+test('notesWith correctly passes on id', () => {
   const id = 'test'
 
   const opts = {}
@@ -151,7 +151,7 @@ test('notesFrom correctly passes on id', () => {
     [id]: [{width: 40}]
   }
 
-  const res = notesFrom(id)([
+  const res = notesWith({id})([
     'Deep Thought was created to come up with the Answer.',
     'To The Ultimate Question of Life, the Universe, and Everything.'
   ])(opts)(style)
@@ -164,7 +164,7 @@ test('notesFrom correctly passes on id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('notesFrom with wrong id uses default style', () => {
+test('notesWith with wrong id uses default style', () => {
   const id1 = 'test'
   const id2 = 'wrong'
   
@@ -174,7 +174,7 @@ test('notesFrom with wrong id uses default style', () => {
     [id1]: [{width: 40}]
   }
 
-  const res = notesFrom(id2)([
+  const res = notesWith({id: id2})([
     'Deep Thought was created to come up with the Answer.',
     'To The Ultimate Question of Life, the Universe, and Everything.'
   ])(opts)(style)

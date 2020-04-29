@@ -1,4 +1,4 @@
-const {synopsisFrom} = require('./synopsis')
+const {synopsisWith} = require('./synopsis')
 const {usage}        = require('./combinators/usage')
 const {usageMap}     = require('./combinators/usageMap')
 const {decorate}     = require('../combinators/decorate')
@@ -6,20 +6,20 @@ const {noCommands}   = require('./decorators/noCommands')
 const {onlyCommands} = require('./decorators/onlyCommands')
 const {optsMap}      = require('./decorators/optsMap')
 
-function synopsesFrom (id) {
+function synopsesWith ({id = 'line'} = {id: 'line'}) {
   return (opt = {}) => usage([
-    noCommands(synopsisFrom(id)),
+    noCommands(synopsisWith({id})),
     decorate(prefixKey(opt.key), onlyCommands)(
-      usageMap(synopsesFrom(id))
+      usageMap(synopsesWith({id}))
     )
   ])(opt)
 }
 
-const synopses = synopsesFrom('line')
+const synopses = synopsesWith()
 
 module.exports = {
   synopses,
-  synopsesFrom
+  synopsesWith
 }
 
 function prefixKey (prefix = '') {

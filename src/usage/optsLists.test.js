@@ -1,4 +1,4 @@
-const {optsLists, optsListsFrom} = require('..')
+const {optsLists, optsListsWith} = require('..')
 
 test('optsLists README example works as expected', () => {
   const askOpts = [
@@ -189,7 +189,7 @@ test('optsLists uses default style if style is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsListsFrom correctly passes on id', () => {
+test('optsListsWith correctly passes on id', () => {
   const varOpts = [
     {key: 'variadicPos', desc: 'Variadic.' },
   ]
@@ -225,7 +225,7 @@ test('optsListsFrom correctly passes on id', () => {
     foo: [{width: 35}, {width: 30}]
   }
 
-  const res = optsListsFrom('foo')(opts)(style)
+  const res = optsListsWith({id: 'foo'})(opts)(style)
 
   const txt = '<stringPos>                        String positional argument.   \n' +
               '<numberPos>                        Number positional argument.   \n' +

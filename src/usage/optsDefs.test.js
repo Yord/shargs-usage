@@ -1,4 +1,4 @@
-const {optsDefs, optsDefsFrom} = require('..')
+const {optsDefs, optsDefsWith} = require('..')
 
 test('optsDefs README example works as expected', () => {
   const askOpts = [
@@ -252,7 +252,7 @@ test('optsDefs uses default styles if style is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDefsFrom correctly passes on ids', () => {
+test('optsDefsWith correctly passes on ids', () => {
   const varOpts = [
     {key: 'variadicPos', desc: 'Variadic.' },
   ]
@@ -289,7 +289,7 @@ test('optsDefsFrom correctly passes on ids', () => {
     desc2: [{padStart: 2, width: 38}]
   }
 
-  const res = optsDefsFrom('line2', 'desc2')(opts)(style)
+  const res = optsDefsWith({id1: 'line2', id2: 'desc2'})(opts)(style)
 
   const txt = '<stringPos>                             \n' +
               '  String positional argument.           \n' +

@@ -1,4 +1,4 @@
-const {line, lineFrom} = require('..')
+const {line, lineWith} = require('..')
 
 test('line generates expected string', () => {
   const style = {
@@ -44,14 +44,14 @@ test('line with undefined style uses the default style', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('lineFrom correctly passes on id', () => {
+test('lineWith correctly passes on id', () => {
   const id = 'test'
   
   const style = {
     [id]: [{width: 40}]
   }
 
-  const res = lineFrom(id)('A line')(style)
+  const res = lineWith({id})('A line')(style)
 
   const txt = 'A line                                  \n'
 

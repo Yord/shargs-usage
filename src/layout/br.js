@@ -1,10 +1,10 @@
-const {lineFrom} = require('./line')
+const {lineWith} = require('./line')
 
-const brFrom = id => lineFrom(id)('')
+const brWith = ({id = 'line'} = {id: 'line'}) => lineWith({id})('')
 
-const br = brFrom('line')
+const br = brWith()
 
 module.exports = {
   br,
-  brFrom
+  brWith
 }

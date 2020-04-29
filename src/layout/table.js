@@ -1,7 +1,7 @@
 const {defaultStyle} = require('../style')
-const {colsFrom}     = require('./cols')
+const {colsWith}     = require('./cols')
 
-const tableFrom = id => (rows = []) => (
+const tableWith = ({id = 'cols'} = {id: 'cols'}) => (rows = []) => (
   (style = defaultStyle) => {
     const {[id]: COLS = defaultStyle.cols} = style
 
@@ -41,11 +41,11 @@ const tableFrom = id => (rows = []) => (
       columns = indexes.map(index => [...columns[index], ROWS[index]])
     }
 
-    return colsFrom(id)(columns)(style)
+    return colsWith({id})(columns)(style)
   }
 )
 
-const table = tableFrom('cols')
+const table = tableWith()
 
 function splitWords (string) {
   return string.split(/(\s+)/g)
@@ -53,5 +53,5 @@ function splitWords (string) {
 
 module.exports = {
   table,
-  tableFrom
+  tableWith
 }

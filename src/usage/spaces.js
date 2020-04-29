@@ -1,10 +1,10 @@
-const {brsFrom} = require('../layout/brs')
+const {brsWith} = require('../layout/brs')
 
-const spacesFrom = id => (length = 1) => () => brsFrom(id)(length)
+const spacesWith = ({id = 'line'} = {id: 'line'}) => (length = 1) => () => brsWith({id})(length)
 
-const spaces = spacesFrom('line')
+const spaces = spacesWith()
 
 module.exports = {
   spaces,
-  spacesFrom
+  spacesWith
 }

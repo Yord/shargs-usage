@@ -1,4 +1,4 @@
-const {defs, defsFrom} = require('..')
+const {defs, defsWith} = require('..')
 
 test('defs generates expected string', () => {
   const style = {
@@ -110,7 +110,7 @@ test('defs prints empty lines for each undefined columns entry', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('defsFrom correctly passes on first id', () => {
+test('defsWith correctly passes on first id', () => {
   const id = 'test'
   
   const style = {
@@ -119,7 +119,7 @@ test('defsFrom correctly passes on first id', () => {
     desc: [{padStart: 4, width: 36}]
   }
   
-  const res = defsFrom(id, 'desc')([
+  const res = defsWith({id1: id, id2: 'desc'})([
     [
       '-h, --help',
       'Prints the help.'
@@ -138,7 +138,7 @@ test('defsFrom correctly passes on first id', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('defsFrom correctly passes on second id', () => {
+test('defsWith correctly passes on second id', () => {
   const id = 'test'
   
   const style = {
@@ -147,7 +147,7 @@ test('defsFrom correctly passes on second id', () => {
     desc: [{padStart: 4, width: 36}]
   }
   
-  const res = defsFrom('line', id)([
+  const res = defsWith({id1: 'line', id2: id})([
     [
       '-h, --help',
       'Prints the help.'

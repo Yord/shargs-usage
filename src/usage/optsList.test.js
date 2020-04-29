@@ -1,4 +1,4 @@
-const {optsList, optsListFrom} = require('..')
+const {optsList, optsListWith} = require('..')
 
 test('optsList README example works as expected', () => {
   const opts = {
@@ -135,7 +135,7 @@ test('optsList prints an empty string if opts are undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsList prints contradics, default, implies and required, in this order', () => {
+test('optsList prints contradicts, default, implies and required, in this order', () => {
   const opts = {
     opts: [
       {key: 'a', types: [], args: ['-a'], desc: 'An a.', required: false, defaultValues: ['a'], contradicts: ['b'], implies: ['c']},
@@ -234,7 +234,7 @@ test('optsList uses default style if style is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsListFrom correctly passes on id', () => {
+test('optsListWith correctly passes on id', () => {
   const opts = {
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
@@ -248,7 +248,7 @@ test('optsListFrom correctly passes on id', () => {
     ]
   }
 
-  const res = optsListFrom('cols2')(opts)(style)
+  const res = optsListWith({id: 'cols2'})(opts)(style)
 
   const txt = '-a, --answer=<number>                   The answer. [required]                  \n'
 

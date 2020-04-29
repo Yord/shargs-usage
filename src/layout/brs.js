@@ -1,13 +1,13 @@
 const {layout} = require('./combinators/layout')
-const {brFrom} = require('./br')
+const {brWith} = require('./br')
 
-const brsFrom = id => (length = 1) => layout(
-  Array.from({length}, () => brFrom(id))
+const brsWith = ({id = 'line'} = {id: 'line'}) => (length = 1) => layout(
+  Array.from({length}, () => brWith({id}))
 )
 
-const brs = brsFrom('line')
+const brs = brsWith()
 
 module.exports = {
   brs,
-  brsFrom
+  brsWith
 }

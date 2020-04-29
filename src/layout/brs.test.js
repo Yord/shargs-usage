@@ -1,4 +1,4 @@
-const {brs, brsFrom} = require('..')
+const {brs, brsWith} = require('..')
 
 test('brs generates expected string', () => {
   const style = {
@@ -25,14 +25,14 @@ test('brs with default length generates expected string', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('brsFrom correctly passes on id', () => {
+test('brsWith correctly passes on id', () => {
   const id = 'test'
   
   const style = {
     [id]: [{width: 40}]
   }
 
-  const res = brsFrom(id)(2)(style)
+  const res = brsWith({id})(2)(style)
 
   const txt = '                                        \n' +
               '                                        \n'
