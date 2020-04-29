@@ -10,21 +10,20 @@ test('usageMap generates expected string', () => {
   }
 
   const style = {
-    line: [{width: 40}],
-    desc: [{padStart: 4, width: 36}]
+    line: [{width: 40}]
   }
   
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textWith({id: 'desc'})(desc)
+    text(desc)
   ]))(opts)(style)
 
   const txt = '-a, --answer                            \n' +
-              '    The answer.                         \n' +
+              'The answer.                             \n' +
               '-h, --help                              \n' +
-              '    Prints help.                        \n' +
+              'Prints help.                            \n' +
               '--version                               \n' +
-              '    Prints version.                     \n'
+              'Prints version.                         \n'
 
   expect(res).toStrictEqual(txt)
 })
@@ -40,7 +39,7 @@ test('usageMap uses default styles if style is undefined', () => {
 
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textWith({id: 'desc'})(desc)
+    text(desc)
   ]))(opts)()
 
   const txt = '-a, --answer                                                                    \n' +
@@ -48,34 +47,6 @@ test('usageMap uses default styles if style is undefined', () => {
               '-h, --help                                                                      \n' +
               'Prints help.                                                                    \n' +
               '--version                                                                       \n' +
-              'Prints version.                                                                 \n'
-
-  expect(res).toStrictEqual(txt)
-})
-
-test('usageMap uses default line style if style has no desc attribute', () => {
-  const opts = {
-    opts: [
-      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
-      {key: 'help', opts: [], args: ['-h', '--help'], desc: 'Prints help.'},
-      {key: 'version', types: [], args: ['--version'], desc: 'Prints version.'}
-    ]
-  }
-
-  const style = {
-    line: [{width: 40}]
-  }
-
-  const res = usageMap(({args, desc}) => layout([
-    text(args.join(', ')),
-    textWith({id: 'desc'})(desc)
-  ]))(opts)(style)
-
-  const txt = '-a, --answer                            \n' +
-              'The answer.                                                                     \n' +
-              '-h, --help                              \n' +
-              'Prints help.                                                                    \n' +
-              '--version                               \n' +
               'Prints version.                                                                 \n'
 
   expect(res).toStrictEqual(txt)
@@ -90,34 +61,29 @@ test('usageMap uses default line style if style has no line attribute', () => {
     ]
   }
 
-  const style = {
-    desc: [{padStart: 4, width: 36}]
-  }
-
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textWith({id: 'desc'})(desc)
-  ]))(opts)(style)
+    text(desc)
+  ]))(opts)()
 
   const txt = '-a, --answer                                                                    \n' +
-              '    The answer.                         \n' +
+              'The answer.                                                                     \n' +
               '-h, --help                                                                      \n' +
-              '    Prints help.                        \n' +
+              'Prints help.                                                                    \n' +
               '--version                                                                       \n' +
-              '    Prints version.                     \n'
+              'Prints version.                                                                 \n'
 
   expect(res).toStrictEqual(txt)
 })
 
 test('usageMap returns empty string if opts are undefined', () => {
   const style = {
-    line: [{width: 40}],
-    desc: [{padStart: 4, width: 36}]
+    line: [{width: 40}]
   }
   
   const res = usageMap(({args, desc}) => layout([
     text(args.join(', ')),
-    textWith({id: 'desc'})(desc)
+    text(desc)
   ]))()(style)
 
   const txt = ''
@@ -129,8 +95,7 @@ test('usageMap returns empty string if opts are empty', () => {
   const opts = {}
 
   const style = {
-    line: [{width: 40}],
-    desc: [{padStart: 4, width: 36}]
+    line: [{width: 40}]
   }
   
   const res = usageMap(({args, desc}) => layout([
@@ -153,8 +118,7 @@ test('usageMap returns empty string if function is undefined', () => {
   }
 
   const style = {
-    line: [{width: 40}],
-    desc: [{padStart: 4, width: 36}]
+    line: [{width: 40}]
   }
   
   const res = usageMap()(opts)(style)

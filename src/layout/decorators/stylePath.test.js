@@ -82,16 +82,16 @@ test('stylePath uses default styles if style is undefined', () => {
 
 test('stylePath changes first layer in style if path is empty', () => {
   const style = {
-    desc: [{padStart: 4, width: 36}]
+    cols: [{width: 15}, {width: 25}]
   }
-
+  
   const setLine = obj => ({...obj, line: [{width: 40}]})
 
   const res = stylePath([], setLine)(id)(style)
 
   const exp = {
-    line: [{width: 40}],
-    desc: [{padStart: 4, width: 36}]
+    ...style,
+    line: [{width: 40}]
   }
 
   expect(res).toStrictEqual(exp)
@@ -99,7 +99,7 @@ test('stylePath changes first layer in style if path is empty', () => {
 
 test('stylePath changes nothing if path is not an array', () => {
   const style = {
-    desc: [{padStart: 4, width: 36}]
+    line: []
   }
 
   const setLine = obj => ({...obj, line: {width: 40}})
