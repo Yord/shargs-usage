@@ -1,11 +1,12 @@
 const {layout}    = require('./combinators/layout')
 const {layoutMap} = require('./combinators/layoutMap')
 const {textWith}  = require('./text')
+const {pad}       = require('./decorators/pad')
 
-const defsWith = ({id1 = 'line', id2 = 'desc'} = {id1: 'line', id2: 'desc'}) => layoutMap(
+const defsWith = ({id = 'line', num = 4} = {id: 'line', num: 4}) => layoutMap(
   (pair = []) => layout([
-    textWith({id: id1})(pair[0]),
-    textWith({id: id2})(pair[1])
+    textWith({id})(pair[0]),
+    pad([id, 0], num)(textWith({id})(pair[1]))
   ])
 )
 

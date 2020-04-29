@@ -15,8 +15,7 @@ test('optsDefs README example works as expected', () => {
   }
 
   const style = {
-    line: [{width: 30}],
-    desc: [{padStart: 4, width: 26}]
+    line: [{width: 30}]
   }
 
   const res = optsDefs(opts)(style)
@@ -68,8 +67,7 @@ test('optsDefs works with all option types', () => {
   }
 
   const style = {
-    line: [{width: 40}],
-    desc: [{padStart: 4, width: 36}]
+    line: [{width: 40}]
   }
 
   const res = optsDefs(opts)(style)
@@ -136,8 +134,7 @@ test('optsDefs prints an empty string if opts are empty', () => {
   const opts = {}
 
   const style = {
-    line: [{width: 40}],
-    desc: [{padStart: 4, width: 36}]
+    line: [{width: 40}]
   }
   
   const res = optsDefs(opts)(style)
@@ -149,8 +146,7 @@ test('optsDefs prints an empty string if opts are empty', () => {
 
 test('optsDefs prints an empty string if opts are undefined', () => {
   const style = {
-    line: [{width: 40}],
-    desc: [{padStart: 4, width: 36}]
+    line: [{width: 40}]
   }
   
   const res = optsDefs()(style)
@@ -252,7 +248,7 @@ test('optsDefs uses default styles if style is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsDefsWith correctly passes on ids', () => {
+test('optsDefsWith correctly passes on id and num', () => {
   const varOpts = [
     {key: 'variadicPos', desc: 'Variadic.' },
   ]
@@ -285,11 +281,10 @@ test('optsDefsWith correctly passes on ids', () => {
   }
 
   const style = {
-    line2: [{width: 40}],
-    desc2: [{padStart: 2, width: 38}]
+    line2: [{width: 40}]
   }
 
-  const res = optsDefsWith({id1: 'line2', id2: 'desc2'})(opts)(style)
+  const res = optsDefsWith({id: 'line2', num: 2})(opts)(style)
 
   const txt = '<stringPos>                             \n' +
               '  String positional argument.           \n' +

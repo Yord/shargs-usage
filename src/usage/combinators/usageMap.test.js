@@ -44,11 +44,11 @@ test('usageMap uses default styles if style is undefined', () => {
   ]))(opts)()
 
   const txt = '-a, --answer                                                                    \n' +
-              '    The answer.                                                                 \n' +
+              'The answer.                                                                     \n' +
               '-h, --help                                                                      \n' +
-              '    Prints help.                                                                \n' +
+              'Prints help.                                                                    \n' +
               '--version                                                                       \n' +
-              '    Prints version.                                                             \n'
+              'Prints version.                                                                 \n'
 
   expect(res).toStrictEqual(txt)
 })
