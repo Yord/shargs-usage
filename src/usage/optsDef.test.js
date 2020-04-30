@@ -265,7 +265,7 @@ test('optsDefWith correctly passes on padding', () => {
     line: [{width: 40}]
   }
 
-  const res = optsDefWith({padding: 2})(opts)(style)
+  const res = optsDefWith({pad: 2})(opts)(style)
 
   const txt = '-a, --answer=<number> [required]        \n' +
               '  The answer.                           \n'

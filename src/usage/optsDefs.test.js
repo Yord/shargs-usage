@@ -284,7 +284,7 @@ test('optsDefsWith correctly passes on id and padding', () => {
     line2: [{width: 40}]
   }
 
-  const res = optsDefsWith({id: 'line2', padding: 2})(opts)(style)
+  const res = optsDefsWith({id: 'line2', pad: 2})(opts)(style)
 
   const txt = '<stringPos>                             \n' +
               '  String positional argument.           \n' +

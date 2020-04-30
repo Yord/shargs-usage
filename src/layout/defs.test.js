@@ -138,7 +138,7 @@ test('defsWith correctly passes on padding', () => {
     line: [{width: 40}]
   }
   
-  const res = defsWith({padding: 2})([
+  const res = defsWith({pad: 2})([
     [
       '-h, --help',
       'Prints the help.'
