@@ -8,7 +8,7 @@ const {layout}                   = require('./layout/combinators/layout')
 const {layoutMap}                = require('./layout/combinators/layoutMap')
 const {line, lineWith}           = require('./layout/line')
 const {lines, linesWith}         = require('./layout/lines')
-const {noCommands}               = require('./usage/decorators/noCommands')
+const {noSubcommands}            = require('./usage/decorators/noSubcommands')
 const {note, noteWith}           = require('./usage/note')
 const {notes, notesWith}         = require('./usage/notes')
 const {onlyCommands}             = require('./usage/decorators/onlyCommands')
@@ -47,7 +47,7 @@ module.exports = {
   lineWith,
   lines,
   linesWith,
-  noCommands,
+  noSubcommands,
   note,
   noteWith,
   notes,

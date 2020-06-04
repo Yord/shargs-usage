@@ -1,4 +1,4 @@
-const {decorate, justArgs, line, noCommands, pad} = require('..')
+const {decorate, justArgs, line, noSubcommands, pad} = require('..')
 
 test('decorate combines usage decorators', () => {
   const opts = {
@@ -13,7 +13,7 @@ test('decorate combines usage decorators', () => {
 
   const res = decorate(
     justArgs(['-a', '-h']),
-    noCommands
+    noSubcommands
   )(id)(opts)()
 
   const exp = JSON.stringify({opts: opts.opts.slice(0, 1)})

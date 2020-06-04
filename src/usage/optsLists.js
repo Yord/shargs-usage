@@ -1,14 +1,14 @@
-const {layout}       = require('../layout/combinators/layout')
-const {pad}          = require('../layout/decorators/pad')
-const {usage}        = require('./combinators/usage')
-const {usageMap}     = require('./combinators/usageMap')
-const {noCommands}   = require('./decorators/noCommands')
-const {onlyCommands} = require('./decorators/onlyCommands')
-const {optsListWith} = require('./optsList')
+const {layout}        = require('../layout/combinators/layout')
+const {pad}           = require('../layout/decorators/pad')
+const {usage}         = require('./combinators/usage')
+const {usageMap}      = require('./combinators/usageMap')
+const {noSubcommands} = require('./decorators/noSubcommands')
+const {onlyCommands}  = require('./decorators/onlyCommands')
+const {optsListWith}  = require('./optsList')
 
 function optsListsWith ({id = 'cols'} = {id: 'cols'}) {
   return usage([
-    noCommands(optsListWith({id})),
+    noSubcommands(optsListWith({id})),
     onlyCommands(
       usageMap(cmd => layout([
         optsListWith({id})({opts: [cmd]}),
