@@ -1,8 +1,8 @@
-const {onlyCommands, optsList} = require('../..')
+const {onlySubcommands, optsList} = require('../..')
 
 const id = opts => opts
 
-test('onlyCommands README example works', () => {
+test('onlySubcommands README example works', () => {
   const style = {
     cols: [{width: 10, padEnd: 2}, {width: 28}]
   }
@@ -15,14 +15,14 @@ test('onlyCommands README example works', () => {
     ]
   }
   
-  const res = onlyCommands(optsList)(opts)(style)
+  const res = onlySubcommands(optsList)(opts)(style)
 
   const exp = '-h, --help  Prints help.                \n'
 
   expect(res).toStrictEqual(exp)
 })
 
-test('onlyCommands works with all option types', () => {
+test('onlySubcommands works with all option types', () => {
   const opts = {
     opts: [
       undefined,
@@ -45,14 +45,14 @@ test('onlyCommands works with all option types', () => {
     ]
   }
 
-  const res = onlyCommands(id)(opts)
+  const res = onlySubcommands(id)(opts)
 
   const exp = {opts: opts.opts.slice(11, 12)}
 
   expect(res).toStrictEqual(exp)
 })
 
-test('onlyCommands filters one opt', () => {
+test('onlySubcommands filters one opt', () => {
   const opts = {
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
@@ -61,14 +61,14 @@ test('onlyCommands filters one opt', () => {
     ]
   }
 
-  const res = onlyCommands(id)(opts)
+  const res = onlySubcommands(id)(opts)
 
   const exp = {opts: opts.opts.slice(2, 3)}
 
   expect(res).toStrictEqual(exp)
 })
 
-test('onlyCommands filters more than one opt', () => {
+test('onlySubcommands filters more than one opt', () => {
   const opts = {
     opts: [
       {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.'},
@@ -77,25 +77,25 @@ test('onlyCommands filters more than one opt', () => {
     ]
   }
 
-  const res = onlyCommands(id)(opts)
+  const res = onlySubcommands(id)(opts)
 
   const exp = {opts: opts.opts.slice(1, 3)}
 
   expect(res).toStrictEqual(exp)
 })
 
-test('onlyCommands returns an empty list if opts are empty', () => {
+test('onlySubcommands returns an empty list if opts are empty', () => {
   const opts = {}
 
-  const res = onlyCommands(id)(opts)
+  const res = onlySubcommands(id)(opts)
 
   const exp = {opts: []}
 
   expect(res).toStrictEqual(exp)
 })
 
-test('onlyCommands returns an empty list if opts are undefined', () => {
-  const res = onlyCommands(id)()
+test('onlySubcommands returns an empty list if opts are undefined', () => {
+  const res = onlySubcommands(id)()
 
   const exp = {opts: []}
 

@@ -1,6 +1,6 @@
 const {optsFilter} = require('./optsFilter')
 
-const onlyCommands = optsFilter(
+const onlySubcommands = optsFilter(
   ({key, args, types, opts} = {}) => (
     typeof key !== 'undefined' &&
     Array.isArray(args) &&
@@ -10,5 +10,5 @@ const onlyCommands = optsFilter(
 )
 
 module.exports = {
-  onlyCommands
+  onlySubcommands
 }
