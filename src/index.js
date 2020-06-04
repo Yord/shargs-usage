@@ -8,11 +8,11 @@ const {layout}                   = require('./layout/combinators/layout')
 const {layoutMap}                = require('./layout/combinators/layoutMap')
 const {line, lineWith}           = require('./layout/line')
 const {lines, linesWith}         = require('./layout/lines')
-const {noCommands}               = require('./usage/decorators/noCommands')
+const {noSubcommands}            = require('./usage/decorators/noSubcommands')
 const {note, noteWith}           = require('./usage/note')
 const {notes, notesWith}         = require('./usage/notes')
-const {onlyCommands}             = require('./usage/decorators/onlyCommands')
 const {onlyFirstArg}             = require('./usage/decorators/onlyFirstArg')
+const {onlySubcommands}          = require('./usage/decorators/onlySubcommands')
 const {optsFilter}               = require('./usage/decorators/optsFilter')
 const {optsDef, optsDefWith}     = require('./usage/optsDef')
 const {optsDefs, optsDefsWith}   = require('./usage/optsDefs')
@@ -47,12 +47,12 @@ module.exports = {
   lineWith,
   lines,
   linesWith,
-  noCommands,
+  noSubcommands,
   note,
   noteWith,
   notes,
   notesWith,
-  onlyCommands,
+  onlySubcommands,
   onlyFirstArg,
   optsFilter,
   optsDef,
