@@ -189,7 +189,7 @@ test('optsLists uses default style if style is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
-test('optsListsWith correctly passes on id', () => {
+test('optsListsWith correctly passes on id and padding', () => {
   const varOpts = [
     {key: 'variadicPos', desc: 'Variadic.' },
   ]
@@ -225,7 +225,7 @@ test('optsListsWith correctly passes on id', () => {
     foo: [{width: 35}, {width: 30}]
   }
 
-  const res = optsListsWith({id: 'foo'})(opts)(style)
+  const res = optsListsWith({id: 'foo', pad: 2})(opts)(style)
 
   const txt = '<stringPos>                        String positional argument.   \n' +
               '<numberPos>                        Number positional argument.   \n' +
@@ -239,21 +239,21 @@ test('optsListsWith correctly passes on id', () => {
               '-b, --bool=<bool>                  Bool option.                  \n' +
               '-a, --array=<str num>              Array option.                 \n' +
               'with-opts                          With-opts command.            \n' +
-              '    <stringPos>                    String positional argument.   \n' +
-              '    <numberPos>                    Number positional argument.   \n' +
-              '    <boolPos>                      Bool positional argument.     \n' +
-              '    <arrayPos>                     Array positional argument.    \n' +
-              '    <variadicPos>...               Variadic positional argument. \n' +
-              '    -v, --variadic                 Variadic option.              \n' +
-              '    -f, --flag                     Flag option.                  \n' +
-              '    -s, --string=<string>          String option.                \n' +
-              '    -n, --number=<number>          Number option.                \n' +
-              '    -b, --bool=<bool>              Bool option.                  \n' +
-              '    -a, --array=<str num>          Array option.                 \n' +
-              '    command                        Command option.               \n' +
-              '        <variadicPos>...           Variadic.                     \n' +
+              '  <stringPos>                      String positional argument.   \n' +
+              '  <numberPos>                      Number positional argument.   \n' +
+              '  <boolPos>                        Bool positional argument.     \n' +
+              '  <arrayPos>                       Array positional argument.    \n' +
+              '  <variadicPos>...                 Variadic positional argument. \n' +
+              '  -v, --variadic                   Variadic option.              \n' +
+              '  -f, --flag                       Flag option.                  \n' +
+              '  -s, --string=<string>            String option.                \n' +
+              '  -n, --number=<number>            Number option.                \n' +
+              '  -b, --bool=<bool>                Bool option.                  \n' +
+              '  -a, --array=<str num>            Array option.                 \n' +
+              '  command                          Command option.               \n' +
+              '    <variadicPos>...               Variadic.                     \n' +
               'command                            Command option.               \n' +
-              '    <variadicPos>...               Variadic.                     \n'
+              '  <variadicPos>...                 Variadic.                     \n'
 
   expect(res).toStrictEqual(txt)
 })
