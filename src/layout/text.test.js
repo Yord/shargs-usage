@@ -118,3 +118,18 @@ test('textWith with wrong id uses default style', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('textWith with undefined id uses default id', () => {
+  const defaultId = 'line'
+
+  const style = {
+    [defaultId]: [{width: 40}]
+  }
+
+  const res = textWith({})('Deep Thought was created to come up with the Answer.')(style)
+
+  const txt = 'Deep Thought was created to come up with\n' +
+              'the Answer.                             \n'
+
+  expect(res).toStrictEqual(txt)
+})
