@@ -25,6 +25,6 @@ module.exports = {
 function prefixKey (prefix = '') {
   return optsMap(opt => ({
     ...opt,
-    key: prefix + (prefix === '' ? '' : ' ') + (opt.key === '' ? '' : opt.key)
+    key: prefix + (prefix === '' || opt.key === '' ? '' : ' ') + opt.key
   }))
 }
