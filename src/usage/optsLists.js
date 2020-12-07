@@ -6,7 +6,7 @@ const {noSubcommands}   = require('./decorators/noSubcommands')
 const {onlySubcommands} = require('./decorators/onlySubcommands')
 const {optsListWith}    = require('./optsList')
 
-function optsListsWith ({id = 'cols', pad: padding = 4} = {id: 'cols'}) {
+function optsListsWith ({id = 'cols', pad: padding = 4} = {id: 'cols', pad: 4}) {
   return usage([
     noSubcommands(optsListWith({id})),
     onlySubcommands(
