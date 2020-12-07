@@ -379,6 +379,34 @@ test('tableWith with wrong id uses default style', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('tableWith with wrong id uses default style', () => {
+  const id1 = 'test'
+  const id2 = 'wrong'
+  
+  const style = {
+    [id1]: [
+      {width: 12},
+      {width: 28}
+    ]
+  }
+
+  const res = tableWith({id: id2})([
+    [
+      '-h, --help',
+      'Prints the help.'
+    ],
+    [
+      '-v, --version',
+      'Prints the version.'
+    ]
+  ])(style)
+
+  const txt = '-h, --help               Prints the help.                                       \n' +
+              '-v, --version            Prints the version.                                    \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('table2 README function works as expected', () => {
   const table2 = (columns = []) => style => {
     const rows = []
