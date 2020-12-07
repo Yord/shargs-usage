@@ -82,3 +82,18 @@ test('lineWith correctly passes on id', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('lineWith with wrong id uses default style', () => {
+  const id1 = 'test'
+  const id2 = 'wrong'
+  
+  const style = {
+    [id1]: [{width: 40}]
+  }
+
+  const res = lineWith({id: id2})('A line')(style)
+
+  const txt = 'A line                                                                          \n'
+
+  expect(res).toStrictEqual(txt)
+})
