@@ -74,6 +74,20 @@ test('synopses works with all option types', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('synopses with undefined opt prints an empty line', () => {
+  const opts = undefined
+
+  const style = {
+    line: [{width: 80}]
+  }
+
+  const res = synopses(opts)(style)
+
+  const txt = '                                                                                \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('synopses works without programName', () => {
   const commandOpts = [
     undefined,
