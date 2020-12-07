@@ -97,3 +97,17 @@ test('lineWith with wrong id uses default style', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('lineWith with undefined id uses default id', () => {
+  const defaultId = 'line'
+
+  const style = {
+    [defaultId]: [{width: 40}]
+  }
+
+  const res = lineWith({})('A line')(style)
+
+  const txt = 'A line                                  \n'
+
+  expect(res).toStrictEqual(txt)
+})
