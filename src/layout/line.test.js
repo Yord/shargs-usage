@@ -56,6 +56,19 @@ test('line with too few style entries uses default style', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('line without width in style object uses default width', () => {
+  const style = {
+    line: [{padStart: 5}]
+  }
+
+  // @ts-ignore
+  const res = line('A line')(style)
+
+  const txt = '     A line                                                                          \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('lineWith correctly passes on id', () => {
   const id = 'test'
   
