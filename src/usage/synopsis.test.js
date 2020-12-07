@@ -154,6 +154,21 @@ test('synopsis prints only programName if opts is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('synopsis prints an empty line if opt is undefined', () => {
+  const opts = undefined
+
+  const style = {
+    line: [{width: 40}]
+  }
+
+  // @ts-ignore
+  const res = synopsis(opts)(style)
+
+  const txt = '                                        \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('synopsis uses default line style if line is undefined in style', () => {
   const opts = {
     key: 'deepThought',
