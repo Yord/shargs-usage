@@ -153,3 +153,20 @@ test('noteWith with wrong id uses default style', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('noteWith with undefined id uses default id', () => {
+  const defaultId = 'line'
+
+  const opts = {}
+
+  const style = {
+    [defaultId]: [{width: 40}]
+  }
+
+  const res = noteWith({})('Deep Thought was created to come up with the Answer.')(opts)(style)
+
+  const txt = 'Deep Thought was created to come up with\n' +
+              'the Answer.                             \n'
+
+  expect(res).toStrictEqual(txt)
+})
