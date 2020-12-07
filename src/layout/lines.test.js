@@ -71,6 +71,24 @@ test('linesWith with wrong id uses default style', () => {
     'Last line'
   ])(style)
 
+  const txt = 'First line                                                                      \n' +
+              'Last line                                                                       \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
+test('linesWith with undefined id uses default id', () => {
+  const defaultId = 'line'
+
+  const style = {
+    [defaultId]: [{width: 40}]
+  }
+
+  const res = linesWith({})([
+    'First line',
+    'Last line'
+  ])(style)
+
   const txt = 'First line                              \n' +
               'Last line                               \n'
 
