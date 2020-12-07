@@ -44,6 +44,18 @@ test('line with undefined style uses the default style', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('line with too few style entries uses default style', () => {
+  const style = {
+    line: []
+  }
+
+  const res = line('A line')(style)
+
+  const txt = 'A line                                                                          \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('lineWith correctly passes on id', () => {
   const id = 'test'
   
