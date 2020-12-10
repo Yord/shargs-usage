@@ -294,3 +294,24 @@ test('optsDefWith with wrong id uses default style', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('optsDefWith with undefined id uses default id', () => {
+  const defaultId = 'line'
+
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
+    ]
+  }
+
+  const style = {
+    [defaultId]: [{width: 40}]
+  }
+
+  const res = optsDefWith({})(opts)(style)
+
+  const txt = '-a, --answer=<number> [required]        \n' +
+              '    The answer.                         \n'
+
+  expect(res).toStrictEqual(txt)
+})
