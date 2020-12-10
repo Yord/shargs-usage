@@ -368,7 +368,7 @@ test('optsListsWith with undefined id and pad uses default id and pad', () => {
     [defaultId]: [{width: 35}, {width: 30}]
   }
 
-  const res = optsListsWith()(opts)(style)
+  const res = optsListsWith({})(opts)(style)
 
   const txt = '<stringPos>                        String positional argument.   \n' +
               '<numberPos>                        Number positional argument.   \n' +
