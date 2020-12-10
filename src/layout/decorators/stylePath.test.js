@@ -117,3 +117,20 @@ test('stylePath changes nothing if path is not an array', () => {
 
   expect(res).toStrictEqual(exp)
 })
+
+test('stylePath generates a list if current path element is a number which is missing from the obj', () => {
+  const style = {
+    right: [{width: 20}]
+  }
+
+  const doubleWidth = (obj = {}) => ({...obj, width: (obj.width || 30) * 2})
+
+  const res = stylePath(['wrong', 0], doubleWidth)(id)(style)
+
+  const exp = {
+    ...style,
+    wrong: [{width: 60}]
+  }
+
+  expect(res).toStrictEqual(exp)
+})
