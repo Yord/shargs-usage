@@ -1,4 +1,5 @@
 const {line, stylePath, table} = require('../..')
+const {defaultStyle} = require('../../style')
 
 const id = style => style
 
@@ -52,30 +53,36 @@ test('stylePath works with arrays', () => {
   expect(res).toStrictEqual(exp)
 })
 
-test('stylePath uses empty styles object if style does not contain id', () => {
+test('stylePath uses empty styles object if style and default style do not contain string id', () => {
   const style = {
     b: []
   }
   
-  const pad4 = obj => ({...obj, padStart: (obj.padStart || 0) + 4, width: (obj.width || 0) - 4})
-
-  const id = line('a')
+  const pad4 = (obj = {}) => ({...obj, padStart: (obj.padStart || 0) + 4, width: (obj.width || 0) - 4})
 
   const res = stylePath(['foo'], pad4)(id)(style)
 
-  const exp = 'a                                                                               \n'
+  const exp = {
+    ...style,
+    foo: {width: -4, padStart: 4}
+  }
 
   expect(res).toStrictEqual(exp)
 })
 
-test('stylePath uses default styles if style is undefined', () => {
+test('stylePath uses default styles as basis if style is undefined', () => {
   const pad4 = obj => ({...obj, padStart: (obj.padStart || 0) + 4, width: obj.width - 4})
-
-  const id = line('a')
 
   const res = stylePath(['line', 0], pad4)(id)()
 
-  const exp = '    a                                                                           \n'
+  const exp = {
+    ...defaultStyle,
+    line: [{
+      ...defaultStyle.line[0],
+      width: defaultStyle.line[0].width - 4,
+      padStart: (defaultStyle.line[0].padStart || 0) + 4
+    }]
+  }
 
   expect(res).toStrictEqual(exp)
 })
