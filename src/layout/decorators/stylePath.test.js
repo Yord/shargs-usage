@@ -134,3 +134,20 @@ test('stylePath generates a list if current path element is a number which is mi
 
   expect(res).toStrictEqual(exp)
 })
+
+test('stylePath fills the array with undefined values up to the number in the undefined case', () => {
+  const style = {
+    right: [{width: 20}]
+  }
+
+  const doubleWidth = (obj = {}) => ({...obj, width: (obj.width || 30) * 2})
+
+  const res = stylePath(['wrong', 1], doubleWidth)(id)(style)
+
+  const exp = {
+    ...style,
+    wrong: [undefined, {width: 60}]
+  }
+
+  expect(res).toStrictEqual(exp)
+})
