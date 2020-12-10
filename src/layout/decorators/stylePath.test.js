@@ -151,3 +151,20 @@ test('stylePath fills the array with undefined values up to the number in the un
 
   expect(res).toStrictEqual(exp)
 })
+
+test('stylePath generates an object if current path element is a string which is missing from the obj', () => {
+  const style = {
+    right: [{width: 20}]
+  }
+
+  const doubleWidth = (obj = {}) => ({...obj, width: (obj.width || 30) * 2})
+
+  const res = stylePath(['wrong', '0'], doubleWidth)(id)(style)
+
+  const exp = {
+    ...style,
+    wrong: {'0': {width: 60}}
+  }
+
+  expect(res).toStrictEqual(exp)
+})
