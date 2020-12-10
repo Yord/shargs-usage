@@ -254,3 +254,50 @@ test('optsListWith correctly passes on id', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('optsListWith with wrong id uses default style', () => {
+  const id1 = 'test'
+  const id2 = 'wrong'
+  
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
+    ]
+  }
+
+  const style = {
+    [id1]: [
+      {width: 40},
+      {width: 40}
+    ]
+  }
+
+  const res = optsListWith({id: id2})(opts)(style)
+
+  const txt = '-a, --answer=<number>    The answer. [required]                                 \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
+test('optsListWith with undefined id uses default id', () => {
+  const defaultId = 'cols'
+
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
+    ]
+  }
+
+  const style = {
+    [defaultId]: [
+      {width: 40},
+      {width: 40}
+    ]
+  }
+
+  const res = optsListWith({})(opts)(style)
+
+  const txt = '-a, --answer=<number>                   The answer. [required]                  \n'
+
+  expect(res).toStrictEqual(txt)
+})

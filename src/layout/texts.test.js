@@ -127,6 +127,26 @@ test('textsWith with wrong id uses default style', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('textsWith with undefined id uses default id', () => {
+  const defaultId = 'line'
+
+  const style = {
+    [defaultId]: [{width: 40}]
+  }
+
+  const res = textsWith({})([
+    'Deep Thought was created to come up with the Answer.',
+    'To The Ultimate Question of Life, the Universe, and Everything.'
+  ])(style)
+
+  const txt = 'Deep Thought was created to come up with\n' +
+              'the Answer.                             \n' +
+              'To The Ultimate Question of Life, the   \n' +
+              'Universe, and Everything.               \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('descs README example works as expected', () => {
   const descs = opts => style => {
     const descriptions = opts.map(_ => _.desc)

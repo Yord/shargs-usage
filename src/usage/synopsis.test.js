@@ -154,6 +154,21 @@ test('synopsis prints only programName if opts is undefined', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('synopsis prints an empty line if opt is undefined', () => {
+  const opts = undefined
+
+  const style = {
+    line: [{width: 40}]
+  }
+
+  // @ts-ignore
+  const res = synopsis(opts)(style)
+
+  const txt = '                                        \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('synopsis uses default line style if line is undefined in style', () => {
   const opts = {
     key: 'deepThought',
@@ -274,6 +289,35 @@ test('synopsisWith with wrong id uses default style', () => {
 
   const txt = 'deepThought (-a|--answer) [-h|--help] [-v|-q] [--no-fun] (-f) (<question>)      \n' +
               '            [<phrases>...]                                                      \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
+test('synopsisWith with undefined id uses default id', () => {
+  const defaultId = 'line'
+
+  const opts = {
+    key: 'deepThought',
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], required: true},
+      {key: 'help', types: [], args: ['-h', '--help']},
+      {key: 'verbose', types: [], args: ['-v']},
+      {key: 'verbose', types: [], args: ['-q'], reverse: true},
+      {key: 'fun', types: ['bool'], args: ['-f'], required: true},
+      {key: 'fun', types: ['bool'], args: ['--no-fun'], reverse: true},
+      {key: 'question', types: ['string'], required: true},
+      {key: 'politePhrases', descArg: 'phrases'}
+    ]
+  }
+
+  const style = {
+    [defaultId]: [{width: 70}]
+  }
+
+  const res = synopsisWith({})(opts)(style)
+
+  const txt = 'deepThought (-a|--answer) [-h|--help] [-v|-q] [--no-fun] (-f)         \n' +
+              '            (<question>) [<phrases>...]                               \n'
 
   expect(res).toStrictEqual(txt)
 })

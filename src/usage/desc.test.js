@@ -132,3 +132,23 @@ test('descWith with wrong id uses default style', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('descWith with undefined id uses default id', () => {
+  const defaultId = 'line'
+
+  const opts = {
+    opts: [],
+    desc: 'Deep Thought was created to come up with the Answer.'
+  }
+
+  const style = {
+    [defaultId]: [{width: 40}]
+  }
+
+  const res = descWith({})(opts)(style)
+
+  const txt = 'Deep Thought was created to come up with\n' +
+              'the Answer.                             \n'
+
+  expect(res).toStrictEqual(txt)
+})

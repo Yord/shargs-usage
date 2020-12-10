@@ -99,3 +99,37 @@ test('textWith with wrong id uses default style', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('textWith with wrong id uses default style', () => {
+  const id1 = 'test'
+  const id2 = 'wrong'
+  
+  const style = {
+    [id1]: [{width: 40}]
+  }
+
+  const res = textWith({id: id2})(
+    'Deep Thought was created to come up with the Answer to ' +
+    'The Ultimate Question of Life, the Universe, and Everything.'
+  )(style)
+
+  const txt = 'Deep Thought was created to come up with the Answer to The Ultimate Question of \n' +
+              'Life, the Universe, and Everything.                                             \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
+test('textWith with undefined id uses default id', () => {
+  const defaultId = 'line'
+
+  const style = {
+    [defaultId]: [{width: 40}]
+  }
+
+  const res = textWith({})('Deep Thought was created to come up with the Answer.')(style)
+
+  const txt = 'Deep Thought was created to come up with\n' +
+              'the Answer.                             \n'
+
+  expect(res).toStrictEqual(txt)
+})
