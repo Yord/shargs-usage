@@ -272,3 +272,25 @@ test('optsDefWith correctly passes on padding', () => {
 
   expect(res).toStrictEqual(txt)
 })
+
+test('optsDefWith with wrong id uses default style', () => {
+  const id1 = 'test'
+  const id2 = 'wrong'
+  
+  const opts = {
+    opts: [
+      {key: 'answer', types: ['number'], args: ['-a', '--answer'], desc: 'The answer.', required: true}
+    ]
+  }
+
+  const style = {
+    [id1]: [{width: 40}]
+  }
+
+  const res = optsDefWith({id: id2})(opts)(style)
+
+  const txt = '-a, --answer=<number> [required]                                                \n' +
+              '    The answer.                                                                 \n'
+
+  expect(res).toStrictEqual(txt)
+})
