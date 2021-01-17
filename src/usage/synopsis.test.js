@@ -239,6 +239,25 @@ test('synopsis cuts programName if it is too long', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('synopsis works with required subcommands', () => {
+  const opts = {
+    key: 'deepThought',
+    opts: [
+      {key: 'subcommandKey', args: ['subcommand'], opts: [], required: true}
+    ]
+  }
+
+  const style = {
+    line: [{width: 40}]
+  }
+
+  const res = synopsis(opts)(style)
+
+  const txt = 'deepThought (subcommand)                \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('synopsisWith correctly passes on id', () => {
   const opts = {
     key: 'deepThought',
