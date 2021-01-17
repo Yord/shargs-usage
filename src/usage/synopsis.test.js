@@ -277,6 +277,25 @@ test('synopsis works with optional subcommands', () => {
   expect(res).toStrictEqual(txt)
 })
 
+test('synopsis works with subcommands with two args', () => {
+  const opts = {
+    key: 'deepThought',
+    opts: [
+      {key: 'subcommandKey', args: ['sub', 'subcommand'], opts: []}
+    ]
+  }
+
+  const style = {
+    line: [{width: 40}]
+  }
+
+  const res = synopsis(opts)(style)
+
+  const txt = 'deepThought [sub|subcommand]            \n'
+
+  expect(res).toStrictEqual(txt)
+})
+
 test('synopsisWith correctly passes on id', () => {
   const opts = {
     key: 'deepThought',
