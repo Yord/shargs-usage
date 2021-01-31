@@ -188,3 +188,20 @@ test('optsF removes default shields with descDefault', () => {
 
   expect(opts).toStrictEqual(opt.opts)
 })
+
+test('optsF generates implies shields', () => {
+  const answer = {key: 'answer', types: ['number'], args: ['-a', '--answer'], implies: ['answer']}
+
+  const opt = {
+    opts: [
+      answer
+    ]
+  }
+
+  const {defArgs, descOpt, opts} = optsF(f)(opt)
+
+  expect(defArgs(answer)).toStrictEqual('-a, --answer=<number>')
+  expect(descOpt(answer)).toStrictEqual(' [implies: -a, --answer]')
+
+  expect(opts).toStrictEqual(opt.opts)
+})
