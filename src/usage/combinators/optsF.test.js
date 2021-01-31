@@ -120,3 +120,20 @@ test('optsF does not generate default shields for objects', () => {
 
   expect(opts).toStrictEqual(opt.opts)
 })
+
+test('optsF does not generate default shields for functions', () => {
+  const answer = {key: 'answer', types: ['string'], args: ['-a', '--answer'], defaultValues: [a => a]}
+
+  const opt = {
+    opts: [
+      answer
+    ]
+  }
+
+  const {defArgs, descOpt, opts} = optsF(f)(opt)
+
+  expect(defArgs(answer)).toStrictEqual('-a, --answer=<string>')
+  expect(descOpt(answer)).toStrictEqual('')
+
+  expect(opts).toStrictEqual(opt.opts)
+})
