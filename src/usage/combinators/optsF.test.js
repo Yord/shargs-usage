@@ -154,3 +154,20 @@ test('optsF generates array default shields for a string and a number', () => {
 
   expect(opts).toStrictEqual(opt.opts)
 })
+
+test('optsF overrides default shields with descDefault', () => {
+  const answer = {key: 'answer', types: ['number'], args: ['-a', '--answer'], defaultValues: [42], descDefault: '23'}
+
+  const opt = {
+    opts: [
+      answer
+    ]
+  }
+
+  const {defArgs, descOpt, opts} = optsF(f)(opt)
+
+  expect(defArgs(answer)).toStrictEqual('-a, --answer=<number>')
+  expect(descOpt(answer)).toStrictEqual(' [default: 23]')
+
+  expect(opts).toStrictEqual(opt.opts)
+})
