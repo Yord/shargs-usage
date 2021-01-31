@@ -86,3 +86,20 @@ test('optsF generates default shields for booleans', () => {
 
   expect(opts).toStrictEqual(opt.opts)
 })
+
+test('optsF does not generate default shields for arrays', () => {
+  const answer = {key: 'answer', types: ['string'], args: ['-a', '--answer'], defaultValues: [[1, 2]]}
+
+  const opt = {
+    opts: [
+      answer
+    ]
+  }
+
+  const {defArgs, descOpt, opts} = optsF(f)(opt)
+
+  expect(defArgs(answer)).toStrictEqual('-a, --answer=<string>')
+  expect(descOpt(answer)).toStrictEqual('')
+
+  expect(opts).toStrictEqual(opt.opts)
+})
