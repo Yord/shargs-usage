@@ -50,33 +50,53 @@ function valuesLabel ({descArg, types, only = []}, equalsSign) {
 }
 
 function descOpt (argsByKey) {
-  return ({contradicts = [], defaultValues = [], implies = [], required}) => {
+  const contradictsLabel = ({contradicts}) => {
+    if (Array.isArray(contradicts) && contradicts.length > 0) {
+      return ['contradicts: ' + flatMap(_ => argsByKey[_])(contradicts).join(', ')]
+    }
+    return []
+  }
+
+  const defaultLabel = ({descDefault, defaultValues}) => {
+    if (descDefault === '') return []
+    if (typeof descDefault === 'string') return ['default: ' + descDefault]
+    if (!Array.isArray(defaultValues)) return []
+    if (defaultValues.length === 0) return []
+    if (defaultValues.length === 1) {
+      const value = defaultValues[0]
+
+      if (['string', 'number', 'boolean'].indexOf(typeof value) !== -1) {
+        return ['default: ' + value]
+      }
+      return []
+    }
+    return ['default: [' + defaultValues.join(', ') + ']']
+  }
+
+  const impliesLabel = ({implies}) => {
+    if (Array.isArray(implies) && implies.length > 0) {
+      return ['implies: ' + flatMap(_ => argsByKey[_])(implies).join(', ')]
+    }
+    return []
+  }
+
+  const requiredLabel = ({required}) => {
+    if (required === true) return ['required']
+    if (required === false) return ['not required']
+    return []
+  }
+
+  return ({contradicts = [], defaultValues = [], descDefault, implies = [], required}) => {
     const labels = [
-      ...(Array.isArray(contradicts) && contradicts.length > 0
-          ? ['contradicts: ' + flatMap(_ => argsByKey[_])(contradicts).join(', ')]
-          : []
-      ),
-      ...(!Array.isArray(defaultValues)
-          ? []
-          : defaultValues.length === 0
-            ? []
-            : defaultValues.length === 1
-              ? ['default: ' + defaultValues[0]]
-              : ['default: [' + defaultValues.join(', ') + ']']
-      ),
-      ...(Array.isArray(implies) && implies.length > 0
-          ? ['implies: ' + flatMap(_ => argsByKey[_])(implies).join(', ')]
-          : []
-      ),
-      ...(required === true
-          ? ['required']
-          : required === false
-            ? ['not required']
-            : []
-      )
+      ...contradictsLabel({contradicts}),
+      ...defaultLabel({descDefault, defaultValues}),
+      ...impliesLabel({implies}),
+      ...requiredLabel({required})
     ]
 
-    return (labels.length === 0 ? '' : ' ') + labels.map(label => '[' + label + ']').join(' ')
+    const prefix = labels.length === 0 ? '' : ' '
+
+    return prefix + labels.map(label => '[' + label + ']').join(' ')
   }
 }
 
