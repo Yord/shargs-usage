@@ -205,3 +205,20 @@ test('optsF generates implies shields', () => {
 
   expect(opts).toStrictEqual(opt.opts)
 })
+
+test('optsF generates contradicts shields', () => {
+  const answer = {key: 'answer', types: ['number'], args: ['-a', '--answer'], contradicts: ['answer']}
+
+  const opt = {
+    opts: [
+      answer
+    ]
+  }
+
+  const {defArgs, descOpt, opts} = optsF(f)(opt)
+
+  expect(defArgs(answer)).toStrictEqual('-a, --answer=<number>')
+  expect(descOpt(answer)).toStrictEqual(' [contradicts: -a, --answer]')
+
+  expect(opts).toStrictEqual(opt.opts)
+})
